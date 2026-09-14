@@ -1,26 +1,265 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* ---- Government of India standard palette ---- */
+  --color-gov-navy: #0b2d5c;
+  --color-gov-navy-dark: #07203f;
+  --color-gov-navy-light: #14447f;
+  --color-gov-saffron: #ff9933;
+  --color-gov-green: #138808;
+  --color-gov-maroon: #8b1a1a;
+
+  --color-ink: #1a1d23;
+  --color-ink-secondary: #4a4f5c;
+  --color-ink-tertiary: #6b7280;
+  --color-surface: #f4f5f7;
+  --color-surface-card: #ffffff;
+  --color-border: #d8dbe2;
+  --color-border-strong: #b0b5c0;
+
+  --color-accent-officer: #0b2d5c;
+  --color-accent-employer: #1b5e3f;
+  --color-accent-student: #a8420b;
+
+  --color-signal-rising: #1b7a3d;
+  --color-signal-declining: #b3261e;
+  --color-signal-stable: #5f6773;
+
+  --font-sans: var(--font-ibm-plex), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-ibm-mono), ui-monospace, SFMono-Regular, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --gov-navy: #0b2d5c;
+    --gov-navy-dark: #07203f;
+    --gov-navy-light: #14447f;
+    --gov-saffron: #ff9933;
+    --gov-green: #138808;
+    --gov-maroon: #8b1a1a;
+
+    --ink: #1a1d23;
+    --ink-secondary: #4a4f5c;
+    --ink-tertiary: #6b7280;
+    --surface: #f4f5f7;
+    --surface-alt: #eceef2;
+    --surface-card: #ffffff;
+    --border: #d8dbe2;
+    --border-strong: #b0b5c0;
+
+    --accent-officer: #0b2d5c;
+    --accent-officer-light: #e8eef5;
+    --accent-employer: #1b5e3f;
+    --accent-employer-light: #e6f2ec;
+    --accent-student: #a8420b;
+    --accent-student-light: #fdf0e6;
+
+    --signal-rising: #1b7a3d;
+    --signal-rising-light: #e6f5eb;
+    --signal-declining: #b3261e;
+    --signal-declining-light: #fdeceb;
+    --signal-stable: #5f6773;
+    --signal-stable-light: #eff1f3;
+    --signal-warn: #94620a;
+    --signal-warn-light: #fdf5e0;
+
+    --font-scale: 1;
+  }
+
+  /* Accessibility: font resizer (A- A A+) sets data-fontscale on <html> */
+  html[data-fontscale="sm"] { font-size: 14px; }
+  html[data-fontscale="md"] { font-size: 16px; }
+  html[data-fontscale="lg"] { font-size: 18px; }
+
+  /* Accessibility: high-contrast mode */
+  html[data-contrast="high"] body {
+    background: #000 !important;
+    color: #fff !important;
+  }
+  html[data-contrast="high"] .gov-card,
+  html[data-contrast="high"] [class*="bg-white"],
+  html[data-contrast="high"] [class*="surface-card"] {
+    background: #111 !important;
+    color: #fff !important;
+    border-color: #ffd700 !important;
+  }
+  html[data-contrast="high"] a { color: #ffd700 !important; }
+
+  html { scroll-behavior: smooth; }
+
+  body { text-underline-offset: 2px; }
+
+  ::selection { background: #ffd9a8; color: #1a1d23; }
+}
+
+@layer components {
+  /* Standard content card used across both portals */
+  .gov-card {
+    @apply bg-[var(--surface-card)] border border-[var(--border)] rounded-sm;
+  }
+  .gov-card-head {
+    @apply flex items-center justify-between gap-3 px-4 py-2.5 border-b border-[var(--border)] bg-[var(--surface-alt)];
+  }
+  .gov-card-title {
+    @apply text-[14.5px] font-bold uppercase tracking-[0.05em] text-[var(--gov-navy)];
+  }
+  /* Section heading with the tricolour rule under it */
+  .gov-rule::after {
+    content: '';
+    display: block;
+    width: 72px;
+    height: 3px;
+    margin-top: 8px;
+    background: linear-gradient(to right,
+      var(--gov-saffron) 0 24px,
+      #ffffff 24px 48px,
+      var(--gov-green) 48px 72px);
+    border: 1px solid var(--border);
+  }
+  .gov-link {
+    @apply text-[var(--gov-navy-light)] underline decoration-dotted underline-offset-2 hover:decoration-solid hover:text-[var(--gov-navy)];
+  }
+  .gov-input {
+    @apply w-full border border-[var(--border-strong)] rounded-sm px-3 py-2.5 text-[15px] bg-white
+           focus:outline-none focus:ring-2 focus:ring-[var(--gov-navy)]/30 focus:border-[var(--gov-navy)]
+           disabled:bg-[var(--surface-alt)] disabled:text-[var(--ink-tertiary)];
+  }
+  .gov-label {
+    @apply block text-[13px] font-semibold text-[var(--ink-secondary)] mb-1.5 uppercase tracking-wide;
+  }
+  .gov-th {
+    @apply px-3 py-2.5 text-left text-[12.5px] font-bold uppercase tracking-[0.04em] text-white bg-[var(--gov-navy)] whitespace-nowrap;
+  }
+  .gov-td {
+    @apply px-3 py-2.5 text-[14px] text-[var(--ink)] border-b border-[var(--border)] align-top;
+  }
+  .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+}
+
+@layer utilities {
+  .tricolour-bar {
+    background: linear-gradient(to right,
+      var(--gov-saffron) 0 33.33%,
+      #ffffff 33.33% 66.66%,
+      var(--gov-green) 66.66% 100%);
+  }
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--gov-navy)] focus-visible:ring-offset-1;
+  }
+  .skip-link {
+    @apply absolute left-2 -top-20 z-[100] bg-[var(--gov-navy)] text-white px-4 py-2 text-sm rounded-sm focus:top-2 transition-all;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@keyframes marquee-scroll {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+.marquee-track { animation: marquee-scroll 22s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }
+
+@keyframes blink-new {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+.blink-new { animation: blink-new 1.2s ease-in-out infinite; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--surface-alt); }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-tertiary); }
+
+@media print {
+  .no-print { display: none !important; }
+}
+
+/* =================================================================== */
+/*  Motion                                                             */
+/*                                                                     */
+/*  Movement here is functional, not decorative: it shows where new     */
+/*  content came from, draws the eye to the one thing the guide is      */
+/*  pointing at, and makes a number that changed look like it changed.  */
+/*  Every animation below is disabled outright under                    */
+/*  prefers-reduced-motion, which GIGW and WCAG 2.3.3 both expect.      */
+/* =================================================================== */
+
+@keyframes ks-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes ks-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes ks-pop {
+  0%   { opacity: 0; transform: scale(0.94); }
+  60%  { transform: scale(1.012); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes ks-slide-left {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes ks-halo {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 153, 51, 0.55); }
+  50%      { box-shadow: 0 0 0 9px rgba(255, 153, 51, 0); }
+}
+@keyframes ks-bar {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+@keyframes ks-spin {
+  to { transform: rotate(360deg); }
+}
+
+.ks-rise       { animation: ks-rise 0.42s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.ks-fade       { animation: ks-fade 0.3s ease-out both; }
+.ks-pop        { animation: ks-pop 0.26s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.ks-slide-left { animation: ks-slide-left 0.36s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.ks-halo       { animation: ks-halo 1.9s ease-out infinite; }
+.ks-spin       { animation: ks-spin 0.9s linear infinite; }
+
+/* Staggered entrance for grids and lists — set --i on each child. */
+.ks-stagger > * {
+  animation: ks-rise 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--i, 0) * 55ms);
+}
+
+/* Progress bars grow from the left rather than appearing filled. */
+.ks-bar-grow {
+  transform-origin: left;
+  animation: ks-bar 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Interactive lift — used on cards and big actions. */
+.ks-lift {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+.ks-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(11, 45, 92, 0.12);
+}
+.ks-lift:active { transform: translateY(0); }
+
+/* The guided-tour spotlight: a hole punched in a full-screen scrim. */
+.ks-spotlight {
+  position: fixed;
+  border-radius: 4px;
+  box-shadow: 0 0 0 9999px rgba(7, 32, 63, 0.72), 0 0 0 3px var(--gov-saffron);
+  transition: top 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+              left 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+              width 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+              height 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 70;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .ks-lift:hover { transform: none; }
 }
