@@ -7,9 +7,9 @@ const COLUMNS: { title: string; links: { label: string; href: string; external?:
     links: [
       { label: 'New Registration', href: '/register' },
       { label: 'Candidate Login', href: '/login' },
-      { label: 'Course Catalogue', href: '/courses' },
+      { label: 'Courses', href: '/courses' },
       { label: 'Certificate for work you do', href: '/register?role=student' },
-      { label: 'Grievance Redressal', href: '/help' },
+      { label: 'Help & complaints', href: '/help' },
     ],
   },
   {
@@ -26,7 +26,7 @@ const COLUMNS: { title: string; links: { label: string; href: string; external?:
     title: 'Departmental',
     links: [
       { label: 'Officer Login', href: '/gov' },
-      { label: 'Hiring data by district', href: '/demand' },
+      { label: 'Jobs in your district', href: '/demand' },
       { label: 'Scheme Guidelines', href: '/schemes' },
       { label: 'Tenders & Circulars', href: '/about' },
       { label: 'Right to Information', href: '/about' },
@@ -57,7 +57,7 @@ export function SiteFooter() {
                 <p className="font-bold text-white text-[15px] leading-tight">प्रgati</p>
                 <p className="text-[12px] text-slate-300 mt-1 leading-relaxed">
                   Department of Skill, Employment, Entrepreneurship &amp; Innovation,
-                  Government of Maharashtra, Mantralaya, Mumbai — 400032
+                  Government of Maharashtra, Mantralaya, Mumbai: 400032
                 </p>
                 <p className="text-[12px] text-slate-300 mt-2">
                   Helpline: <span className="mono text-white">1800-233-0202</span>

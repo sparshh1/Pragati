@@ -112,7 +112,7 @@ export function GuideLauncher() {
                   </span>
                   <span className="min-w-0">
                     <span className="block text-[14.5px] font-bold text-[var(--ink)]">
-                      Talk to a person — 1800-233-0202
+                      Talk to a person: 1800-233-0202
                     </span>
                     <span className="block text-[13px] text-[var(--ink-secondary)] leading-snug mt-0.5">
                       Free call. Speak in Marathi, Hindi, English or Urdu.

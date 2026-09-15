@@ -89,7 +89,7 @@ export const payrollAudits: PayrollAudit[] = [
     districtId: 'csn', claimedPlacementDate: '2026-02-01', claimedMonthlyWage: 18000,
     epfoEmployerName: null, epfoFirstContributionMonth: null, epfoDeclaredWage: null,
     monthsContributed: 0, verdict: 'ghost-placement', subsidyAtRisk: 24000,
-    notes: 'Second ghost claim against the same employer and batch. Pattern escalated — see alert ALT-004.',
+    notes: 'Second ghost claim against the same employer and batch. Pattern escalated: see alert ALT-004.',
   },
   {
     id: 'AUD-9111', candidateName: 'Ramesh More', candidateKsid: 'MH-CD-2026-421055', uan: '1014•••••2234',
@@ -201,7 +201,7 @@ export function voiceStats() {
     escalated: total - bot,
     avgSatisfaction: scored.length
       ? (scored.reduce((a, v) => a + (v.satisfactionScore ?? 0), 0) / scored.length).toFixed(1)
-      : '—',
+      : '-',
     languagesUsed: new Set(voiceSessions.map(v => v.languageCode)).size,
   };
 }
@@ -217,7 +217,7 @@ export function voiceStats() {
 export const controlTowerAlerts: ControlTowerAlert[] = [
   {
     id: 'ALT-001', severity: 'critical', pillar: 'Demand Intelligence', districtId: null,
-    title: 'Source trust collapse — QuickHire Aggregator',
+    title: 'Source trust collapse: QuickHire Aggregator',
     detail: 'Payroll confirmation rate has fallen to 15%. 12,400 postings from this source now carry a trust weight below 0.25. Recommend blacklisting pending audit.',
     raisedOn: '2026-09-09', requiredPermission: 'signal.blacklist', status: 'open',
   },
@@ -235,13 +235,13 @@ export const controlTowerAlerts: ControlTowerAlert[] = [
   },
   {
     id: 'ALT-004', severity: 'critical', pillar: 'Control Tower & Audit', districtId: 'csn',
-    title: 'Repeat ghost-placement pattern — Marathwada Logistics',
+    title: 'Repeat ghost-placement pattern: Marathwada Logistics',
     detail: 'Two candidates from batch csn-ware-01 show placement claims with no EPFO contribution in 7 months. ₹48,000 subsidy at risk. Recommend freezing disbursal for this centre pending enquiry.',
     raisedOn: '2026-09-06', requiredPermission: 'audit.freeze', status: 'open',
   },
   {
     id: 'ALT-005', severity: 'high', pillar: 'Demand Intelligence', districtId: 'nashik',
-    title: 'Uncovered skill with sustained demand — Green Hydrogen Electrolyser Maintenance',
+    title: 'Uncovered skill with sustained demand: Green Hydrogen Electrolyser Maintenance',
     detail: 'Weighted demand of 380 seats/year with no course anywhere in the state. 11 corroborated signals over 5 months.',
     raisedOn: '2026-08-30', requiredPermission: 'skill.onboard', status: 'open',
   },
@@ -283,7 +283,7 @@ export const controlTowerAlerts: ControlTowerAlert[] = [
   },
   {
     id: 'ALT-012', severity: 'high', pillar: 'Hiring Pipeline', districtId: 'pune',
-    title: 'Subsidy tranche ready for release — POOL-PN-EV-01',
+    title: 'Subsidy tranche ready for release: POOL-PN-EV-01',
     detail: '3 candidates have cleared the work-trial gate and been confirmed on EPFO payroll. ₹84,000 releasable against verified outcomes.',
     raisedOn: '2026-09-09', requiredPermission: 'subsidy.release', status: 'open',
   },

@@ -33,7 +33,7 @@ export default function BusinessRplPage() {
   return (
     <>
       <PageHeader
-        eyebrow={`Pillar ${pillar.number} — ${pillar.short}`}
+        eyebrow={`Pillar ${pillar.number}: ${pillar.short}`}
         title="Endorse prior learning"
         description="Certify the skilled workers already on your floor."
         breadcrumb={[{ label: 'Dashboard', href: '/dashboard/business' }, { label: 'Endorse Prior Learning' }]}
@@ -100,7 +100,7 @@ export default function BusinessRplPage() {
                             </span>
                             <span>
                               <span className="font-semibold text-[var(--ink)]">{e.kind}</span>
-                              <span className="text-[var(--ink-secondary)]"> — {e.detail}</span>
+                              <span className="text-[var(--ink-secondary)]">: {e.detail}</span>
                             </span>
                           </li>
                         ))}
@@ -110,7 +110,7 @@ export default function BusinessRplPage() {
                     {r.status === 'certified' && (
                       <div className="mt-2.5 pt-2.5 border-t border-[var(--border)]">
                         <Progress value={creditedHours(r)} max={2400} color="var(--signal-rising)" height={7}
-                          label={`${creditedHours(r).toLocaleString('en-IN')} of 2,400 course hours credited — only ${r.bridgeHoursRequired} h of bridge training required`} />
+                          label={`${creditedHours(r).toLocaleString('en-IN')} of 2,400 course hours credited: only ${r.bridgeHoursRequired} h of bridge training required`} />
                         <p className="text-[12px] mono mt-2">
                           <span className="text-[var(--ink-tertiary)] line-through">{formatCurrency(r.currentMonthlyWage)}</span>
                           {' → '}
@@ -213,7 +213,7 @@ export default function BusinessRplPage() {
                   <li key={i} className="flex items-center gap-2 text-[12px] border border-[var(--border)] rounded-sm px-3 py-2">
                     <span className="text-[var(--signal-rising)] font-bold">✓</span>
                     <span className="flex-1 min-w-0 truncate">
-                      <strong>{n.name}</strong> — {getSkill(n.skillId)?.name}, {n.years} yrs
+                      <strong>{n.name}</strong>: {getSkill(n.skillId)?.name}, {n.years} yrs
                     </span>
                     <span className="text-[10.5px] mono text-[var(--ink-tertiary)] shrink-0">submitted</span>
                   </li>

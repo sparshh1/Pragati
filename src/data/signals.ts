@@ -3,7 +3,7 @@ import { SignalSource, DemandSignal, DyingTask, UncoveredSkill, SignalVerdict } 
 /* ------------------------------------------------------------------ */
 /*  Signal sources and their learned trust scores                      */
 /*                                                                     */
-/*  Trust is not declared — it is earned. Each source's score is a      */
+/*  Trust is not declared - it is earned. Each source's score is a      */
 /*  function of how many of its past postings were later confirmed by   */
 /*  an EPFO payroll entry, minus penalties for duplicates and ghosts.   */
 /* ------------------------------------------------------------------ */
@@ -219,7 +219,7 @@ export const demandSignals: DemandSignal[] = RAW.map(r => {
   };
 });
 
-/** How much raw noise the filter removed — the headline number for Pillar 1. */
+/** How much raw noise the filter removed - the headline number for Pillar 1. */
 export function filterImpact() {
   const raw = demandSignals.reduce((a, s) => a + s.reportedVacancies, 0);
   const weighted = demandSignals.reduce((a, s) => a + s.weightedVacancies, 0);
@@ -238,7 +238,7 @@ export function filterImpact() {
 /*  Dying Task Watch                                                    */
 /*                                                                      */
 /*  A whole trade rarely dies. Individual TASKS inside it die, while     */
-/*  the trade name survives — which is exactly why syllabi rot silently. */
+/*  the trade name survives - which is exactly why syllabi rot silently. */
 /* ------------------------------------------------------------------ */
 
 export const dyingTasks: DyingTask[] = [
@@ -336,7 +336,7 @@ export const dyingTasks: DyingTask[] = [
 ];
 
 /* ------------------------------------------------------------------ */
-/*  Uncovered skills — demand with no matching course in the district   */
+/*  Uncovered skills - demand with no matching course in the district   */
 /* ------------------------------------------------------------------ */
 
 export const uncoveredSkills: UncoveredSkill[] = [

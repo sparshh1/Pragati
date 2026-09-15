@@ -103,7 +103,7 @@ export default function BusinessSignalsPage() {
   return (
     <>
       <PageHeader
-        eyebrow={`Pillar ${pillar.number} — ${pillar.short}`}
+        eyebrow={`Pillar ${pillar.number}: ${pillar.short}`}
         title="Post hiring demand"
         description="Post a vacancy. Watch the weight it earns, live."
         breadcrumb={[{ label: 'Dashboard', href: '/dashboard/business' }, { label: 'Post Hiring Demand' }]}
@@ -113,7 +113,7 @@ export default function BusinessSignalsPage() {
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         <Stat label="Your trust score" value={mySource.trustScore}
-          sub={mySource.trustScore >= 80 ? 'High — signals count near full weight' : 'Building — improve by hiring what you post'}
+          sub={mySource.trustScore >= 80 ? 'High: signals count near full weight' : 'Building: improve by hiring what you post'}
           tone={mySource.trustScore >= 80 ? 'positive' : 'warn'} accent="var(--accent-employer)" />
         <Stat label="Your payroll confirmation rate"
           value={`${Math.round((mySource.signalsConfirmedByPayroll / mySource.signalsSubmitted) * 100)}%`}
@@ -200,7 +200,7 @@ export default function BusinessSignalsPage() {
           <div className="py-4 border-b border-[var(--border)]">
             <Progress value={preview.weight * 100}
               color={preview.weight >= 0.55 ? 'var(--signal-rising)' : preview.weight >= 0.3 ? 'var(--signal-warn)' : 'var(--signal-declining)'}
-              label={`Trust weight applied — ${preview.weight.toFixed(3)}`} showValue height={10} />
+              label={`Trust weight applied: ${preview.weight.toFixed(3)}`} showValue height={10} />
           </div>
 
           <div className="py-4 border-b border-[var(--border)]">
@@ -322,6 +322,6 @@ const FLAG_EXPLAIN: Record<string, string> = {
   'employer-not-in-epfo': 'Without an EPFO establishment record, no hire from this posting can ever be confirmed.',
   'bulk-identical-posting': 'Very large identical postings are the signature of aggregator padding rather than real demand.',
   'duplicate-listing': 'The same vacancy already counted from another source. Rejected outright to prevent double-counting.',
-  'reposted-unfilled-6m': 'The same role has been reposted unfilled for six months — the constraint is wage or conditions, not supply.',
+  'reposted-unfilled-6m': 'The same role has been reposted unfilled for six months: the constraint is wage or conditions, not supply.',
   'unverified-contact': 'The contact point could not be verified against the Udyam record.',
 };

@@ -12,6 +12,7 @@ import { districts } from '@/data/districts';
 import { VOICE_INTENTS, matchIntent } from '@/data/voiceIntents';
 import {
   listen, speak, stopSpeaking, sttSupported, ttsSupported, primeVoices,
+  isWindowsHost, usesWindowsSpeech,
 } from '@/lib/speech';
 import Link from 'next/link';
 
@@ -27,11 +28,11 @@ const LANG_LABEL: Record<string, string> = {
 };
 
 const MIC_ERROR: Record<string, string> = {
-  'not-allowed': 'Microphone blocked. Allow microphone access in your browser, then try again.',
-  'no-speech': 'I did not hear anything. Tap the button and speak clearly.',
+  'not-allowed': 'Microphone blocked. Allow the microphone in your browser, then try again.',
+  'no-speech': 'Nothing came through. Tap the button and speak a little louder.',
   'audio-capture': 'No microphone found. Plug one in, or type your question instead.',
-  network: 'Speech needs an internet connection. Check your connection and try again.',
-  unsupported: 'This browser cannot listen. Try Chrome, or type your question instead.',
+  network: 'Chrome needs the internet to hear you. On Windows, try Microsoft Edge, or press the Windows logo key and H in the box below.',
+  unsupported: 'This browser cannot hear you. On Windows, open Microsoft Edge, or press the Windows logo key and H in the box below.',
   'already-started': 'Already listening.',
 };
 
@@ -48,6 +49,8 @@ export default function AssistPage() {
   const [canSTT, setCanSTT] = useState(true);
   const [canTTS, setCanTTS] = useState(true);
   const [autoSpeak, setAutoSpeak] = useState(true);
+  const [onWindows, setOnWindows] = useState(false);
+  const [windowsSpeech, setWindowsSpeech] = useState(false);
 
   const stopRef = useRef<(() => void) | null>(null);
   const endRef = useRef<HTMLDivElement>(null);
@@ -59,6 +62,8 @@ export default function AssistPage() {
   useEffect(() => {
     setCanSTT(sttSupported());
     setCanTTS(ttsSupported());
+    setOnWindows(isWindowsHost());
+    setWindowsSpeech(usesWindowsSpeech());
     primeVoices();
   }, []);
   /* eslint-enable react-hooks/set-state-in-effect */
@@ -121,9 +126,9 @@ export default function AssistPage() {
     <>
       <PageHeader
         eyebrow="Help"
-        title="Ask by voice"
-        description="Speak your question. No typing needed."
-        breadcrumb={[{ label: 'Dashboard', href: '/dashboard/student' }, { label: 'Ask by voice' }]}
+        title="Ask by speaking"
+        description="Say your question out loud. You can also type, or use Windows dictation."
+        breadcrumb={[{ label: 'Dashboard', href: '/dashboard/student' }, { label: 'Ask by speaking' }]}
       />
 
       <PageGuide />
@@ -133,7 +138,7 @@ export default function AssistPage() {
           sub="You can speak any of these" accent="var(--accent-student)" />
         <Stat label="Answered without staff" value={`${stats.botResolutionRate}%`}
           sub={`${stats.escalated} sent to an officer`} tone="positive" accent="var(--accent-student)" />
-        <Stat label="Understands your speech" value={`${Math.round(langInfo.sttModelAccuracy * 100)}%`}
+        <Stat label="How well it hears you" value={`${Math.round(langInfo.sttModelAccuracy * 100)}%`}
           sub={`in ${langInfo.nativeName}`} tone="positive" accent="var(--accent-student)" />
         <Stat label="Free phone line" value="1800-233-0202" sub="7 am to 9 pm, every day"
           accent="var(--accent-student)" />
@@ -141,7 +146,7 @@ export default function AssistPage() {
 
       <div className="grid lg:grid-cols-[1.35fr_1fr] gap-5">
         <div className="space-y-5">
-          <Card title="Talk to the assistant" subtitle="Tap the microphone and speak">
+          <Card title="Talk to us" subtitle="Tap the microphone and speak">
             {/* ---- Language picker ---- */}
             <div className="mb-4 pb-4 border-b border-[var(--border)]">
               <span className="gov-label">I want to speak in</span>
@@ -243,7 +248,7 @@ export default function AssistPage() {
               </button>
 
               <p className="text-[15px] font-semibold text-[var(--ink)]">
-                {listening ? 'Listening — speak now' : 'Tap to speak'}
+                {listening ? 'Listening. Speak now.' : 'Tap to speak'}
               </p>
 
               {speaking && (
@@ -267,7 +272,7 @@ export default function AssistPage() {
               )}
               {!canSTT && (
                 <p className="text-[14px] text-[var(--signal-warn)] text-center max-w-sm">
-                  This browser cannot hear you. Use Chrome, or type below.
+                  This browser cannot hear you. On Windows, open Microsoft Edge, or press the Windows logo key and H in the box below.
                 </p>
               )}
             </div>
@@ -281,7 +286,7 @@ export default function AssistPage() {
                 className="gov-input flex-1"
                 value={typed}
                 onChange={e => setTyped(e.target.value)}
-                placeholder="Or type your question here"
+                placeholder={onWindows ? 'Type here, or press Windows logo key + H to talk' : 'Or type your question here'}
                 aria-label="Type your question"
               />
               <button type="submit" disabled={!typed.trim()}
@@ -290,6 +295,14 @@ export default function AssistPage() {
                 Ask
               </button>
             </form>
+
+            {onWindows && (
+              <Note tone="info" title={windowsSpeech ? 'This PC is listening' : 'Use Windows to talk, no extra app'}>
+                {windowsSpeech
+                  ? 'You are in Microsoft Edge, so this page uses Windows speech on this computer. Nothing extra to set up. You can also click the box above and press the Windows logo key and H, the same as in Notepad.'
+                  : 'There is no extra speech account on this portal. Click the box above and press the Windows logo key and H. Windows types what you say. For the microphone button to stay on this PC as well, open this page in Microsoft Edge.'}
+              </Note>
+            )}
 
             {/* ---- Suggestions ---- */}
             <div className="mt-4">
@@ -317,7 +330,7 @@ export default function AssistPage() {
               {[
                 ['Give a missed call', '1800-233-0202. Called back within 60 seconds.'],
                 ['Choose your language', '1 Marathi · 2 Hindi · 3 English · 4 Urdu.'],
-                ['Speak your question', 'No menu tree. Full sentences.'],
+                ['Speak your question', 'No buttons to press. Just say it in full sentences.'],
                 ['Get an SMS summary', 'The answer, in your language, with a reference number.'],
               ].map(([t, d], i) => (
                 <li key={t} className="flex gap-3">

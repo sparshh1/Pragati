@@ -17,7 +17,7 @@ const STATUS_TONE = {
 } as const;
 
 const STATUS_COPY = {
-  idle: 'Open — slots available now',
+  idle: 'Open: slots available now',
   'partially-used': 'Some slots left this week',
   saturated: 'Fully booked',
   'under-maintenance': 'Out of service',
@@ -123,7 +123,7 @@ export default function StudentLabsPage() {
                   <div className="flex items-center gap-2 bg-[var(--signal-rising-light)] border border-[var(--signal-rising)]/40 rounded-sm px-3 py-2.5">
                     <span className="text-[var(--signal-rising)] font-bold">✓</span>
                     <span className="text-[12.5px] text-[var(--signal-rising)] font-semibold">
-                      Slot requested — {booked[m.id]}. Confirmation by SMS within 24 hours.
+                      Slot requested: {booked[m.id]}. Confirmation by SMS within 24 hours.
                     </span>
                   </div>
                 ) : bookable ? (
@@ -146,7 +146,7 @@ export default function StudentLabsPage() {
                 ) : (
                   <p className="text-[12px] text-[var(--ink-tertiary)]">
                     {m.status === 'saturated'
-                      ? 'This machine is fully booked. Your district officer can broker equivalent private capacity — ask at your centre.'
+                      ? 'This machine is fully booked. Your district officer can broker equivalent private capacity: ask at your centre.'
                       : `Out of service since last check. Next service due after ${m.lastServicedOn}.`}
                   </p>
                 )}

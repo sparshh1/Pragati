@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useCitizen } from '@/lib/session';
 
-/** Entry point after login — routes each user to their own role's dashboard. */
+/** Entry point after login - routes each user to their own role's dashboard. */
 export default function DashboardIndex() {
   const { account, ready } = useCitizen();
   const router = useRouter();

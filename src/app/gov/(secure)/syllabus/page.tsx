@@ -39,7 +39,7 @@ export default function GovSyllabusPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Pillar 3 — Adaptive Syllabus & Evidence-Based Evaluation"
+        eyebrow="Pillar 3: Adaptive Syllabus & Evidence-Based Evaluation"
         title="Syllabus experiments and practical audit"
         description="Live A/B experiments and sensor-practical audit."
         breadcrumb={[{ label: 'Control Tower', href: '/gov/console' }, { label: 'Syllabus Experiments' }]}
@@ -101,7 +101,7 @@ export default function GovSyllabusPage() {
           </Card>
 
           <div className="space-y-5">
-            <Card title={`${selected.id} — ${courses.find(c => c.id === selected.courseId)?.name}`}
+            <Card title={`${selected.id}: ${courses.find(c => c.id === selected.courseId)?.name}`}
               subtitle={`${selected.startedOn} → ${selected.concludesOn} · districts: ${selected.districtIds.join(', ')}`}
               action={<PermTag permission="syllabus.promote" />}>
 
@@ -186,7 +186,7 @@ export default function GovSyllabusPage() {
                 )}
                 {selected.pValue > 0.05 && can('syllabus.promote') && (
                   <p className="text-[11.5px] text-[var(--signal-warn)] mt-2">
-                    Promotion is blocked while p &gt; 0.05 — the observed lift is not distinguishable from noise.
+                    Promotion is blocked while p &gt; 0.05: the observed lift is not distinguishable from noise.
                   </p>
                 )}
               </div>
@@ -255,7 +255,7 @@ export default function GovSyllabusPage() {
                         <strong>{p.autoScore}</strong>
                         <span className="text-[var(--ink-tertiary)]"> / </span>
                         <strong className={p.discrepancyFlag ? 'text-[var(--signal-declining)]' : ''}>
-                          {p.instructorScore ?? '—'}
+                          {p.instructorScore ?? '-'}
                         </strong>
                       </span>
                     ), sortValue: p => Math.abs((p.instructorScore ?? 0) - p.autoScore) },
@@ -274,7 +274,7 @@ export default function GovSyllabusPage() {
               />
             </Card>
 
-            <Card title={openPractical ? `Telemetry — ${openPractical.id}` : 'Telemetry'}
+            <Card title={openPractical ? `Telemetry: ${openPractical.id}` : 'Telemetry'}
               subtitle={openPractical
                 ? `${openPractical.candidateName} · ${openPractical.moduleCode} · ${openPractical.centreId} · ${openPractical.performedOn}`
                 : undefined}
@@ -315,7 +315,7 @@ export default function GovSyllabusPage() {
                     <div>
                       <p className="text-[10px] uppercase font-bold tracking-wide text-[var(--ink-tertiary)]">Instructor</p>
                       <p className={`text-[18px] font-bold mono ${openPractical.discrepancyFlag ? 'text-[var(--signal-declining)]' : ''}`}>
-                        {openPractical.instructorScore ?? '—'}
+                        {openPractical.instructorScore ?? '-'}
                       </p>
                     </div>
                   </div>

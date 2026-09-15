@@ -4,8 +4,8 @@ import { SiteFooter } from '@/components/gov/SiteFooter';
 import { PublicDemand } from './PublicDemand';
 
 export const metadata = {
-  title: 'Labour Market Data',
-  description: 'Verified, trust-weighted hiring demand by district and trade, published openly by the Department of Skill, Employment, Entrepreneurship & Innovation.',
+  title: 'Jobs in your district',
+  description: 'Real hiring numbers by district and trade, published by the Department of Skill, Employment, Entrepreneurship & Innovation.',
 };
 
 export default function DemandPage() {

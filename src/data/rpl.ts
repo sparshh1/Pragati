@@ -6,7 +6,7 @@ import { RplApplication } from '@/types';
 /*  Most of the district's workforce already has the skill and none of   */
 /*  the paper. RPL assesses what they can actually do, certifies them    */
 /*  at the NSQF level the evidence supports, and prescribes only the     */
-/*  bridge hours needed to close the remainder — so a 9-year informal    */
+/*  bridge hours needed to close the remainder - so a 9-year informal    */
 /*  mechanic does not sit through a 2-year course to become employable.  */
 /* ------------------------------------------------------------------ */
 
@@ -22,7 +22,7 @@ export const rplApplications: RplApplication[] = [
     evidence: [
       { kind: 'Employer letter', detail: 'Signed statement from garage owner, 9 years continuous', verified: true },
       { kind: 'Work samples', detail: '14 photographed job cards with customer contact', verified: true },
-      { kind: 'Tool proficiency test', detail: 'Micrometer & bore gauge to 0.01 mm — passed', verified: true },
+      { kind: 'Tool proficiency test', detail: 'Micrometer & bore gauge to 0.01 mm: passed', verified: true },
       { kind: 'Bank statement', detail: 'Monthly cash deposits consistent with declared income', verified: false },
     ],
     claimedNsqfLevel: 4,
@@ -66,7 +66,7 @@ export const rplApplications: RplApplication[] = [
       { kind: 'EPFO record', detail: 'UAN shows 7 years contributory service as "helper"', verified: true },
       { kind: 'Employer endorsement', detail: 'Proprietor confirms independent panel wiring since 2019', verified: true },
       { kind: 'Practical assessment', detail: 'Star-delta starter wired and commissioned from schematic', verified: true },
-      { kind: 'Safety assessment', detail: 'Earth pit measurement & LOTO — passed', verified: true },
+      { kind: 'Safety assessment', detail: 'Earth pit measurement & LOTO: passed', verified: true },
     ],
     claimedNsqfLevel: 4,
     assessedNsqfLevel: 4,
@@ -83,7 +83,7 @@ export const rplApplications: RplApplication[] = [
     districtId: 'nagpur',
     claimedSkillId: 'masonry',
     yearsOfExperience: 14,
-    currentEmployerName: 'Labour chowk — daily wage',
+    currentEmployerName: 'Labour chowk: daily wage',
     evidence: [
       { kind: 'Site supervisor references', detail: '3 contractors, cumulative 11 years', verified: true },
       { kind: 'Practical assessment', detail: 'Brick bond, plumb and level within tolerance', verified: true },
@@ -127,7 +127,7 @@ export const rplApplications: RplApplication[] = [
     currentEmployerName: 'Unregistered tele-calling unit',
     evidence: [
       { kind: 'Call recordings', detail: '20 sampled calls assessed for handling quality', verified: true },
-      { kind: 'Employer letter', detail: 'Unit not registered with EPFO — letter unverifiable', verified: false },
+      { kind: 'Employer letter', detail: 'Unit not registered with EPFO: letter unverifiable', verified: false },
     ],
     claimedNsqfLevel: 4,
     assessedNsqfLevel: null,

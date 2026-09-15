@@ -1,7 +1,7 @@
 /**
  * Role-based access control for the Government Portal.
  *
- * The citizen portal (students / businesses) is segregated by ROLE only —
+ * The citizen portal (students / businesses) is segregated by ROLE only -
  * each role sees a different dashboard and feature list.
  * The government portal is segregated by ROLE *and* by PERMISSION *and* by
  * DATA SCOPE (state-wide vs a single district vs a single training centre).
@@ -17,29 +17,29 @@ export type GovRole =
   | 'scheme-manager';
 
 export type Permission =
-  // Pillar 1 — Demand Intelligence & Signal Verification
+  // Pillar 1 - Demand Intelligence & Signal Verification
   | 'signal.view'
   | 'signal.verify'
   | 'signal.blacklist'
   | 'skill.onboard'
-  // Pillar 2 — Employer-Locked Work & Hiring Pipeline
+  // Pillar 2 - Employer-Locked Work & Hiring Pipeline
   | 'pipeline.view'
   | 'pipeline.lock'
   | 'subsidy.release'
-  // Pillar 3 — Adaptive Syllabus & Evidence-Based Evaluation
+  // Pillar 3 - Adaptive Syllabus & Evidence-Based Evaluation
   | 'syllabus.view'
   | 'syllabus.experiment'
   | 'syllabus.promote'
   | 'practical.audit'
-  // Pillar 4 — Constraint-Aware District Capacity Planner
+  // Pillar 4 - Constraint-Aware District Capacity Planner
   | 'capacity.view'
   | 'seats.allocate'
   | 'machine.broker'
-  // Pillar 5 — Precision Career Pathways & RPL
+  // Pillar 5 - Precision Career Pathways & RPL
   | 'rpl.view'
   | 'rpl.certify'
   | 'pathway.publish'
-  // Pillar 6 — Multilingual Control Tower & Audit
+  // Pillar 6 - Multilingual Control Tower & Audit
   | 'audit.view'
   | 'audit.epfo'
   | 'audit.freeze'
@@ -87,7 +87,7 @@ export const GOV_ROLES: Record<GovRole, GovRoleDefinition> = {
     id: 'state-admin',
     title: 'State Mission Director',
     titleHi: 'राज्य मिशन निदेशक',
-    designation: 'MSDE — Maharashtra State Skill Development Society',
+    designation: 'MSDE: Maharashtra State Skill Development Society',
     scope: 'state',
     description:
       'Full state-wide authority. Approves seat matrices, promotes syllabus variants, releases subsidy tranches and manages portal access.',
@@ -105,7 +105,7 @@ export const GOV_ROLES: Record<GovRole, GovRoleDefinition> = {
     id: 'district-officer',
     title: 'District Skill Development Officer',
     titleHi: 'जिला कौशल विकास अधिकारी',
-    designation: 'DSDEO — District Skill Development & Entrepreneurship Office',
+    designation: 'DSDEO: District Skill Development & Entrepreneurship Office',
     scope: 'district',
     description:
       'Operates within one assigned district. Can verify signals, allocate seats and broker machine time for own district only. Cannot release subsidy or promote syllabus variants.',
@@ -138,7 +138,7 @@ export const GOV_ROLES: Record<GovRole, GovRoleDefinition> = {
     id: 'audit-officer',
     title: 'Internal Audit Officer',
     titleHi: 'आंतरिक लेखा परीक्षा अधिकारी',
-    designation: 'Finance Department — Internal Audit Wing',
+    designation: 'Finance Department: Internal Audit Wing',
     scope: 'state',
     description:
       'Read-only across the state, plus exclusive authority to run EPFO payroll audits and freeze disbursal where placement fraud is detected. Cannot allocate seats.',

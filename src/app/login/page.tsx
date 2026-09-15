@@ -30,7 +30,7 @@ export default function LoginPage() {
       setStage('identify');
       return;
     }
-    // The role decided at registration is what routes the user — this is the
+    // The role decided at registration is what routes the user - this is the
     // single point where the two audiences are separated.
     router.push(`/dashboard/${account.role}`);
   }
@@ -43,15 +43,15 @@ export default function LoginPage() {
           <div>
             <h1 className="text-[26px] font-bold text-[var(--gov-navy)] gov-rule">Portal Login</h1>
             <p className="text-[13.5px] text-[var(--ink-secondary)] mt-4 leading-relaxed">
-              Candidates and enterprises log in here. You will be taken to the dashboard for the role you
-              registered under — the two dashboards carry entirely different services.
+              Candidates and businesses log in here. You will land on the screen for the role you
+              registered as. The two screens are different on purpose.
             </p>
 
             <div className="mt-6 space-y-3">
               <Note tone="info" title="Government officers">
                 Departmental users do not log in here. Use the{' '}
                 <Link href="/gov" className="gov-link font-semibold">restricted departmental portal</Link>,
-                where access is role-based and permission-gated.
+                where access depends on your role and what you are allowed to do.
               </Note>
               <Note tone="warn" title="No registration yet?">
                 Registration takes about three minutes.{' '}
@@ -64,9 +64,9 @@ export default function LoginPage() {
                 Having trouble?
               </p>
               <ul className="text-[12.5px] text-[var(--ink-secondary)] space-y-1.5">
-                <li>Helpline <span className="mono font-semibold">1800-233-0202</span> — Marathi, Hindi, English, Urdu</li>
-                <li>Voice login assistance available over IVR for candidates without a smartphone</li>
-                <li>Visit any ITI or DSDEO office in your district with your Aadhaar</li>
+                <li>Helpline <span className="mono font-semibold">1800-233-0202</span> (Marathi, Hindi, English, Urdu)</li>
+                <li>You can also speak from a basic phone. Choose your language and say what you need.</li>
+                <li>Visit any ITI or district skill office with your Aadhaar</li>
               </ul>
             </div>
           </div>

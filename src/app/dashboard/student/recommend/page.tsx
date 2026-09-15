@@ -69,7 +69,7 @@ export default function RecommendPage() {
 
       {/* ---- Tell us a bit more ---- */}
       <Card
-        title="Tell us a little more — the list updates as you do"
+        title="Tell us a little more: the list updates as you do"
         subtitle="All optional"
         className="mb-6"
       >
@@ -142,7 +142,7 @@ export default function RecommendPage() {
           sub={strong ? 'Employers hiring, seats open' : 'Try allowing travel'}
           tone={strong ? 'positive' : 'warn'} accent="var(--accent-student)" />
         <Stat label="Best pay in this list"
-          value={recs.length ? formatCurrency(Math.max(...recs.map(r => r.entryWage))) : '—'}
+          value={recs.length ? formatCurrency(Math.max(...recs.map(r => r.entryWage))) : '-'}
           sub="Starting pay, per month" tone="positive" accent="var(--accent-student)" />
         <Stat label="Jobs matched to you" value={jobs.filter(j => j.matchPercent >= 50).length}
           sub={`of ${jobs.length} open hiring pools`} tone="positive" accent="var(--accent-student)" />
@@ -363,7 +363,7 @@ function RecCard({
         {open && (
           <div className="mt-4 pt-4 border-t border-[var(--border)]">
             <p className="text-[13px] font-bold uppercase tracking-wide text-[var(--ink-tertiary)] mb-2.5">
-              Full scoring — every point, added and subtracted
+              Full scoring: every point, added and subtracted
             </p>
             <ul className="space-y-2.5">
               {rec.reasons.map(r => (

@@ -173,7 +173,7 @@
 /*  Print                                                              */
 /*                                                                     */
 /*  The CV / Job-Fit Card is the one screen people actually print, and  */
-/*  it lives inside the dashboard shell — sidebar, sticky header, a     */
+/*  it lives inside the dashboard shell - sidebar, sticky header, a     */
 /*  two-column grid. Hiding those is not enough: the layout they leave  */
 /*  behind squeezes the card into 60% of the page. So print gets its    */
 /*  own layout reset rather than a tweak of the screen one.             */
@@ -192,7 +192,7 @@
     font-size: 10.5pt;
   }
 
-  /* Keep the ink the designer chose — otherwise browsers strip every
+  /* Keep the ink the designer chose - otherwise browsers strip every
      background and the verified marks and section rules disappear. */
   * {
     -webkit-print-color-adjust: exact !important;
@@ -251,7 +251,7 @@
   /* Links print as text; the URL is noise on a CV. */
   a { text-decoration: none !important; color: inherit !important; }
 
-  /* Charts and progress bars rarely survive the page — drop the decorative ones. */
+  /* Charts and progress bars rarely survive the page - drop the decorative ones. */
   .recharts-wrapper { display: none !important; }
 }
 
@@ -301,7 +301,7 @@
 .ks-halo       { animation: ks-halo 1.9s ease-out infinite; }
 .ks-spin       { animation: ks-spin 0.9s linear infinite; }
 
-/* Staggered entrance for grids and lists — set --i on each child. */
+/* Staggered entrance for grids and lists - set --i on each child. */
 .ks-stagger > * {
   animation: ks-rise 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
   animation-delay: calc(var(--i, 0) * 55ms);
@@ -313,7 +313,7 @@
   animation: ks-bar 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-/* Interactive lift — used on cards and big actions. */
+/* Interactive lift - used on cards and big actions. */
 .ks-lift {
   transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }

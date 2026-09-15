@@ -11,7 +11,7 @@ import { formatCurrency, formatNumber } from '@/lib/utils';
 
 export const metadata = {
   title: 'Schemes',
-  description: 'Central and state skill development schemes — PMKVY 4.0, SANKALP, DGT-CTS and NAPS — and how this portal routes candidates and employers through them.',
+  description: 'Central and state skill development schemes: PMKVY 4.0, SANKALP, DGT-CTS and NAPS: and how this portal routes candidates and employers through them.',
 };
 
 export default function SchemesPage() {

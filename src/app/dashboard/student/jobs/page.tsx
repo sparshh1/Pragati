@@ -23,8 +23,8 @@ const STATUS_TONE = {
 } as const;
 
 const STATUS_COPY: Record<HiringPool['status'], string> = {
-  forming: 'Employers still signing — seats not yet notified',
-  locked: 'Commitments complete — batch notified',
+  forming: 'Employers still signing: seats not yet notified',
+  locked: 'Commitments complete: batch notified',
   'in-training': 'Batch in classroom and workshop',
   trialling: 'Candidates on employer floors',
   placed: 'Placements confirmed on payroll',
@@ -63,7 +63,7 @@ export default function StudentJobsPage() {
           accent="var(--accent-student)" />
         <Stat label="How many pass" value={`${passRate}%`} sub={`Pass mark is ${TRIAL_PASS_THRESHOLD} of 100`}
           tone={passRate >= 70 ? 'positive' : 'warn'} accent="var(--accent-student)" />
-        <Stat label="Lowest pay guaranteed" value={pools.length ? formatCurrency(Math.min(...pools.map(poolWageFloor))) : '—'}
+        <Stat label="Lowest pay guaranteed" value={pools.length ? formatCurrency(Math.min(...pools.map(poolWageFloor))) : '-'}
           sub="Employers cannot offer below their signed floor" accent="var(--accent-student)" />
       </div>
 
@@ -129,7 +129,7 @@ export default function StudentJobsPage() {
                     </div>
                     <div>
                       <p className="text-[10px] uppercase font-bold tracking-wide text-[var(--ink-tertiary)]">Trials cleared</p>
-                      <p className="text-[13.5px] font-bold mono">{stats.passed}/{stats.concluded || '—'}</p>
+                      <p className="text-[13.5px] font-bold mono">{stats.passed}/{stats.concluded || '-'}</p>
                     </div>
                     <div>
                       <p className="text-[10px] uppercase font-bold tracking-wide text-[var(--ink-tertiary)]">Centre</p>
@@ -152,7 +152,7 @@ export default function StudentJobsPage() {
                     }
                   >
                     {applied[p.id]
-                      ? '✓ Application submitted — you will be called for counselling'
+                      ? '✓ Application submitted: you will be called for counselling'
                       : canApply
                         ? 'Apply to this pool →'
                         : 'Applications closed for this batch'}
@@ -193,7 +193,7 @@ export default function StudentJobsPage() {
               { key: 'epfo', header: 'On payroll', align: 'center', hideBelow: 'lg', render: (t: WorkTrial) =>
                 t.epfoConfirmedOn
                   ? <span className="text-[var(--signal-rising)] font-bold" title={`Confirmed ${t.epfoConfirmedOn}`}>✓</span>
-                  : <span className="text-[var(--ink-tertiary)]">—</span> },
+                  : <span className="text-[var(--ink-tertiary)]">: </span> },
             ]}
             rows={workTrials}
             rowKey={t => t.id}
@@ -202,7 +202,7 @@ export default function StudentJobsPage() {
           />
         </Card>
 
-        <Card title={openTrial ? `Scorecard — ${openTrial.candidateName}` : 'Scorecard'}
+        <Card title={openTrial ? `Scorecard: ${openTrial.candidateName}` : 'Scorecard'}
           subtitle={openTrial ? `${openTrial.id} · ${openTrial.durationDays}-day trial from ${openTrial.startDate}` : undefined}>
           {!openTrial ? (
             <p className="text-[13px] text-[var(--ink-tertiary)]">Select a trial to view its scorecard.</p>
@@ -215,7 +215,7 @@ export default function StudentJobsPage() {
                       <span className="text-[12px] text-[var(--ink-secondary)]">{c.criterion}</span>
                       <span className="text-[11px] mono shrink-0">
                         <span className="text-[var(--ink-tertiary)]">w{c.weight}</span>{' '}
-                        <span className="font-bold text-[var(--ink)]">{c.score ?? '—'}</span>
+                        <span className="font-bold text-[var(--ink)]">{c.score ?? '-'}</span>
                       </span>
                     </div>
                     <Progress
@@ -235,7 +235,7 @@ export default function StudentJobsPage() {
                   </span>
                   <span className="text-[24px] font-bold mono"
                     style={{ color: (trialScore(openTrial) ?? 0) >= TRIAL_PASS_THRESHOLD ? 'var(--signal-rising)' : 'var(--signal-declining)' }}>
-                    {trialScore(openTrial) ?? '—'}
+                    {trialScore(openTrial) ?? '-'}
                   </span>
                 </div>
                 <p className="text-[11px] text-[var(--ink-tertiary)]">
@@ -265,7 +265,7 @@ export default function StudentJobsPage() {
                 <div>
                   <p className="text-[10.5px] font-bold uppercase tracking-wide text-[var(--ink-tertiary)]">Offer</p>
                   <p className="text-[15px] font-bold mono">
-                    {openTrial.offerCtc ? `${(openTrial.offerCtc / 100000).toFixed(2)} L` : '—'}
+                    {openTrial.offerCtc ? `${(openTrial.offerCtc / 100000).toFixed(2)} L` : '-'}
                   </p>
                   <p className="text-[10.5px] text-[var(--ink-tertiary)]">
                     {openTrial.epfoConfirmedOn ? `EPFO confirmed ${openTrial.epfoConfirmedOn}` : 'Not yet on payroll'}

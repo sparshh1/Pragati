@@ -3,7 +3,7 @@ import { computeDemandTrend } from '@/data/compute/demandTrend';
 import { dyingTasks } from '@/data/signals';
 
 /**
- * Pillar 1 — demand trajectory for one trade in one district, plus any tasks
+ * Pillar 1 - demand trajectory for one trade in one district, plus any tasks
  * inside that trade the Dying Task Watch has flagged.
  *
  * GET /api/demand?district=pune&skill=ev-battery-diagnostics

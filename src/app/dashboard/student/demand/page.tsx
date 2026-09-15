@@ -79,14 +79,14 @@ export default function StudentDemandPage() {
         ) : trend.direction === 'declining' ? (
           <Note tone="danger" title={`Think carefully before enrolling in ${skill.name}`}>
             Verified vacancies have fallen {formatPercent(trend.yoyChangePercent)} year on year in this district.
-            This does not mean the trade has no future everywhere — but in {districts.find(d => d.id === districtId)?.name},
+            This does not mean the trade has no future everywhere: but in {districts.find(d => d.id === districtId)?.name},
             demand is contracting. A trade-shift track can take you into an adjacent growing trade by
             teaching only the difference.{' '}
             <Link href="/dashboard/student/pathways" className="gov-link font-semibold">See trade-shift tracks →</Link>
           </Note>
         ) : (
           <Note tone="info" title={`${skill.name} is stable in this district`}>
-            Vacancies have moved {formatPercent(trend.yoyChangePercent)} year on year — neither growing nor
+            Vacancies have moved {formatPercent(trend.yoyChangePercent)} year on year: neither growing nor
             contracting materially. Employment is available, but wage growth is likely to be slow.
           </Note>
         )}
@@ -115,12 +115,12 @@ export default function StudentDemandPage() {
               </div>
               <div>
                 <p className="text-[10.5px] uppercase font-bold tracking-wide text-[var(--ink-tertiary)]">Training seats here</p>
-                <p className="text-[19px] font-bold mono">{gap ? formatNumber(gap.currentSupply) : '—'}<span className="text-[12px] font-normal text-[var(--ink-tertiary)]">/yr</span></p>
+                <p className="text-[19px] font-bold mono">{gap ? formatNumber(gap.currentSupply) : '-'}<span className="text-[12px] font-normal text-[var(--ink-tertiary)]">/yr</span></p>
               </div>
               <div>
                 <p className="text-[10.5px] uppercase font-bold tracking-wide text-[var(--ink-tertiary)]">Annual shortfall</p>
                 <p className={`text-[19px] font-bold mono ${gap && gap.gap > 0 ? 'text-[var(--signal-rising)]' : 'text-[var(--signal-declining)]'}`}>
-                  {gap ? (gap.gap > 0 ? formatNumber(gap.gap) : `${formatNumber(Math.abs(gap.gap))} surplus`) : '—'}
+                  {gap ? (gap.gap > 0 ? formatNumber(gap.gap) : `${formatNumber(Math.abs(gap.gap))} surplus`) : '-'}
                 </p>
               </div>
             </div>

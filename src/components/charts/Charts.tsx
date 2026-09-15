@@ -9,7 +9,7 @@ import {
 import ClientOnly from './ClientOnly';
 import { formatMonth } from '@/lib/utils';
 
-/* Palette — brand-neutral, works on the portal's light ground and prints. */
+/* Palette - brand-neutral, works on the portal's light ground and prints. */
 export const C = {
   navy: '#0b2d5c',
   navyLight: '#14447f',
@@ -100,7 +100,7 @@ export function GapBars({
   );
 }
 
-/* ---------------- Capacity ceilings — which constraint binds ---------------- */
+/* ---------------- Capacity ceilings - which constraint binds ---------------- */
 export function CeilingBars({
   data, hardLimit, notified, height = 260,
 }: {

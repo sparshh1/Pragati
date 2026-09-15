@@ -112,7 +112,7 @@ export default function GovDistrictsPage() {
       {role?.scope !== 'state' && (
         <div className="mb-5">
           <Note tone="info" title="Scoped view">
-            As {role?.title} you hold district scope. Only {district.name} data is loaded — state-wide
+            As {role?.title} you hold district scope. Only {district.name} data is loaded: state-wide
             comparison requires the <span className="mono">district.all</span> permission.
           </Note>
         </div>
@@ -134,7 +134,7 @@ export default function GovDistrictsPage() {
       </div>
 
       <div className="grid xl:grid-cols-2 gap-5 mb-5">
-        <Card title={`Demand vs supply — ${district.name}`}
+        <Card title={`Demand vs supply: ${district.name}`}
           subtitle="Positive is unmet demand; negative is training surplus"
           action={
             <select className="gov-input py-1 text-[12px] w-auto" value={sectorFilter}
@@ -251,7 +251,7 @@ export default function GovDistrictsPage() {
         </div>
       </div>
 
-      <Card title={`Full gap register — ${district.name}`} subtitle="Demand, supply and trajectory" dense>
+      <Card title={`Full gap register: ${district.name}`} subtitle="Demand, supply and trajectory" dense>
         <Table
           columns={[
             { key: 'skill', header: 'Trade', render: g => (
@@ -286,7 +286,7 @@ export default function GovDistrictsPage() {
               render: g => {
                 const s = getSkill(g.skillId);
                 return <span className="mono text-[11.5px]">
-                  {s ? `${formatCurrency(s.salaryRange[0])}–${formatCurrency(s.salaryRange[1])}` : '—'}
+                  {s ? `${formatCurrency(s.salaryRange[0])}–${formatCurrency(s.salaryRange[1])}` : '-'}
                 </span>;
               } },
           ]}
@@ -345,7 +345,7 @@ function UncoveredCard({
           <dd className="text-[var(--ink)]">
             {u.nearestExistingCourse ?? (
               <span className="text-[var(--signal-declining)] font-semibold">
-                None in the state — this would be a new trade
+                None in the state: this would be a new trade
               </span>
             )}
           </dd>
@@ -360,7 +360,7 @@ function UncoveredCard({
         <PermTag permission="skill.onboard" />
         {onboarded ? (
           <span className="text-[12px] font-semibold text-[var(--signal-rising)]">
-            ✓ Onboarding initiated — curriculum cell notified, NSQF alignment requested
+            ✓ Onboarding initiated: curriculum cell notified, NSQF alignment requested
           </span>
         ) : u.status === 'live' ? (
           <span className="text-[12px] text-[var(--signal-rising)] font-semibold">Already running</span>

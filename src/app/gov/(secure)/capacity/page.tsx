@@ -75,7 +75,7 @@ export default function GovCapacityPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Pillar 4 — Constraint-Aware Capacity Planner"
+        eyebrow="Pillar 4: Constraint-Aware Capacity Planner"
         title="Hard-limit seat calculator"
         description="How many seats this district can actually deliver."
         breadcrumb={[{ label: 'Control Tower', href: '/gov/console' }, { label: 'Capacity Planner' }]}
@@ -111,7 +111,7 @@ export default function GovCapacityPage() {
       </div>
 
       <div className="grid xl:grid-cols-[1.15fr_1fr] gap-5 mb-5">
-        <Card title={`Binding constraint — ${districts.find(d => d.id === districtId)?.name}`}
+        <Card title={`Binding constraint: ${districts.find(d => d.id === districtId)?.name}`}
           subtitle="Red bar = the binding limit">
           <CeilingBars data={ceilingData} hardLimit={calc.hardLimit} notified={base.seatsNotified} height={290} />
 
@@ -177,7 +177,7 @@ export default function GovCapacityPage() {
                 Reset to actual
               </button>
               {can('seats.allocate') ? (
-                <button onClick={() => setNotified(`Seat matrix revised to ${formatNumber(calc.hardLimit)} — sent for notification`)}
+                <button onClick={() => setNotified(`Seat matrix revised to ${formatNumber(calc.hardLimit)}: sent for notification`)}
                   className="flex-1 text-[12.5px] font-bold py-2 bg-[var(--gov-navy)] text-white rounded-sm hover:bg-[var(--gov-navy-light)] focus-ring">
                   Notify this seat matrix
                 </button>
@@ -219,7 +219,7 @@ export default function GovCapacityPage() {
               { key: 'ghost', header: 'Ghost seats', align: 'right',
                 render: c => (
                   <span className={`mono font-bold ${c.ghostSeats ? 'text-[var(--signal-declining)]' : 'text-[var(--signal-rising)]'}`}>
-                    {c.ghostSeats ? formatNumber(c.ghostSeats) : '—'}
+                    {c.ghostSeats ? formatNumber(c.ghostSeats) : '-'}
                   </span>
                 ), sortValue: c => c.ghostSeats },
               { key: 'util', header: 'Utilisation', align: 'right', hideBelow: 'md',
@@ -243,7 +243,7 @@ export default function GovCapacityPage() {
       {/* ---- Idle machine brokerage ---- */}
       <div className="grid xl:grid-cols-[1.2fr_1fr] gap-5 mt-5">
         <Card title="Idle Machine Sharing"
-          subtitle={`${formatNumber(idle.idleHoursPerWeek)} idle hours per week in this district — ${formatNumber(idle.idleHoursPerYear)} a year`}
+          subtitle={`${formatNumber(idle.idleHoursPerWeek)} idle hours per week in this district: ${formatNumber(idle.idleHoursPerYear)} a year`}
           dense>
           <Table
             columns={[
@@ -308,14 +308,14 @@ export default function GovCapacityPage() {
                         <Badge variant={b.requesterType === 'iti' ? 'officer' : 'employer'}>{b.requesterType}</Badge>
                       </div>
                       <p className="text-[11.5px] text-[var(--ink-secondary)]">
-                        {m.name} — {b.hoursPerWeek} h/week × {b.weeks} weeks
+                        {m.name}: {b.hoursPerWeek} h/week × {b.weeks} weeks
                         {m.sharedRatePerHour > 0 && (
                           <> · {formatCurrency(b.hoursPerWeek * b.weeks * m.sharedRatePerHour)} payable to {m.ownerName}</>
                         )}
                       </p>
                       {done ? (
                         <p className="text-[12px] font-semibold text-[var(--signal-rising)] mt-2">
-                          ✓ Brokered — slot allocated and the owner notified.
+                          ✓ Brokered: slot allocated and the owner notified.
                         </p>
                       ) : can('machine.broker') ? (
                         <div className="flex gap-2 mt-2.5">

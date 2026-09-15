@@ -32,7 +32,7 @@ const MODULE_TONE = {
 /*  Course sort orders                                                  */
 /*                                                                      */
 /*  Sorting here is not cosmetic. Each order answers a different planning */
-/*  question, so the options are grouped by who is asking it — a         */
+/*  question, so the options are grouped by who is asking it - a         */
 /*  candidate deciding what to enrol in, or an officer deciding what to  */
 /*  notify. `value` pulls the number the order ranks on, and `unit`      */
 /*  renders it on the card so the ordering is legible rather than magic. */
@@ -54,7 +54,7 @@ interface SortOrder {
   id: string;
   label: string;
   group: 'Career planning' | 'Course quality' | 'Seat planning' | 'Reference';
-  /** Explains what the order is for — shown under the control. */
+  /** Explains what the order is for - shown under the control. */
   rationale: string;
   value: (m: CourseMetrics) => number;
   /** desc = highest first */
@@ -65,61 +65,61 @@ interface SortOrder {
 
 const SORT_ORDERS: SortOrder[] = [
   {
-    id: 'demand', label: 'Demand growth — fastest growing first', group: 'Career planning',
+    id: 'demand', label: 'Demand growth: fastest growing first', group: 'Career planning',
     rationale: 'Ranks by the year-on-year change in verified vacancies for the course’s primary trade. The default, because enrolling into a contracting trade is the costliest mistake on this portal.',
     value: m => m.demandYoY, direction: 'desc',
     format: m => `${m.demandYoY >= 0 ? '+' : ''}${m.demandYoY}% demand YoY`,
   },
   {
-    id: 'wage', label: 'Wage ceiling — highest first', group: 'Career planning',
+    id: 'wage', label: 'Wage ceiling: highest first', group: 'Career planning',
     rationale: 'Ranks by the top of the salary band for the best-paying skill the course teaches.',
     value: m => m.wageCeiling, direction: 'desc',
     format: m => `up to ${formatCurrency(m.wageCeiling)}/mo`,
   },
   {
-    id: 'duration', label: 'Time to qualify — shortest first', group: 'Career planning',
+    id: 'duration', label: 'Time to qualify: shortest first', group: 'Career planning',
     rationale: 'For candidates who need to be earning quickly. A 3-month PMKVY course and a 24-month ITI trade are very different commitments.',
     value: m => m.durationMonths, direction: 'asc',
     format: m => `${m.durationMonths} months`,
   },
   {
-    id: 'vacancy', label: 'Seats still vacant — most first', group: 'Career planning',
+    id: 'vacancy', label: 'Seats still vacant: most first', group: 'Career planning',
     rationale: 'Where you can realistically still get admitted this intake.',
     value: m => m.seatsVacant, direction: 'desc',
     format: m => `${m.seatsVacant} seats vacant`,
   },
   {
-    id: 'practical', label: 'Hands-on share — most practical first', group: 'Course quality',
+    id: 'practical', label: 'Hands-on share: most practical first', group: 'Course quality',
     rationale: 'Practical and on-the-job hours as a share of total contact hours. Employers hire on bench time, not theory marks.',
     value: m => m.practicalShare, direction: 'desc',
     format: m => `${Math.round(m.practicalShare * 100)}% hands-on`,
   },
   {
-    id: 'stale', label: 'Stale content — worst first', group: 'Course quality',
+    id: 'stale', label: 'Stale content: worst first', group: 'Course quality',
     rationale: 'Ranks by how many modules still teach a task the Dying Task Watch has flagged. This is the revision queue.',
     value: m => m.staleModules, direction: 'desc',
     format: m => (m.staleModules ? `${m.staleModules} stale module${m.staleModules > 1 ? 's' : ''}` : 'no stale modules'),
   },
   {
-    id: 'hours', label: 'Total contact hours — most first', group: 'Course quality',
+    id: 'hours', label: 'Total contact hours: most first', group: 'Course quality',
     rationale: 'Depth of the programme, independent of how many months it is spread across.',
     value: m => m.totalHours, direction: 'desc',
     format: m => `${formatNumber(m.totalHours)} hours`,
   },
   {
-    id: 'fill', label: 'Oversubscription — most contested first', group: 'Seat planning',
+    id: 'fill', label: 'Oversubscription: most contested first', group: 'Seat planning',
     rationale: 'Enrolment against notified seats. A course at 100% with demand still rising is where seats should be added.',
     value: m => m.fillRate, direction: 'desc',
     format: m => `${Math.round(m.fillRate * 100)}% filled`,
   },
   {
-    id: 'underfilled', label: 'Under-subscription — emptiest first', group: 'Seat planning',
+    id: 'underfilled', label: 'Under-subscription: emptiest first', group: 'Seat planning',
     rationale: 'The other half of the same question. Courses that cannot fill are candidates for closure or redesign.',
     value: m => m.fillRate, direction: 'asc',
     format: m => `${Math.round(m.fillRate * 100)}% filled`,
   },
   {
-    id: 'nsqf', label: 'NSQF level — highest first', group: 'Reference',
+    id: 'nsqf', label: 'NSQF level: highest first', group: 'Reference',
     rationale: 'Exit qualification level, for mapping progression routes.',
     value: m => m.nsqfLevel, direction: 'desc',
     format: m => `NSQF Level ${m.nsqfLevel}`,
@@ -152,7 +152,7 @@ export function CourseCatalogue() {
 
   /**
    * Filter, then measure, then sort. The metrics are computed once per course
-   * rather than inside the comparator — the demand trend runs a regression over
+   * rather than inside the comparator - the demand trend runs a regression over
    * a 24-month series and must not be recomputed on every comparison.
    */
   const filtered = useMemo(() => {
@@ -253,14 +253,14 @@ export function CourseCatalogue() {
           <div className="mb-5">
             <Note tone="warn" title="Part of this syllabus teaches work that is disappearing">
               {decaying.map(m => m.code).join(', ')} teach tasks that are disappearing. Replacement
-              content is under trial — results below.
+              content is under trial: results below.
             </Note>
           </div>
         )}
 
         <div className="grid lg:grid-cols-[1.5fr_1fr] gap-5">
           <div className="space-y-5">
-            <Card title="Syllabus — module breakdown"
+            <Card title="Syllabus: module breakdown"
               subtitle={hasDetailedSyllabus(open.id)
                 ? 'Published module plan with hours, tools and assessable outcomes'
                 : 'Indicative module plan derived from the notified duration and NSQF level'}>
@@ -313,7 +313,7 @@ export function CourseCatalogue() {
                         {dt && (
                           <div className="mt-3 pt-3 border-t border-[var(--border)]">
                             <p className="text-[11px] font-bold text-[var(--signal-declining)] uppercase tracking-wide mb-1">
-                              Dying Task Watch — {dt.id}
+                              Dying Task Watch: {dt.id}
                             </p>
                             <p className="text-[12px] text-[var(--ink-secondary)] leading-relaxed">
                               <strong>{dt.taskName}</strong> is down {Math.abs(dt.hoursChangeYoY)}% in work-hours
@@ -513,7 +513,7 @@ export function CourseCatalogue() {
         <p className="text-[12.5px] text-[var(--ink-secondary)]">
           <span className="font-semibold text-[var(--ink)]">{filtered.length}</span>{' '}
           course{filtered.length === 1 ? '' : 's'}, sorted by{' '}
-          <span className="font-semibold text-[var(--gov-navy)]">{sort.label.split(' — ')[0].toLowerCase()}</span>.{' '}
+          <span className="font-semibold text-[var(--gov-navy)]">{sort.label.split(': ')[0].toLowerCase()}</span>.{' '}
           <span className="text-[var(--ink-tertiary)]">{sort.rationale}</span>
         </p>
         {sortId !== 'demand' && (

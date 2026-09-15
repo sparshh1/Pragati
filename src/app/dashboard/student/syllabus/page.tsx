@@ -52,7 +52,7 @@ export default function StudentSyllabusPage() {
         <select id="course-pick" className="gov-input max-w-xl" value={courseId} onChange={e => setCourseId(e.target.value)}>
           {courses.map(c => (
             <option key={c.id} value={c.id}>
-              {c.name} — {c.type}, {c.durationMonths} months ({c.districtId})
+              {c.name}: {c.type}, {c.durationMonths} months ({c.districtId})
             </option>
           ))}
         </select>
@@ -75,7 +75,7 @@ export default function StudentSyllabusPage() {
         <div className="mb-5">
           <Note tone="warn" title="Some of these hours are teaching work that is going away">
             {decaying.map(m => m.code).join(', ')} teach tasks that are contracting. Replacements are
-            being A/B tested — results below.
+            being A/B tested: results below.
           </Note>
         </div>
       )}
@@ -283,7 +283,7 @@ export default function StudentSyllabusPage() {
                       <span className="mono">
                         machine <strong>{p.autoScore}</strong>
                         {' · '}
-                        instructor <strong>{p.instructorScore ?? '—'}</strong>
+                        instructor <strong>{p.instructorScore ?? '-'}</strong>
                       </span>
                     </div>
 

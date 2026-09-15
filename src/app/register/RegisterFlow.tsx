@@ -112,7 +112,7 @@ export function RegisterFlow() {
             </span>
             <h1 className="text-[22px] font-bold text-[var(--gov-navy)]">Registration Successful</h1>
             <p className="text-[13.5px] text-[var(--ink-secondary)] mt-2">
-              Your प्रgati ID has been issued. Keep this number — it is your reference for all
+              Your प्रgati ID has been issued. Keep this number: it is your reference for all
               services on this portal.
             </p>
 
@@ -239,7 +239,7 @@ export function RegisterFlow() {
               <Field label="Email address" error={errors.email} hint="Optional">
                 <input className="gov-input" type="email" value={form.email} onChange={e => set('email', e.target.value)} placeholder="name@example.com" />
               </Field>
-              <Field label="Aadhaar — last 4 digits" error={errors.aadhaarLast4} hint="Optional. Full Aadhaar is never stored on this portal.">
+              <Field label="Aadhaar: last 4 digits" error={errors.aadhaarLast4} hint="Optional. Full Aadhaar is never stored on this portal.">
                 <input className="gov-input mono" inputMode="numeric" maxLength={4}
                   value={form.aadhaarLast4} onChange={e => set('aadhaarLast4', e.target.value.replace(/\D/g, ''))} placeholder="••••" />
               </Field>
@@ -248,12 +248,12 @@ export function RegisterFlow() {
                   {districts.map(d => <option key={d.id} value={d.id}>{d.name}</option>)}
                 </select>
               </Field>
-              <Field label="Preferred language" required hint="Used for voice assist, SMS and portal content">
+              <Field label="Preferred language" required hint="Used when you speak to us, for SMS, and for the pages you read">
                 <select className="gov-input" value={form.language} onChange={e => set('language', e.target.value)}>
-                  <option value="mr">मराठी — Marathi</option>
-                  <option value="hi">हिन्दी — Hindi</option>
+                  <option value="mr">मराठी (Marathi)</option>
+                  <option value="hi">हिन्दी (Hindi)</option>
                   <option value="en">English</option>
-                  <option value="ur">اردو — Urdu</option>
+                  <option value="ur">اردو (Urdu)</option>
                 </select>
               </Field>
             </div>
@@ -266,8 +266,8 @@ export function RegisterFlow() {
           <>
             <h2 className="text-[17px] font-bold text-[var(--ink)] mb-1">Candidate details</h2>
             <p className="text-[13px] text-[var(--ink-secondary)] mb-4">
-              Informal work experience matters here — it is the basis of your Recognition of Prior
-              Learning claim, and it can discharge most of a course.
+              Years of work without a certificate count here. If you already do the job, you can get
+              papers for it without joining a full course again.
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               <Field label="Highest qualification" required>
@@ -275,29 +275,29 @@ export function RegisterFlow() {
                   {QUALIFICATIONS.map(q => <option key={q}>{q}</option>)}
                 </select>
               </Field>
-              <Field label="Current NSQF level" hint="Leave at 3 if you hold no vocational certificate">
+              <Field label="Current skill level" hint="Leave at 3 if you have no vocational certificate. This is the official NSQF number.">
                 <select className="gov-input" value={form.currentNsqfLevel} onChange={e => set('currentNsqfLevel', Number(e.target.value))}>
                   {[1, 2, 3, 4, 5, 6].map(n => <option key={n} value={n}>Level {n}</option>)}
                 </select>
               </Field>
-              <Field label="Currently enrolled course" hint="Optional — select if you are already in training">
+              <Field label="Currently enrolled course" hint="Optional: select if you are already in training">
                 <select className="gov-input" value={form.enrolledCourseId} onChange={e => set('enrolledCourseId', e.target.value)}>
                   <option value="">Not currently enrolled</option>
                   {courses.filter(c => c.districtId === form.districtId).map(c => (
-                    <option key={c.id} value={c.id}>{c.name} — {c.type}, {c.durationMonths} months</option>
+                    <option key={c.id} value={c.id}>{c.name}: {c.type}, {c.durationMonths} months</option>
                   ))}
                 </select>
               </Field>
-              <Field label="Years of informal / unregistered work" hint="Counted towards RPL credit">
+              <Field label="Years of work without a certificate" hint="Two years or more can get you a certificate without a full course">
                 <input className="gov-input mono" type="number" min={0} max={40}
                   value={form.yearsInformalWork} onChange={e => set('yearsInformalWork', Number(e.target.value))} />
               </Field>
             </div>
             {form.yearsInformalWork >= 2 && (
               <div className="mt-4">
-                <Note tone="success" title="You may be eligible for RPL">
-                  {form.yearsInformalWork} years qualifies you for RPL instead of a full course. Average
-                  uplift after certification: ₹7,000 a month.
+                <Note tone="success" title="You may already qualify for a certificate">
+                  {form.yearsInformalWork} years of work is enough to sit the test instead of a full course.
+                  People who did this earned about ₹7,000 more a month.
                 </Note>
               </div>
             )}
@@ -356,9 +356,9 @@ export function RegisterFlow() {
 
             <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-3 mb-5 pb-5 border-b border-[var(--border)]">
               <Row k="Registering as" v={role === 'student' ? 'Candidate / Student' : 'Enterprise / MSME'} />
-              <Row k="Name" v={form.name || '—'} />
-              <Row k="Mobile" v={`+91 ${form.mobile || '—'}`} />
-              <Row k="District" v={districts.find(d => d.id === form.districtId)?.name ?? '—'} />
+              <Row k="Name" v={form.name || '-'} />
+              <Row k="Mobile" v={`+91 ${form.mobile || '-'}`} />
+              <Row k="District" v={districts.find(d => d.id === form.districtId)?.name ?? '-'} />
               {role === 'student' ? (
                 <>
                   <Row k="Qualification" v={form.qualification} />
@@ -366,7 +366,7 @@ export function RegisterFlow() {
                 </>
               ) : (
                 <>
-                  <Row k="Udyam number" v={form.udyamNumber.toUpperCase() || '—'} />
+                  <Row k="Udyam number" v={form.udyamNumber.toUpperCase() || '-'} />
                   <Row k="Employees on roll" v={String(form.employeeCount)} />
                 </>
               )}

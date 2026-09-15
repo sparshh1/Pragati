@@ -6,7 +6,7 @@ import { courses } from './courses';
 /*  Hard-Limit Seat Calculator                                          */
 /*                                                                      */
 /*  Seat plans are usually drawn from demand alone, which is why        */
-/*  districts notify batches that physically cannot run — no trainer,    */
+/*  districts notify batches that physically cannot run - no trainer,    */
 /*  no bench, no bed, no money. Here demand proposes; the binding        */
 /*  physical constraint disposes. Seats notified above the hard limit    */
 /*  are ghost classes and are reported as such.                         */
@@ -37,7 +37,7 @@ export const demandDrivenAsk: Record<string, number> = {
 
 /**
  * Each ceiling is computed independently; the hard limit is their minimum.
- * A seat plan that ignores the binding constraint produces ghost classes —
+ * A seat plan that ignores the binding constraint produces ghost classes -
  * seats on paper that no trainer, bench, bed or rupee can actually deliver.
  */
 export function computeSeatCalculation(
@@ -53,7 +53,7 @@ export function computeSeatCalculation(
   // roughly a third of the training year, so annual throughput is 3x the
   // concurrent station-shift capacity.
   const labCeiling = Math.round(c.labStations * c.labShiftsPerDay * 3);
-  // Only the residential share of candidates needs a bed — assume 45%.
+  // Only the residential share of candidates needs a bed - assume 45%.
   const hostelCeiling = Math.round(c.hostelBeds / 0.45);
   const budgetCeiling = Math.floor(c.annualBudgetLakh / c.costPerSeatLakh);
 
@@ -97,7 +97,7 @@ export const CONSTRAINT_LABEL: Record<SeatCalculation['bindingConstraint'], stri
 /*  Idle Machine Sharing                                                */
 /*                                                                      */
 /*  The lab ceiling above is the binding constraint in four of six       */
-/*  districts — and meanwhile private factories sit on idle capacity     */
+/*  districts - and meanwhile private factories sit on idle capacity     */
 /*  on second and third shift. Both sides are listed in one pool and     */
 /*  brokered by the district officer, so the state buys hours instead    */
 /*  of buying machines.                                                  */
@@ -105,7 +105,7 @@ export const CONSTRAINT_LABEL: Record<SeatCalculation['bindingConstraint'], stri
 
 export const machines: Machine[] = [
   { id: 'MCH-CNC-044', name: 'Haas VF-2 Vertical Machining Centre', kind: 'cnc-controller', ownerType: 'iti', ownerName: 'ITI Chikalthana, CSN', districtId: 'csn', skillIds: ['automotive-welding'], capacityHoursPerWeek: 60, bookedHoursPerWeek: 54, status: 'saturated', sharedRatePerHour: 0, contactCell: 'Workshop Supt., ITI Chikalthana', lastServicedOn: '2026-07-14' },
-  { id: 'MCH-CNC-102', name: 'DMG Mori CLX 350 Turning Centre', kind: 'cnc-controller', ownerType: 'private-factory', ownerName: 'Precision CNC Machining MSME', districtId: 'csn', skillIds: ['automotive-welding'], capacityHoursPerWeek: 126, bookedHoursPerWeek: 64, status: 'partially-used', sharedRatePerHour: 340, contactCell: 'Plant Manager — 2nd/3rd shift only', lastServicedOn: '2026-08-02' },
+  { id: 'MCH-CNC-102', name: 'DMG Mori CLX 350 Turning Centre', kind: 'cnc-controller', ownerType: 'private-factory', ownerName: 'Precision CNC Machining MSME', districtId: 'csn', skillIds: ['automotive-welding'], capacityHoursPerWeek: 126, bookedHoursPerWeek: 64, status: 'partially-used', sharedRatePerHour: 340, contactCell: 'Plant Manager: 2nd/3rd shift only', lastServicedOn: '2026-08-02' },
   { id: 'MCH-WLD-108', name: 'Fronius TransSteel 2700 Inverter Bay ×6', kind: 'weld-inverter', ownerType: 'iti', ownerName: 'ITI Chikalthana, CSN', districtId: 'csn', skillIds: ['automotive-welding'], capacityHoursPerWeek: 72, bookedHoursPerWeek: 70, status: 'saturated', sharedRatePerHour: 0, contactCell: 'Welding Instructor', lastServicedOn: '2026-06-30' },
   { id: 'MCH-WLD-109', name: 'EWM Tetrix 300 AC/DC TIG ×4', kind: 'weld-inverter', ownerType: 'private-factory', ownerName: 'Aurangabad Auto Parts', districtId: 'csn', skillIds: ['automotive-welding'], capacityHoursPerWeek: 96, bookedHoursPerWeek: 31, status: 'idle', sharedRatePerHour: 220, contactCell: 'HR & Training Cell', lastServicedOn: '2026-08-20' },
   { id: 'MCH-EV-021', name: 'Chroma 17020 Battery Pack Analyser', kind: 'ev-battery-analyser', ownerType: 'iti', ownerName: 'ITI Aundh, Pune', districtId: 'pune', skillIds: ['ev-battery-diagnostics', 'ev-charging-tech'], capacityHoursPerWeek: 60, bookedHoursPerWeek: 59, status: 'saturated', sharedRatePerHour: 0, contactCell: 'EV Lab In-charge', lastServicedOn: '2026-07-28' },

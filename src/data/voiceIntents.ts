@@ -2,7 +2,7 @@
 /*  Voice intents                                                      */
 /*                                                                     */
 /*  Real speech comes back as free text, so the assistant has to match  */
-/*  it to something. There is no language model behind this — matching  */
+/*  it to something. There is no language model behind this - matching  */
 /*  is keyword scoring across the four supported languages, which is    */
 /*  honest about what it is and, for a fixed set of government service  */
 /*  questions, works reliably.                                          */
@@ -149,7 +149,7 @@ export interface IntentMatch {
  *
  * Deliberately simple: normalised substring hits, weighted by keyword length so
  * that "not paid" counts for more than "job". Anything below two points is
- * treated as not understood rather than guessed at — a wrong confident answer
+ * treated as not understood rather than guessed at - a wrong confident answer
  * about someone's wages is worse than admitting the system missed.
  */
 export function matchIntent(transcript: string, lang: string): IntentMatch {

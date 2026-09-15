@@ -12,7 +12,7 @@ import { formatNumber, formatCurrency } from '@/lib/utils';
 
 const QUICK_LINKS = [
   { label: 'All courses and what they teach', sub: '39 courses · full subject list', href: '/courses', icon: 'book' },
-  { label: 'Which trades have jobs near me', sub: 'Real hiring data by district', href: '/demand', icon: 'chart' },
+  { label: 'Jobs in your district', sub: 'Real hiring numbers, not job-board noise', href: '/demand', icon: 'chart' },
   { label: 'Certificate for work I already do', sub: 'No need to repeat a full course', href: '/register?role=student', icon: 'badge' },
   { label: 'Hire together with other firms', sub: 'Share one training batch', href: '/register?role=business', icon: 'factory' },
   { label: 'Central & State Schemes', sub: 'PMKVY 4.0 · SANKALP · NAPS · DGT-CTS', href: '/schemes', icon: 'doc' },
@@ -50,8 +50,8 @@ export default function HomePage() {
                 Register on the Portal
               </h2>
               <p className="text-[13.5px] text-[var(--ink-secondary)] mt-4 leading-relaxed">
-                One portal, one registration form. The role you choose decides the dashboard you land on
-                and the services made available to you. You can hold only one role per mobile number.
+                Pick who you are. Students and businesses fill the same form, then see different screens.
+                One mobile number can only hold one role.
               </p>
             </div>
 
@@ -62,7 +62,7 @@ export default function HomePage() {
                 tint="var(--accent-student-light)"
                 title="Candidate / Student"
                 titleHi="उमेदवार / विद्यार्थी"
-                who="School leavers, ITI and polytechnic students, job-seekers, and workers with informal experience seeking formal certification."
+                who="School-leavers, ITI students, job-seekers, and people who already work but have no certificate."
                 services={[
                   'See which trades actually have jobs near you',
                   'Get a certificate for work you already do',
@@ -78,7 +78,7 @@ export default function HomePage() {
                 tint="var(--accent-employer-light)"
                 title="Enterprise / MSME"
                 titleHi="उद्योग / सूक्ष्म, लघु व मध्यम उद्योग"
-                who="Udyam-registered micro, small and medium enterprises, and larger establishments hiring skilled operators in the pilot districts."
+                who="Small and medium businesses that need trained people in the six pilot districts."
                 services={[
                   'Tell us who you need to hire',
                   'Share a training batch with other small firms',
@@ -124,7 +124,7 @@ export default function HomePage() {
               ))}
             </div>
 
-            {/* Evidence strip — what the engine has actually done */}
+            {/* Evidence strip: what the engine has actually done */}
             <div className="grid sm:grid-cols-3 gap-3 mt-5">
               {[
                 { v: `${impact.removedPercent}%`, k: 'of job adverts found to be fake', s: `${formatNumber(impact.raw)} claims screened down to ${formatNumber(impact.weighted)}` },
@@ -149,9 +149,8 @@ export default function HomePage() {
             <div className="max-w-3xl mb-8">
               <h2 className="text-[22px] font-bold text-[var(--gov-navy)] gov-rule">How the Portal Works</h2>
               <p className="text-[13.5px] text-[var(--ink-secondary)] mt-4 leading-relaxed">
-                Six mechanisms run underneath every screen on this portal. Each one produces a
-                distinct outcome for the candidate, for industry, and for the State — and each is
-                demonstrated live in the relevant dashboard.
+                Six things run behind every screen. Each one has a clear result for the candidate,
+                for industry, and for the State, and you can try each one in the relevant dashboard.
               </p>
             </div>
 
@@ -199,11 +198,11 @@ export default function HomePage() {
             <div>
               <h2 className="text-[19px] font-bold text-[var(--gov-navy)] gov-rule">Pilot Districts</h2>
               <p className="text-[13px] text-[var(--ink-secondary)] mt-3">
-                Phase-I coverage. Seat plans below are bounded by each district&rsquo;s binding physical constraint.
+                Phase I. Seat numbers below stop at what each district can actually run: teachers, benches, beds or money.
               </p>
             </div>
             <Link href="/demand" className="text-[13px] gov-link font-semibold">
-              Open full labour market dashboard →
+              Open the jobs dashboard →
             </Link>
           </div>
 
@@ -227,11 +226,11 @@ export default function HomePage() {
                   </p>
                   <div className="grid grid-cols-2 gap-2 mt-3 pt-3 border-t border-[var(--border)]">
                     <div>
-                      <p className="text-[10px] uppercase tracking-wide text-[var(--ink-tertiary)] font-semibold">Hard seat limit</p>
+                      <p className="text-[10px] uppercase tracking-wide text-[var(--ink-tertiary)] font-semibold">Honest seat limit</p>
                       <p className="text-[16px] font-bold mono text-[var(--ink)]">{formatNumber(calc.hardLimit)}</p>
                     </div>
                     <div>
-                      <p className="text-[10px] uppercase tracking-wide text-[var(--ink-tertiary)] font-semibold">Bound by</p>
+                      <p className="text-[10px] uppercase tracking-wide text-[var(--ink-tertiary)] font-semibold">What runs out first</p>
                       <p className="text-[13px] font-semibold text-[var(--signal-warn)] capitalize pt-0.5">
                         {calc.bindingConstraint}
                       </p>
@@ -254,11 +253,10 @@ export default function HomePage() {
                 </svg>
               </span>
               <div>
-                <h2 className="text-[17px] font-bold">Departmental Portal — Restricted Access</h2>
+                <h2 className="text-[17px] font-bold">Officer login (restricted)</h2>
                 <p className="text-[12.5px] text-slate-300 mt-1.5 leading-relaxed">
-                  State Mission Directorate, District Skill Development Officers, ITI Principals,
-                  Internal Audit and Scheme Convergence Cell. Access is role-based; every action is
-                  permission-gated and written to the audit register.
+                  Access is by role. Every action is written down. A district officer cannot open
+                  another district&rsquo;s records.
                 </p>
               </div>
             </div>

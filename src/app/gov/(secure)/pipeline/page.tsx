@@ -47,7 +47,7 @@ export default function GovPipelinePage() {
   return (
     <>
       <PageHeader
-        eyebrow="Pillar 2 — Employer-Locked Hiring Pipeline"
+        eyebrow="Pillar 2: Employer-Locked Hiring Pipeline"
         title="Hiring pools, work-trial gate and subsidy release"
         description="Pools, the work-trial gate, and subsidy release."
         breadcrumb={[{ label: 'Control Tower', href: '/gov/console' }, { label: 'Hiring Pipeline' }]}
@@ -151,7 +151,7 @@ export default function GovPipelinePage() {
               </div>
 
               <div className="pt-4 space-y-2">
-                {/* Gate 1 — lock the seats */}
+                {/* Gate 1: lock the seats */}
                 {locked[selected.id] ? (
                   <p className="text-[12.5px] font-semibold text-[var(--signal-rising)]">
                     ✓ Seats locked against signed commitments. Batch cleared for notification.
@@ -162,13 +162,13 @@ export default function GovPipelinePage() {
                     className="w-full text-[13px] font-bold py-2.5 bg-[var(--gov-navy)] text-white rounded-sm hover:bg-[var(--gov-navy-light)] focus-ring disabled:opacity-45 disabled:cursor-not-allowed">
                     {poolSeatsCommitted(selected) >= selected.seatsRequired
                       ? 'Lock seats and notify the batch →'
-                      : `Cannot notify — ${selected.seatsRequired - poolSeatsCommitted(selected)} seats still uncommitted`}
+                      : `Cannot notify: ${selected.seatsRequired - poolSeatsCommitted(selected)} seats still uncommitted`}
                   </button>
                 ) : (
                   <Gated permission="pipeline.lock" label="Seat locking"><span /></Gated>
                 )}
 
-                {/* Gate 3 — release the subsidy */}
+                {/* Gate 3: release the subsidy */}
                 {released[selected.id] ? (
                   <p className="text-[12.5px] font-semibold text-[var(--signal-rising)]">
                     ✓ Tranche of {formatCurrency(stats.subsidyReleasable * selected.subsidyPerSeat)} released
@@ -181,7 +181,7 @@ export default function GovPipelinePage() {
                     style={{ background: 'var(--signal-rising)', color: '#fff' }}>
                     {stats.subsidyReleasable > 0
                       ? `Release ${formatCurrency(stats.subsidyReleasable * selected.subsidyPerSeat)} against verified placements →`
-                      : 'No payroll-confirmed placements yet — nothing releasable'}
+                      : 'No payroll-confirmed placements yet: nothing releasable'}
                   </button>
                 ) : (
                   <Gated permission="subsidy.release" label="Subsidy release"><span /></Gated>
@@ -220,11 +220,11 @@ export default function GovPipelinePage() {
                   { key: 'epfo', header: 'EPFO', align: 'center',
                     render: (t: WorkTrial) => t.epfoConfirmedOn
                       ? <span className="text-[var(--signal-rising)] font-bold" title={t.epfoConfirmedOn}>✓</span>
-                      : <span className="text-[var(--ink-tertiary)]">—</span> },
+                      : <span className="text-[var(--ink-tertiary)]">: </span> },
                   { key: 'ctc', header: 'Offer', align: 'right', hideBelow: 'lg',
                     render: (t: WorkTrial) => (
                       <span className="mono text-[11.5px]">
-                        {t.offerCtc ? `${(t.offerCtc / 100000).toFixed(2)} L` : '—'}
+                        {t.offerCtc ? `${(t.offerCtc / 100000).toFixed(2)} L` : '-'}
                       </span>
                     ) },
                 ]}

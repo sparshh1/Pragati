@@ -1,13 +1,13 @@
 import Link from 'next/link';
 
 const NOTICES = [
-  { date: '10 Sep 2026', text: 'Winter 2026 intake — online registration for ITI and PMKVY 4.0 short-term courses opens across all six pilot districts.', isNew: true, href: '/courses' },
+  { date: '10 Sep 2026', text: 'Winter 2026 intake: online registration for ITI and PMKVY 4.0 short-term courses opens across all six pilot districts.', isNew: true, href: '/courses' },
   { date: '09 Sep 2026', text: 'Welding practicals will now be marked by machine readings, not by hand.', isNew: true, href: '/about' },
   { date: '06 Sep 2026', text: 'Thane smart-building batch: businesses can still join until 30 September 2026.', isNew: true, href: '/register?role=business' },
   { date: '02 Sep 2026', text: 'Free skill-certification camps in Kolhapur and Chhatrapati Sambhajinagar, 21–28 September.', isNew: false, href: '/register?role=student' },
   { date: '30 Aug 2026', text: 'Motor mechanic course updated: carburettor topics replaced with modern fuel-injection.', isNew: false, href: '/about#pillars' },
   { date: '25 Aug 2026', text: 'Factories can now rent out machines they are not using for training.', isNew: false, href: '/register?role=business' },
-  { date: '18 Aug 2026', text: 'Multilingual IVR helpline 1800-233-0202 now live in Marathi, Hindi, English and Urdu.', isNew: false, href: '/help' },
+  { date: '18 Aug 2026', text: 'Helpline 1800-233-0202 now live in Marathi, Hindi, English and Urdu. Call from any phone.', isNew: false, href: '/help' },
 ];
 
 export function NoticeBoard() {

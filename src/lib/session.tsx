@@ -4,11 +4,11 @@ import { createContext, useContext, useEffect, useState, useCallback, ReactNode 
 import { CitizenRole, GovRole, Permission, GOV_ROLES, roleHas } from './rbac';
 
 /* ------------------------------------------------------------------ */
-/*  Citizen session — one portal, two roles, two different dashboards  */
+/*  Citizen session - one portal, two roles, two different dashboards  */
 /* ------------------------------------------------------------------ */
 
 export interface CitizenAccount {
-  /** PID — प्रgati ID issued at registration */
+  /** PID - प्रgati ID issued at registration */
   ksid: string;
   role: CitizenRole;
   name: string;
@@ -133,7 +133,7 @@ export function useCitizen(): CitizenCtx {
 }
 
 /* ------------------------------------------------------------------ */
-/*  Government session — separate portal, separate store, RBAC-gated    */
+/*  Government session - separate portal, separate store, RBAC-gated    */
 /* ------------------------------------------------------------------ */
 
 export interface GovOfficer {
@@ -163,7 +163,7 @@ export function GovProvider({ children }: { children: ReactNode }) {
   const [officer, setOfficer] = useState<GovOfficer | null>(null);
   const [ready, setReady] = useState(false);
 
-  // As above — sessionStorage is only readable after mount.
+  // As above - sessionStorage is only readable after mount.
   /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     try {
@@ -195,8 +195,8 @@ export function GovProvider({ children }: { children: ReactNode }) {
     ? GOV_ROLES[officer.role].scope === 'state'
       ? 'State-wide (Maharashtra)'
       : GOV_ROLES[officer.role].scope === 'district'
-        ? `District: ${officer.districtId ?? '—'}`
-        : `Centre: ${officer.centreId ?? '—'}`
+        ? `District: ${officer.districtId ?? '-'}`
+        : `Centre: ${officer.centreId ?? '-'}`
     : '';
 
   return (

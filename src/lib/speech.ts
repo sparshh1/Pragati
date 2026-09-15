@@ -1,12 +1,16 @@
 'use client';
 
 /**
- * Browser speech: recognition (STT) and synthesis (TTS).
+ * Speech in the browser. There is no paid speech API and no API key.
  *
- * Both come from the Web Speech API, which is available in Chromium browsers
- * and Safari but not Firefox. Everything here degrades to "unsupported" rather
- * than throwing, because a candidate on an unsupported browser must still be
- * able to type the question and read the answer.
+ * Listening uses the Web Speech API that ships with the browser:
+ *   - Microsoft Edge on Windows uses this PC's speech (the same family as
+ *     Windows logo key + H dictation). Language packs live on the machine.
+ *   - Chrome talks to Google's speech service, so it needs the internet.
+ *   - Firefox does not support it. The candidate can still type, or press
+ *     Windows logo key + H in the text box (that is Windows, not us).
+ *
+ * Speaking uses the voices already installed on the computer.
  */
 
 /* ---- Minimal typings. The DOM lib does not ship these. ---- */
@@ -59,7 +63,7 @@ export function ttsSupported(): boolean {
   return typeof window !== 'undefined' && 'speechSynthesis' in window;
 }
 
-/** BCP-47 tags. Indian variants first — they carry the right accent models. */
+/** BCP-47 tags. Indian variants first; they carry the right accent models. */
 export const SPEECH_LANG: Record<string, string> = {
   mr: 'mr-IN',
   hi: 'hi-IN',
@@ -81,9 +85,9 @@ export interface ListenHandlers {
 }
 
 /**
- * Starts listening and returns a stop function. Interim results stream in so
- * the user can see the machine is hearing them — silence for three seconds
- * during a slow sentence is otherwise indistinguishable from a broken mic.
+ * Starts listening and returns a stop function. Partial text streams in so
+ * the person can see the computer is hearing them. Silence for a few seconds
+ * would otherwise look like a broken microphone.
  */
 export function listen(langCode: string, h: ListenHandlers): () => void {
   const Ctor = recognitionCtor();
@@ -137,8 +141,8 @@ export function listen(langCode: string, h: ListenHandlers): () => void {
 
 /**
  * Picks the closest installed voice. Indian-language voices are not present on
- * every device, so this falls back down the chain — exact tag, then the base
- * language, then whatever the browser defaults to — rather than going silent.
+ * every device, so this tries the exact tag, then the base language, then
+ * whatever the browser defaults to, rather than going silent.
  */
 function pickVoice(tag: string): SpeechSynthesisVoice | null {
   const voices = window.speechSynthesis.getVoices();
@@ -197,4 +201,19 @@ export function primeVoices(): Promise<void> {
     window.speechSynthesis.addEventListener('voiceschanged', handler);
     setTimeout(resolve, 1200);
   });
+}
+
+export function isWindowsHost(): boolean {
+  if (typeof navigator === 'undefined') return false;
+  return /Windows NT/i.test(navigator.userAgent);
+}
+
+export function isEdgeBrowser(): boolean {
+  if (typeof navigator === 'undefined') return false;
+  return /Edg\//.test(navigator.userAgent);
+}
+
+/** Edge on Windows uses the PC's own speech engine. Chrome does not. */
+export function usesWindowsSpeech(): boolean {
+  return isWindowsHost() && isEdgeBrowser();
 }

@@ -35,7 +35,7 @@ export default function CvPage() {
   /* ------------------------------------------------------------------ */
   /*  The card is assembled from records the department already holds.    */
   /*  The candidate supplies only the three optional free-text fields     */
-  /*  above — everything else is pulled, and carries a verified mark.     */
+  /*  above - everything else is pulled, and carries a verified mark.     */
   /* ------------------------------------------------------------------ */
   const dossier = useMemo(() => {
     if (!account) return null;
@@ -114,7 +114,7 @@ export default function CvPage() {
             the department fills in for you.
           </>
         }
-        breadcrumb={[{ label: 'Dashboard', href: '/dashboard/student' }, { label: 'My CV & Job-Fit Card' }]}
+        breadcrumb={[{ label: 'Dashboard', href: '/dashboard/student' }, { label: 'My CV' }]}
         actions={
           <button
             onClick={() => window.print()}
@@ -130,7 +130,7 @@ export default function CvPage() {
 
       <div data-guide="stats" className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6 no-print ks-stagger">
         <Stat label="CV completeness" value={`${dossier.strength}%`}
-          sub={dossier.strength >= 70 ? 'Strong — ready to send' : 'Add more evidence below'}
+          sub={dossier.strength >= 70 ? 'Strong: ready to send' : 'Add more evidence below'}
           tone={dossier.strength >= 70 ? 'positive' : 'warn'} accent="var(--accent-student)" />
         <Stat label="Practicals checked" value={dossier.verifiedPracticals.length}
           sub="Recorded by the machine, not an instructor" tone="positive" accent="var(--accent-student)" />
@@ -188,7 +188,7 @@ export default function CvPage() {
               {/* Qualification */}
               <Section title="Qualification">
                 <dl className="grid sm:grid-cols-2 gap-x-6 gap-y-2.5">
-                  <Row k="Highest education" v={account.qualification ?? '—'} />
+                  <Row k="Highest education" v={account.qualification ?? '-'} />
                   <Row
                     k="Skill level"
                     v={`Level ${account.currentNsqfLevel ?? 3} (NSQF)`}
@@ -249,7 +249,7 @@ export default function CvPage() {
                           <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
                             <div className="min-w-0">
                               <p className="text-[15px] font-bold text-[var(--ink)]">
-                                {p.moduleCode} — {p.sensorKind.replace(/-/g, ' ')}
+                                {p.moduleCode}: {p.sensorKind.replace(/-/g, ' ')}
                               </p>
                               <p className="text-[13px] mono text-[var(--ink-tertiary)]">
                                 {p.machineId} · {p.machineMinutes} minutes of machine time · {p.performedOn}
@@ -261,7 +261,7 @@ export default function CvPage() {
                             </span>
                           </div>
                           <p className="text-[14px] text-[var(--ink-secondary)]">
-                            {passed} of {p.telemetry.length} measurements within tolerance —{' '}
+                            {passed} of {p.telemetry.length} measurements within tolerance : {' '}
                             {p.telemetry.slice(0, 2).map(t => `${t.metric.toLowerCase()} ${t.value}${t.unit}`).join(', ')}.
                           </p>
                         </li>
@@ -329,7 +329,7 @@ export default function CvPage() {
                   {dossier.certifiedRpl.map(r => (
                     <div key={r.id} className="border border-[var(--border)] rounded-sm p-3.5">
                       <p className="text-[15px] font-bold text-[var(--ink)]">
-                        {getSkill(r.claimedSkillId)?.name} — certified at NSQF Level {r.assessedNsqfLevel}
+                        {getSkill(r.claimedSkillId)?.name}: certified at NSQF Level {r.assessedNsqfLevel}
                       </p>
                       <p className="text-[14px] text-[var(--ink-secondary)] mt-1 leading-relaxed">
                         {r.yearsOfExperience} years of experience assessed and formally recognised.
@@ -345,7 +345,7 @@ export default function CvPage() {
               {dossier.cleanPayroll.length > 0 && (
                 <Section
                   title="Employment history"
-                  note="Checked against official salary records — not just your word."
+                  note="Checked against official salary records: not just your word."
                 >
                   <ul className="space-y-2.5">
                     {dossier.cleanPayroll.map(a => (
@@ -384,7 +384,7 @@ export default function CvPage() {
 
               <p className="text-[12.5px] text-[var(--ink-tertiary)] leading-relaxed pt-4 border-t border-[var(--border)]">
                 Items marked <strong className="text-[var(--signal-rising)]">verified</strong> are drawn from
-                departmental records — training enrolment, machine telemetry, employer trial scorecards,
+                departmental records: training enrolment, machine telemetry, employer trial scorecards,
                 skill assessment and salary records. An employer can check this card using your प्रgati ID{' '}
                 <span className="mono">{account.ksid}</span> on the प्रgati portal.
               </p>

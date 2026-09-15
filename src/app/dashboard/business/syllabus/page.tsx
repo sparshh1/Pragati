@@ -38,7 +38,7 @@ export default function BusinessSyllabusPage() {
   return (
     <>
       <PageHeader
-        eyebrow={`Pillar ${pillar.number} — ${pillar.short}`}
+        eyebrow={`Pillar ${pillar.number}: ${pillar.short}`}
         title="Syllabus endorsement"
         description="Flag stale modules. Vote on live syllabus experiments."
         breadcrumb={[{ label: 'Dashboard', href: '/dashboard/business' }, { label: 'Syllabus Endorsement' }]}
@@ -63,7 +63,7 @@ export default function BusinessSyllabusPage() {
               <label className="gov-label" htmlFor="bs-course">Course</label>
               <select id="bs-course" className="gov-input" value={courseId} onChange={e => { setCourseId(e.target.value); setVerdicts({}); }}>
                 {courses.map(c => (
-                  <option key={c.id} value={c.id}>{c.name} — {c.type}, {c.durationMonths} mo ({c.districtId})</option>
+                  <option key={c.id} value={c.id}>{c.name}: {c.type}, {c.durationMonths} mo ({c.districtId})</option>
                 ))}
               </select>
               <p className="text-[11.5px] text-[var(--ink-tertiary)] mt-1.5">
@@ -96,7 +96,7 @@ export default function BusinessSyllabusPage() {
                         </p>
                         {dt && (
                           <p className="text-[11.5px] text-[var(--signal-declining)] mt-1 leading-snug">
-                            {dt.taskName} — {Math.abs(dt.hoursChangeYoY)}% work-hours YoY, displaced by {dt.displacedBy}
+                            {dt.taskName}: {Math.abs(dt.hoursChangeYoY)}% work-hours YoY, displaced by {dt.displacedBy}
                           </p>
                         )}
                       </div>
@@ -240,7 +240,7 @@ export default function BusinessSyllabusPage() {
               ))}
             </div>
             <p className="text-[12px] text-[var(--ink-secondary)] mt-3 leading-relaxed">
-              The practical component is scored from machine telemetry — arc-on time, spindle hours,
+              The practical component is scored from machine telemetry: arc-on time, spindle hours,
               cell-voltage spread. When you receive a candidate from this course, the practical mark on
               their certificate is backed by a machine log you can ask to see.
             </p>

@@ -58,7 +58,7 @@ export function Emblem({ size = 44, className = '' }: { size?: number; className
   );
 }
 
-/** प्रgati departmental mark — a bridge over a skills gap. */
+/** प्रgati departmental mark - a bridge over a skills gap. */
 export function SetuMark({ size = 40, className = '' }: { size?: number; className?: string }) {
   return (
     <svg width={size} height={size} viewBox="0 0 48 48" className={className} role="img" aria-label="प्रgati">

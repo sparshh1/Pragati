@@ -50,7 +50,7 @@ export function GovShell({ children }: { children: ReactNode }) {
         <div className="mx-auto max-w-[1600px] px-4 py-1 flex flex-wrap items-center justify-between gap-2">
           <span className="font-bold uppercase tracking-[0.1em] flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-white blink-new" />
-            Restricted — Departmental Use Only
+            Restricted: Departmental Use Only
           </span>
           <span className="opacity-90">
             Every action on this portal is written to the audit register against{' '}
@@ -65,7 +65,7 @@ export function GovShell({ children }: { children: ReactNode }) {
           <Link href="/gov/console" className="flex items-center gap-3 focus-ring shrink-0">
             <Emblem size={30} className="text-white" />
             <span className="leading-tight">
-              <span className="block text-[15px] font-bold">प्रgati — Departmental Portal</span>
+              <span className="block text-[15px] font-bold">प्रgati: Departmental Portal</span>
               <span className="block text-[10px] text-slate-400 uppercase tracking-[0.07em]">
                 Dept. of Skill, Employment, Entrepreneurship &amp; Innovation
               </span>
@@ -74,7 +74,7 @@ export function GovShell({ children }: { children: ReactNode }) {
 
           <div className="flex-1" />
 
-          {/* Data scope is always visible — it is the second half of access control */}
+          {/* Data scope is always visible: it is the second half of access control */}
           <div data-guide="scope" className="hidden md:flex items-center gap-2 bg-white/10 border border-white/15 rounded-sm px-3 py-1.5">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" className="text-[var(--gov-saffron)]">
               <path d="M9 4L3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5zM9 4v13M15 6.5v13" />
@@ -173,7 +173,7 @@ export function GovShell({ children }: { children: ReactNode }) {
 
             <div className="px-3.5 py-3 bg-[var(--surface-alt)] border-t border-[var(--border)]">
               <p className="text-[10px] font-bold uppercase tracking-wide text-[var(--ink-tertiary)] mb-1.5">
-                Permissions held — {role.permissions.length} of {ALL_PERMISSIONS.length}
+                Permissions held: {role.permissions.length} of {ALL_PERMISSIONS.length}
               </p>
               <div className="flex flex-wrap gap-1">
                 {role.permissions.slice(0, 8).map(p => (
@@ -217,7 +217,7 @@ export function GovShell({ children }: { children: ReactNode }) {
 
 /**
  * Wraps a privileged action. Where the officer lacks the permission, the control
- * is replaced by an explicit statement of what is missing — the portal never
+ * is replaced by an explicit statement of what is missing - the portal never
  * silently hides why something cannot be done.
  */
 export function Gated({
