@@ -42,11 +42,11 @@ export default function BusinessRplPage() {
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         <Stat label="Awaiting employer endorsement" value={awaiting.length}
           sub="Applications that name an employer" tone="warn" accent="var(--accent-employer)" />
-        <Stat label="Certified state-wide" value={stats.certified}
+        <Stat label="Certified so far" value={stats.certified}
           sub={`${stats.rejected} rejected on evidence`} tone="positive" accent="var(--accent-employer)" />
         <Stat label="Average uplift on certification" value={`+${formatCurrency(stats.avgMonthlyUplift)}`}
           sub="per month, per worker" tone="positive" accent="var(--accent-employer)" />
-        <Stat label="Average bridge hours" value={`${stats.avgBridgeHours} h`}
+        <Stat label="Extra training needed" value={`${stats.avgBridgeHours} h`}
           sub="Worker stays on your floor throughout" tone="positive" accent="var(--accent-employer)" />
       </div>
 
@@ -185,7 +185,7 @@ export default function BusinessRplPage() {
                   <p className="text-[12.5px] text-[var(--ink-secondary)] mt-1 leading-relaxed">
                     NSQF L{nominee.years >= 4 ? 4 : 3} certification with roughly{' '}
                     {Math.max(40, 2400 - nominee.years * 220)} hours of bridge training, delivered on
-                    evenings and weekends. Indicative wage effect{' '}
+                    evenings and weekends. What you would earn{' '}
                     <strong className="text-[var(--signal-rising)]">
                       {projectedUplift > 0 ? `+${formatCurrency(projectedUplift)}` : 'no change'}
                     </strong>{' '}

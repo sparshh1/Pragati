@@ -112,13 +112,13 @@ export function RegisterFlow() {
             </span>
             <h1 className="text-[22px] font-bold text-[var(--gov-navy)]">Registration Successful</h1>
             <p className="text-[13.5px] text-[var(--ink-secondary)] mt-2">
-              Your Kaushal Setu ID has been issued. Keep this number — it is your reference for all
+              Your प्रgati ID has been issued. Keep this number — it is your reference for all
               services on this portal.
             </p>
 
             <div className="my-6 py-4 border-y border-dashed border-[var(--border-strong)]">
               <p className="text-[11px] uppercase tracking-[0.1em] font-bold text-[var(--ink-tertiary)]">
-                Kaushal Setu ID (KSID)
+                प्रgati ID (PID)
               </p>
               <p className="text-[26px] font-bold mono tracking-wider mt-1" style={{ color: accent }}>
                 {issued}

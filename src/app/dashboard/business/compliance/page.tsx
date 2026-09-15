@@ -66,7 +66,7 @@ export default function BusinessCompliancePage() {
           <Card title="File a payroll declaration" subtitle="One declaration per candidate you have taken on">
             <div className="space-y-4">
               <div>
-                <label className="gov-label" htmlFor="c-ksid">Candidate KSID</label>
+                <label className="gov-label" htmlFor="c-ksid">Candidate ID</label>
                 <input id="c-ksid" className="gov-input mono" value={decl.ksid}
                   onChange={e => setDecl(d => ({ ...d, ksid: e.target.value }))}
                   placeholder="MH-CD-2026-418203" />

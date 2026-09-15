@@ -54,10 +54,10 @@ export function SiteHeader() {
             <SetuMark size={42} className="hidden sm:block" />
             <span className="leading-tight">
               <span className="block text-[19px] sm:text-[22px] font-bold text-[var(--gov-navy)] tracking-tight">
-                Kaushal Setu
+                प्रgati
               </span>
               <span className="block text-[12px] sm:text-[13px] text-[var(--ink-secondary)]">
-                कौशल सेतु — Skill Bridge Portal
+                प्रgati — Skill Bridge Portal
               </span>
               <span className="hidden md:block text-[10.5px] text-[var(--ink-tertiary)] uppercase tracking-[0.07em] mt-0.5">
                 Skill Development &amp; Entrepreneurship Dept., Govt. of Maharashtra

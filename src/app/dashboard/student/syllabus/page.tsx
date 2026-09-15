@@ -12,7 +12,6 @@ import { courses } from '@/data/courses';
 import { getSyllabus, MODULE_TYPE_LABEL } from '@/data/syllabus';
 import { experimentsForCourse, significanceLabel, sensorPracticals, DISCREPANCY_THRESHOLD } from '@/data/experiments';
 import { dyingTasks } from '@/data/signals';
-import { PILLARS } from '@/data/pillars';
 import { formatCurrency } from '@/lib/utils';
 
 const TYPE_TONE = {
@@ -21,7 +20,6 @@ const TYPE_TONE = {
 
 export default function StudentSyllabusPage() {
   const { account } = useCitizen();
-  const pillar = PILLARS[2];
 
   const defaultCourse =
     account?.enrolledCourseId ??
@@ -41,8 +39,8 @@ export default function StudentSyllabusPage() {
   return (
     <>
       <PageHeader
-        eyebrow={`Pillar ${pillar.number} — ${pillar.short}`}
-        title="My syllabus and practical evidence"
+        eyebrow="My course"
+        title="What I am learning"
         description="Your module plan, hour by hour, with the machine evidence."
         breadcrumb={[{ label: 'Dashboard', href: '/dashboard/student' }, { label: 'Syllabus & Practicals' }]}
       />
@@ -63,12 +61,12 @@ export default function StudentSyllabusPage() {
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
         <Stat label="Total hours" value={syllabus.totalHours.toLocaleString('en-IN')}
           sub={`${course.durationMonths} months · ${syllabus.modules.length} modules`} accent="var(--accent-student)" />
-        <Stat label="Hands-on hours" value={practicalHours.toLocaleString('en-IN')}
+        <Stat label="Practical hours" value={practicalHours.toLocaleString('en-IN')}
           sub={`${Math.round((practicalHours / syllabus.totalHours) * 100)}% of the course is on the bench`}
           tone="positive" accent="var(--accent-student)" />
-        <Stat label="NSQF level on completion" value={`L${syllabus.nsqfLevel}`}
+        <Stat label="Level when you finish" value={`L${syllabus.nsqfLevel}`}
           sub={`Syllabus version ${syllabus.version}, effective ${syllabus.effectiveFrom}`} accent="var(--accent-student)" />
-        <Stat label="Modules flagged stale" value={decaying.length}
+        <Stat label="Outdated topics" value={decaying.length}
           sub={decaying.length ? 'Teaching tasks that are disappearing' : 'No decaying content'}
           tone={decaying.length ? 'negative' : 'positive'} accent="var(--accent-student)" />
       </div>

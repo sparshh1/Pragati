@@ -395,7 +395,7 @@ export function nextSteps(profile: CandidateProfile, heldSkillIds: string[]): Ne
   if (profile.yearsInformalWork >= 2) {
     steps.push({
       title: 'Get certified for work you already do',
-      plain: `You told us you have worked ${profile.yearsInformalWork} years without a certificate. You can get an official qualification for that without repeating a full course.`,
+      plain: `You have worked ${profile.yearsInformalWork} years without a certificate. You can get official papers for that without doing a full course again.`,
       href: '/dashboard/student/pathways',
       cta: 'Check what you would get',
       urgency: 'high',
@@ -405,7 +405,7 @@ export function nextSteps(profile: CandidateProfile, heldSkillIds: string[]): Ne
   if (!profile.enrolledCourseId) {
     steps.push({
       title: 'Find a course that leads to a real job',
-      plain: 'We have ranked every course in your district by whether employers are actually hiring for it. Look at the top three first.',
+      plain: 'Every course near you, ranked by whether employers are actually hiring. Look at the top three.',
       href: '/dashboard/student/recommend',
       cta: 'See my matches',
       urgency: 'high',
@@ -436,10 +436,10 @@ export function nextSteps(profile: CandidateProfile, heldSkillIds: string[]): Ne
   }
 
   steps.push({
-    title: 'Build your verified Job-Fit Card',
-    plain: 'A one-page profile employers trust, because the department has verified what is on it — your practicals, your trial scores and your payroll history.',
+    title: 'Make your CV',
+    plain: 'A one-page CV employers trust, because the government fills in most of it — your practicals, your trial scores and your pay record.',
     href: '/dashboard/student/cv',
-    cta: 'Build my card',
+    cta: 'Make my CV',
     urgency: 'medium',
   });
 

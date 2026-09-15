@@ -8,7 +8,7 @@ import { CitizenRole, GovRole, Permission, GOV_ROLES, roleHas } from './rbac';
 /* ------------------------------------------------------------------ */
 
 export interface CitizenAccount {
-  /** KSID — Kaushal Setu ID issued at registration */
+  /** PID — प्रgati ID issued at registration */
   ksid: string;
   role: CitizenRole;
   name: string;

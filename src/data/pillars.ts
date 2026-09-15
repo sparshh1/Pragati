@@ -14,6 +14,8 @@ export interface Pillar {
   number: number;
   name: string;
   short: string;
+  /** Plain headline used on public pages. The formal `name` stays for About. */
+  plain: string;
   mechanisms: string[];
   summary: string;
   outcomes: { student: string; business: string; government: string };
@@ -25,10 +27,12 @@ export const PILLARS: Pillar[] = [
     id: 'demand-intelligence',
     number: 1,
     name: 'Demand Intelligence & Signal Verification Engine',
+    plain: 'Real jobs, not fake adverts',
     short: 'Demand Intelligence',
-    mechanisms: ['Trust-Weighted Quality Filter', 'Dying Task Watch'],
+    mechanisms: ['Only real vacancies counted', 'Dying-skill watch'],
     summary:
-      'Raw vacancy claims are never trusted. Each source carries a trust weight earned from how many of its past postings became real EPFO payroll entries, and the Dying Task Watch tracks decline at task level — below the trade name — so a syllabus cannot rot behind a healthy-looking title.',
+      
+      "Job adverts get counted only if they turn into someone actually being paid. We also track which specific tasks inside a trade are dying, so courses do not keep teaching them.",
     outcomes: {
       student: 'Youth are trained on skills that are actually being hired for.',
       business: 'MSMEs get vetted talent instead of a queue of unfiltered applicants.',
@@ -40,10 +44,12 @@ export const PILLARS: Pillar[] = [
     id: 'hiring-pipeline',
     number: 2,
     name: 'Employer-Locked Work & Hiring Pipeline',
+    plain: 'A job promised before you train',
     short: 'Hiring Pipeline',
-    mechanisms: ['MSME Hiring Pools', 'Work-Trial Gate'],
+    mechanisms: ['Small firms hiring together', 'Paid work trial'],
     summary:
-      'Small units too small to train alone co-sign one batch, each legally committing seats at a declared wage floor before training is notified. Every candidate then serves a paid work-trial on the employer’s own floor, and subsidy moves only against trials that were passed and later confirmed on payroll.',
+      
+      "Small firms club together and promise in writing to hire, before training starts. Everyone then does a paid trial on the employer's floor — that decides the job, not the exam.",
     outcomes: {
       student: 'A fast route to a real job, with a stipend during the trial.',
       business: 'Factories receive operators who have already worked their shift.',
@@ -55,10 +61,12 @@ export const PILLARS: Pillar[] = [
     id: 'adaptive-syllabus',
     number: 3,
     name: 'Adaptive Syllabus & Evidence-Based Evaluation',
+    plain: 'Courses that keep up with industry',
     short: 'Adaptive Syllabus',
-    mechanisms: ['Live Syllabus A/B Testing', 'Sensor-Verified Practicals'],
+    mechanisms: ['Courses tested on real results', 'Machine-checked practicals'],
     summary:
-      'Two cohorts in the same trade run different content concurrently and the winner is decided by work-trial pass rate, placement and wage — not by committee. Practical marks are derived from machine telemetry, so a practical that never happened cannot be signed off.',
+      
+      "Two groups are taught slightly different content, and whichever group gets more jobs decides what everyone is taught next. Practical marks come from the machine, not a signature.",
     outcomes: {
       student: 'Students learn on the tools industry is running today.',
       business: 'Factories receive job-ready talent, not exam-ready talent.',
@@ -70,10 +78,12 @@ export const PILLARS: Pillar[] = [
     id: 'capacity-planner',
     number: 4,
     name: 'Constraint-Aware District Capacity Planner',
+    plain: 'No seat without a machine',
     short: 'Capacity Planner',
-    mechanisms: ['Hard-Limit Seat Calculator', 'Idle Machine Sharing'],
+    mechanisms: ['Honest seat limits', 'Shared factory machines'],
     summary:
-      'Demand proposes, but trainers, benches, beds and budget dispose. The planner computes each ceiling independently and notifies only up to the binding constraint — while idle second-shift capacity in private factories is brokered into the same pool, so the State buys hours instead of buying machines.',
+      
+      "Seats are capped by whatever actually runs out first — teachers, benches, beds or money. Spare machines in private factories are rented so more people get bench time.",
     outcomes: {
       student: 'Guaranteed lab time — the bench exists before the seat is sold.',
       business: 'Surplus shift capacity earns revenue instead of depreciating.',
@@ -85,10 +95,12 @@ export const PILLARS: Pillar[] = [
     id: 'pathways-rpl',
     number: 5,
     name: 'Precision Career Pathways & RPL Engine',
+    plain: 'Credit for what you already know',
     short: 'Pathways & RPL',
-    mechanisms: ['Recognition of Prior Learning', 'Trade Shift Tracks (ICE → EV)'],
+    mechanisms: ['Credit for work you already do', 'Switch to a growing trade'],
     summary:
-      'Recognition of Prior Learning certifies what a worker can already do and prescribes only the remaining bridge hours. Trade-shift tracks carry workers out of contracting trades into adjacent growing ones by teaching the delta, not the whole trade again.',
+      
+      "If you already do the work, you get certified for it instead of repeating a whole course. If your trade is shrinking, a short course moves you into a growing one.",
     outcomes: {
       student: 'Higher wages without repeating years of training already lived.',
       business: 'Employers modernise their existing workforce in weeks, not years.',
@@ -100,10 +112,12 @@ export const PILLARS: Pillar[] = [
     id: 'control-tower',
     number: 6,
     name: 'Multilingual Control Tower & Audit Engine',
+    plain: 'Works by voice, checked for fraud',
     short: 'Control Tower & Audit',
-    mechanisms: ['Multilingual Voice Access', 'EPFO Payroll Audits'],
+    mechanisms: ['Use it by speaking', 'Checked against salary records'],
     summary:
-      'Rural candidates reach the portal by voice in their own language, over IVR or WhatsApp. On the other side, every placement claim is reconciled against the candidate’s UAN — employer, first contribution month, declared wage and continuity — so ghost placements surface before money moves.',
+      
+      "You can use the whole portal by speaking, in your own language. On the other side, every 'job placed' claim is checked against real salary records.",
     outcomes: {
       student: 'Access by voice, in Marathi, without literacy or a smartphone.',
       business: 'A single compliant payroll declaration clears subsidy faster.',
@@ -135,24 +149,24 @@ export interface FeatureLink {
 
 export const CITIZEN_NAV: Record<CitizenRole, FeatureLink[]> = {
   student: [
-    { href: '/dashboard/student', label: 'Overview', description: 'Your enrolment, trials and next actions', pillarId: null, icon: 'grid' },
-    { href: '/dashboard/student/recommend', label: 'Recommended for you', description: 'Courses and jobs ranked for your profile, with the reasons shown', pillarId: 'demand-intelligence', icon: 'star' },
-    { href: '/dashboard/student/cv', label: 'My CV & Job-Fit Card', description: 'A one-page profile employers trust, built from verified records', pillarId: 'pathways-rpl', icon: 'card' },
-    { href: '/dashboard/student/demand', label: 'Demand & Dying Tasks', description: 'Is this trade growing — and which tasks inside it are dying?', pillarId: 'demand-intelligence', icon: 'chart' },
-    { href: '/dashboard/student/jobs', label: 'Jobs & Work Trials', description: 'Employer-locked seats, pools and your paid trial', pillarId: 'hiring-pipeline', icon: 'briefcase' },
-    { href: '/dashboard/student/syllabus', label: 'My Syllabus & Practicals', description: 'Module plan and sensor-verified practical evidence', pillarId: 'adaptive-syllabus', icon: 'book' },
-    { href: '/dashboard/student/labs', label: 'Lab & Machine Slots', description: 'Book bench time, including private factory machines', pillarId: 'capacity-planner', icon: 'cog' },
-    { href: '/dashboard/student/pathways', label: 'Career Pathways & RPL', description: 'Certify experience you have; shift trade with bridge modules', pillarId: 'pathways-rpl', icon: 'route' },
-    { href: '/dashboard/student/assist', label: 'Voice Assist & Grievance', description: 'Ask in Marathi, Hindi or Urdu — by voice', pillarId: 'control-tower', icon: 'mic' },
+    { href: '/dashboard/student', label: 'Home', description: 'Your course and what to do next', pillarId: null, icon: 'grid' },
+    { href: '/dashboard/student/recommend', label: 'Courses for you', description: 'Picked for you, with reasons', pillarId: 'demand-intelligence', icon: 'star' },
+    { href: '/dashboard/student/cv', label: 'My CV', description: 'A CV the government has checked', pillarId: 'pathways-rpl', icon: 'card' },
+    { href: '/dashboard/student/demand', label: 'Which trades have jobs', description: 'See if a trade is growing or shrinking', pillarId: 'demand-intelligence', icon: 'chart' },
+    { href: '/dashboard/student/jobs', label: 'Jobs near me', description: 'Where employers promised to hire', pillarId: 'hiring-pipeline', icon: 'briefcase' },
+    { href: '/dashboard/student/syllabus', label: 'What I am learning', description: 'Your subjects, hours and marks', pillarId: 'adaptive-syllabus', icon: 'book' },
+    { href: '/dashboard/student/labs', label: 'Book machine time', description: 'Reserve a machine to practise on', pillarId: 'capacity-planner', icon: 'cog' },
+    { href: '/dashboard/student/pathways', label: 'Certificate for my work', description: 'Get certified, or change trade', pillarId: 'pathways-rpl', icon: 'route' },
+    { href: '/dashboard/student/assist', label: 'Ask by voice', description: 'Speak your question in your language', pillarId: 'control-tower', icon: 'mic' },
   ],
   business: [
-    { href: '/dashboard/business', label: 'Overview', description: 'Your pools, trials and compliance standing', pillarId: null, icon: 'grid' },
-    { href: '/dashboard/business/signals', label: 'Post Hiring Demand', description: 'Submit a signal and see the trust weight it earns', pillarId: 'demand-intelligence', icon: 'signal' },
-    { href: '/dashboard/business/hiring', label: 'Hiring Pools & Trials', description: 'Co-sign a batch; score candidates on your own floor', pillarId: 'hiring-pipeline', icon: 'briefcase' },
-    { href: '/dashboard/business/syllabus', label: 'Syllabus Endorsement', description: 'Flag stale modules; vote on live A/B variants', pillarId: 'adaptive-syllabus', icon: 'book' },
-    { href: '/dashboard/business/machines', label: 'Idle Machine Exchange', description: 'List surplus shift capacity and approve bookings', pillarId: 'capacity-planner', icon: 'cog' },
-    { href: '/dashboard/business/rpl', label: 'Endorse Prior Learning', description: 'Certify the informal workers already on your floor', pillarId: 'pathways-rpl', icon: 'route' },
-    { href: '/dashboard/business/compliance', label: 'Payroll & Compliance', description: 'EPFO declarations that release subsidy', pillarId: 'control-tower', icon: 'shield' },
+    { href: '/dashboard/business', label: 'Home', description: 'Your hiring and payroll at a glance', pillarId: null, icon: 'grid' },
+    { href: '/dashboard/business/signals', label: 'Post a vacancy', description: 'Tell us who you need to hire', pillarId: 'demand-intelligence', icon: 'signal' },
+    { href: '/dashboard/business/hiring', label: 'Hire together', description: 'Share a training batch; try people first', pillarId: 'hiring-pipeline', icon: 'briefcase' },
+    { href: '/dashboard/business/syllabus', label: 'What should be taught', description: 'Flag outdated topics; vote on changes', pillarId: 'adaptive-syllabus', icon: 'book' },
+    { href: '/dashboard/business/machines', label: 'Rent out machines', description: 'Earn from machines you are not using', pillarId: 'capacity-planner', icon: 'cog' },
+    { href: '/dashboard/business/rpl', label: 'Certify your workers', description: 'Get your skilled staff official papers', pillarId: 'pathways-rpl', icon: 'route' },
+    { href: '/dashboard/business/compliance', label: 'Payroll & subsidy', description: 'File pay records to release your subsidy', pillarId: 'control-tower', icon: 'shield' },
   ],
 };
 

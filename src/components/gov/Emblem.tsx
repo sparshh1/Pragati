@@ -58,10 +58,10 @@ export function Emblem({ size = 44, className = '' }: { size?: number; className
   );
 }
 
-/** Kaushal Setu departmental mark — a bridge over a skills gap. */
+/** प्रgati departmental mark — a bridge over a skills gap. */
 export function SetuMark({ size = 40, className = '' }: { size?: number; className?: string }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 48 48" className={className} role="img" aria-label="Kaushal Setu">
+    <svg width={size} height={size} viewBox="0 0 48 48" className={className} role="img" aria-label="प्रgati">
       <circle cx="24" cy="24" r="23" fill="#0b2d5c" />
       <circle cx="24" cy="24" r="20.5" fill="none" stroke="#ff9933" strokeWidth="1.2" />
       {/* bridge deck */}

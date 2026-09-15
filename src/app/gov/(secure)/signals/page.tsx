@@ -189,7 +189,7 @@ export default function GovSignalsPage() {
       </div>
 
       {/* ---- Dying Task Watch ---- */}
-      <Card title="Dying Task Watch"
+      <Card title="Skills that are disappearing"
         subtitle="Task-level decline and exposure">
         <div className="grid lg:grid-cols-2 gap-4">
           {dyingTasks.map(t => <DyingTaskCard key={t.id} t={t} />)}

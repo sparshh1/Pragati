@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { ReactNode, useEffect, useState } from 'react';
 import { useCitizen } from '@/lib/session';
 import { CitizenRole } from '@/lib/rbac';
-import { CITIZEN_NAV, NAV_ICONS, PILLARS } from '@/data/pillars';
+import { CITIZEN_NAV, NAV_ICONS } from '@/data/pillars';
 import { districts } from '@/data/districts';
 import { AccessibilityBar } from '@/components/gov/AccessibilityBar';
 import { Emblem, SetuMark } from '@/components/gov/Emblem';
@@ -47,7 +47,7 @@ export function DashboardShell({ role, children }: { role: CitizenRole; children
   const district = districts.find(d => d.id === account.districtId);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col print-hide-layout">
       <AccessibilityBar />
 
       {/* Compact dashboard masthead */}
@@ -57,7 +57,7 @@ export function DashboardShell({ role, children }: { role: CitizenRole; children
             <Emblem size={28} className="text-[var(--gov-navy)]" />
             <SetuMark size={30} className="hidden sm:block" />
             <span className="leading-tight hidden sm:block">
-              <span className="block text-[15px] font-bold text-[var(--gov-navy)]">Kaushal Setu</span>
+              <span className="block text-[15px] font-bold text-[var(--gov-navy)]">प्रgati</span>
               <span className="block text-[10px] text-[var(--ink-tertiary)] uppercase tracking-[0.06em]">
                 Govt. of Maharashtra
               </span>
@@ -102,7 +102,7 @@ export function DashboardShell({ role, children }: { role: CitizenRole; children
         <div className="h-[3px] tricolour-bar" />
       </header>
 
-      <div className="flex-1 mx-auto max-w-[1600px] w-full px-4 py-5 flex gap-5">
+      <div className="flex-1 mx-auto max-w-[1600px] w-full px-4 py-5 flex gap-5 print-hide-layout">
         {/* ---------------- Role-specific feature list ---------------- */}
         <aside className={`${navOpen ? 'block' : 'hidden'} lg:block w-full lg:w-[268px] shrink-0 no-print`}>
           <nav data-guide="nav" className="gov-card sticky top-4 overflow-hidden" aria-label="Dashboard sections">
@@ -111,14 +111,13 @@ export function DashboardShell({ role, children }: { role: CitizenRole; children
                 {role === 'student' ? 'Candidate Services' : 'Enterprise Services'}
               </p>
               <p className="text-[11px] text-[var(--ink-secondary)] mt-0.5">
-                {nav.length} modules · {meta.labelHi}
+                {meta.labelHi}
               </p>
             </div>
 
             <ul>
               {nav.map(item => {
                 const active = pathname === item.href;
-                const pillar = item.pillarId ? PILLARS.find(p => p.id === item.pillarId) : null;
                 return (
                   <li key={item.href}>
                     <Link
@@ -143,11 +142,6 @@ export function DashboardShell({ role, children }: { role: CitizenRole; children
                         <span className="block text-[10.5px] text-[var(--ink-tertiary)] leading-snug mt-0.5">
                           {item.description}
                         </span>
-                        {pillar && (
-                          <span className="inline-block mt-1 text-[9.5px] font-bold uppercase tracking-wide text-[var(--gov-navy)] bg-[var(--accent-officer-light)] px-1.5 py-[1px] rounded-sm">
-                            Pillar {pillar.number}
-                          </span>
-                        )}
                       </span>
                     </Link>
                   </li>
@@ -168,7 +162,7 @@ export function DashboardShell({ role, children }: { role: CitizenRole; children
           </nav>
         </aside>
 
-        <div className="flex-1 min-w-0">{children}</div>
+        <div className="flex-1 min-w-0 print-hide-layout">{children}</div>
       </div>
 
       <GuideOverlay />

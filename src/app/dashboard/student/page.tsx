@@ -119,13 +119,13 @@ export default function StudentOverview() {
       <div data-guide="stats" className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-5 ks-stagger">
         <Stat label="Your skill level" value={`L${account.currentNsqfLevel ?? 3}`}
           sub={course ? `Enrolled — ${course.type}` : 'Not enrolled in a course'} accent="var(--accent-student)" />
-        <Stat label="Informal experience" value={`${years} yr`}
+        <Stat label="Years you have worked" value={`${years} yr`}
           sub={years >= 2 ? 'Can be certified without a full course' : 'Two years or more unlocks certification'}
           tone={years >= 2 ? 'positive' : 'neutral'} accent="var(--accent-student)" />
-        <Stat label="Rising trades near you" value={topGaps.length}
+        <Stat label="Growing trades near you" value={topGaps.length}
           sub={`${gaps.filter(g => g.trend === 'declining').length} trades contracting`}
           tone="positive" accent="var(--accent-student)" />
-        <Stat label="Open hiring pools" value={localPools.length}
+        <Stat label="Employers hiring" value={localPools.length}
           sub={`${localPools.reduce((a, p) => a + poolSeatsCommitted(p), 0)} seats employer-committed`}
           tone="positive" accent="var(--accent-student)" />
       </div>
@@ -245,7 +245,7 @@ export default function StudentOverview() {
 
         <div className="space-y-5">
           {/* ---- RPL prompt ---- */}
-          <Card title="Recognition of Prior Learning">
+          <Card title="Certificate for work you already do">
             {years >= 2 ? (
               <>
                 <p className="text-[13px] text-[var(--ink-secondary)] leading-relaxed">
@@ -270,7 +270,7 @@ export default function StudentOverview() {
                 <Link href="/dashboard/student/pathways"
                   className="block text-center text-[13px] font-bold text-white py-2.5 rounded-sm focus-ring"
                   style={{ background: 'var(--accent-student)' }}>
-                  Start my RPL application →
+                  Apply for my certificate →
                 </Link>
               </>
             ) : (
@@ -290,7 +290,7 @@ export default function StudentOverview() {
                 ['You train against that commitment', 'A named employer already agreed to absorb your seat.'],
                 ['You serve a paid work-trial', '10–14 days on their floor. ₹380–₹420 a day from the State.'],
                 ['The gate decides, not the exam', 'Pass mark 70. Safety, tools, takt time, communication.'],
-                ['Payroll confirms it', 'Recorded only when EPFO shows you on their payroll.'],
+                ['Your pay confirms it', 'Counted only when your salary record shows you were paid.'],
               ].map(([t, d], i) => (
                 <li key={t} className="flex gap-3">
                   <span className="w-5 h-5 shrink-0 grid place-items-center rounded-full text-[10.5px] font-bold text-white mt-0.5"

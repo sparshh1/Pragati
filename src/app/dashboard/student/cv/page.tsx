@@ -21,7 +21,6 @@ import { employers } from '@/data/employers';
 import { hiringPools } from '@/data/hiring';
 import { recommendJobs, heldSkillsFor } from '@/data/recommend';
 import { formatCurrency } from '@/lib/utils';
-import { PILLARS } from '@/data/pillars';
 
 const LANGUAGE_OPTIONS = ['Marathi', 'Hindi', 'English', 'Urdu', 'Gujarati', 'Telugu'];
 
@@ -47,7 +46,7 @@ export default function CvPage() {
       : null;
     const syllabus = course ? getSyllabus(course.id) : null;
 
-    // Demonstration records are keyed to the seeded KSIDs; a freshly registered
+    // Demonstration records are keyed to the seeded IDs; a freshly registered
     // candidate legitimately has an empty evidence file, which the page says so.
     const practicals = sensorPracticals.filter(p => p.candidateKsid === ksid);
     const trials = workTrials.filter(t => t.candidateKsid === ksid);
@@ -97,16 +96,16 @@ export default function CvPage() {
   if (!account || !dossier) return null;
 
   const district = districts.find(d => d.id === account.districtId)!;
-  const pillar = PILLARS[4];
   const issuedOn = new Date().toLocaleDateString('en-IN', {
     day: '2-digit', month: 'long', year: 'numeric',
   });
 
   return (
     <>
+      <div className="no-print">
       <PageHeader
-        eyebrow={`Pillar ${pillar.number} — ${pillar.short}`}
-        title="My CV and Job-Fit Card"
+        eyebrow="My documents"
+        title="My CV"
         description={
           <>
             A{' '}
@@ -125,25 +124,26 @@ export default function CvPage() {
           </button>
         }
       />
+      </div>
 
       <PageGuide />
 
       <div data-guide="stats" className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6 no-print ks-stagger">
-        <Stat label="Card strength" value={`${dossier.strength}%`}
+        <Stat label="CV completeness" value={`${dossier.strength}%`}
           sub={dossier.strength >= 70 ? 'Strong — ready to send' : 'Add more evidence below'}
           tone={dossier.strength >= 70 ? 'positive' : 'warn'} accent="var(--accent-student)" />
-        <Stat label="Verified practicals" value={dossier.verifiedPracticals.length}
+        <Stat label="Practicals checked" value={dossier.verifiedPracticals.length}
           sub="Recorded by the machine, not an instructor" tone="positive" accent="var(--accent-student)" />
-        <Stat label="Work trials cleared" value={dossier.passedTrials.length}
+        <Stat label="Trials passed" value={dossier.passedTrials.length}
           sub={`Pass mark is ${TRIAL_PASS_THRESHOLD} out of 100`} tone="positive" accent="var(--accent-student)" />
         <Stat label="Jobs you match now" value={jobMatches.filter(j => j.matchPercent >= 50).length}
           sub="Openings near you" tone="positive" accent="var(--accent-student)" />
       </div>
 
-      <div className="grid lg:grid-cols-[1.45fr_1fr] gap-5">
+      <div className="grid lg:grid-cols-[1.45fr_1fr] gap-5 print-hide-layout">
         {/* ================= THE CARD ================= */}
-        <div>
-          <div className="gov-card overflow-hidden" id="job-fit-card">
+        <div className="print-hide-layout">
+          <div className="gov-card overflow-hidden print-sheet" id="job-fit-card">
             <div className="h-1.5 tricolour-bar" />
 
             {/* Card masthead */}
@@ -191,7 +191,7 @@ export default function CvPage() {
                   <Row k="Highest education" v={account.qualification ?? '—'} />
                   <Row
                     k="Skill level"
-                    v={`NSQF Level ${account.currentNsqfLevel ?? 3}`}
+                    v={`Level ${account.currentNsqfLevel ?? 3} (NSQF)`}
                     verified
                   />
                   {dossier.course && dossier.syllabus && (
@@ -232,7 +232,7 @@ export default function CvPage() {
 
               {/* Machine-verified practicals */}
               <Section
-                title="Practical work — verified by machine"
+                title="Practical work, checked by machine"
                 note="Each line below was recorded by the equipment itself, not signed off by a person."
               >
                 {dossier.verifiedPracticals.length === 0 ? (
@@ -245,7 +245,7 @@ export default function CvPage() {
                     {dossier.verifiedPracticals.map(p => {
                       const passed = p.telemetry.filter(t => t.pass).length;
                       return (
-                        <li key={p.id} className="border border-[var(--border)] rounded-sm p-3.5">
+                        <li key={p.id} className="border border-[var(--border)] rounded-sm p-3.5 print-block">
                           <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
                             <div className="min-w-0">
                               <p className="text-[15px] font-bold text-[var(--ink)]">
@@ -273,7 +273,7 @@ export default function CvPage() {
 
               {/* Work trials */}
               <Section
-                title="Work trials on employer premises"
+                title="Work you did at a company"
                 note="Days actually worked on a company floor, scored by the supervising employer."
               >
                 {dossier.trials.length === 0 ? (
@@ -288,7 +288,7 @@ export default function CvPage() {
                       const emp = employers.find(e => e.id === t.employerId);
                       const pool = hiringPools.find(p => p.id === t.poolId);
                       return (
-                        <li key={t.id} className="border border-[var(--border)] rounded-sm p-3.5">
+                        <li key={t.id} className="border border-[var(--border)] rounded-sm p-3.5 print-block">
                           <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
                             <div className="min-w-0">
                               <p className="text-[15px] font-bold text-[var(--ink)]">{emp?.name}</p>
@@ -325,7 +325,7 @@ export default function CvPage() {
 
               {/* RPL */}
               {dossier.certifiedRpl.length > 0 && (
-                <Section title="Recognition of Prior Learning">
+                <Section title="Certificate for work you already do">
                   {dossier.certifiedRpl.map(r => (
                     <div key={r.id} className="border border-[var(--border)] rounded-sm p-3.5">
                       <p className="text-[15px] font-bold text-[var(--ink)]">
@@ -345,7 +345,7 @@ export default function CvPage() {
               {dossier.cleanPayroll.length > 0 && (
                 <Section
                   title="Employment history"
-                  note="Confirmed against EPFO payroll records — not self-declared."
+                  note="Checked against official salary records — not just your word."
                 >
                   <ul className="space-y-2.5">
                     {dossier.cleanPayroll.map(a => (
@@ -385,8 +385,8 @@ export default function CvPage() {
               <p className="text-[12.5px] text-[var(--ink-tertiary)] leading-relaxed pt-4 border-t border-[var(--border)]">
                 Items marked <strong className="text-[var(--signal-rising)]">verified</strong> are drawn from
                 departmental records — training enrolment, machine telemetry, employer trial scorecards,
-                RPL assessment and EPFO payroll. An employer may confirm this card against KSID{' '}
-                <span className="mono">{account.ksid}</span> on the Kaushal Setu portal.
+                skill assessment and salary records. An employer can check this card using your प्रgati ID{' '}
+                <span className="mono">{account.ksid}</span> on the प्रgati portal.
               </p>
             </div>
           </div>
@@ -399,7 +399,7 @@ export default function CvPage() {
               value={dossier.strength}
               color={dossier.strength >= 70 ? 'var(--signal-rising)' : 'var(--signal-warn)'}
               height={12}
-              label="Card strength"
+              label="CV completeness"
               showValue
             />
             <ul className="space-y-2.5 mt-4">
@@ -512,7 +512,7 @@ export default function CvPage() {
 
 function Section({ title, note, children }: { title: string; note?: string; children: React.ReactNode }) {
   return (
-    <section>
+    <section className="print-block">
       <h3 className="text-[13px] font-bold uppercase tracking-[0.07em] text-[var(--gov-navy)] pb-2 mb-3 border-b-2 border-[var(--gov-navy)]">
         {title}
       </h3>

@@ -11,7 +11,6 @@ import { machines, machineUtilisation, idleHoursByDistrict, computeSeatCalculati
 import { districts } from '@/data/districts';
 import { getSkill } from '@/data/skills';
 import { formatNumber, formatCurrency } from '@/lib/utils';
-import { PILLARS } from '@/data/pillars';
 
 const STATUS_TONE = {
   idle: 'rising', 'partially-used': 'warn', saturated: 'declining', 'under-maintenance': 'stable',
@@ -30,7 +29,6 @@ const OWNER_COPY = {
 
 export default function StudentLabsPage() {
   const { account } = useCitizen();
-  const pillar = PILLARS[3];
   const [districtId, setDistrictId] = useState(account?.districtId ?? 'pune');
   const [booked, setBooked] = useState<Record<string, string>>({});
 
@@ -44,8 +42,8 @@ export default function StudentLabsPage() {
   return (
     <>
       <PageHeader
-        eyebrow={`Pillar ${pillar.number} — ${pillar.short}`}
-        title="Lab and machine slots"
+        eyebrow="Practice time"
+        title="Book machine time"
         description="Book bench time, including private factory machines."
         breadcrumb={[{ label: 'Dashboard', href: '/dashboard/student' }, { label: 'Lab & Machine Slots' }]}
       />
@@ -53,12 +51,12 @@ export default function StudentLabsPage() {
       <PageGuide />
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
-        <Stat label="Machines available to you" value={local.length}
+        <Stat label="Machines you can use" value={local.length}
           sub={`${local.filter(m => m.ownerType === 'private-factory').length} from private industry`}
           accent="var(--accent-student)" />
-        <Stat label="Idle hours this week" value={formatNumber(idle.idleHoursPerWeek)}
+        <Stat label="Free hours this week" value={formatNumber(idle.idleHoursPerWeek)}
           sub="Bench time nobody is using right now" tone="positive" accent="var(--accent-student)" />
-        <Stat label="Extra seats this unlocks" value={formatNumber(idle.additionalSeatsUnlocked)}
+        <Stat label="Extra places this creates" value={formatNumber(idle.additionalSeatsUnlocked)}
           sub="Per year, without buying a single machine" tone="positive" accent="var(--accent-student)" />
         <Stat label={`${districtName} bound by`} value={CONSTRAINT_LABEL[calc.bindingConstraint]}
           sub={`Hard limit ${formatNumber(calc.hardLimit)} seats/yr`}

@@ -8,7 +8,7 @@ const COLUMNS: { title: string; links: { label: string; href: string; external?:
       { label: 'New Registration', href: '/register' },
       { label: 'Candidate Login', href: '/login' },
       { label: 'Course Catalogue', href: '/courses' },
-      { label: 'Recognition of Prior Learning', href: '/register?role=student' },
+      { label: 'Certificate for work you do', href: '/register?role=student' },
       { label: 'Grievance Redressal', href: '/help' },
     ],
   },
@@ -16,9 +16,9 @@ const COLUMNS: { title: string; links: { label: string; href: string; external?:
     title: 'For Industry',
     links: [
       { label: 'MSME / Enterprise Registration', href: '/register?role=business' },
-      { label: 'Post a Demand Signal', href: '/login' },
-      { label: 'Join an MSME Hiring Pool', href: '/login' },
-      { label: 'Idle Machine Exchange', href: '/login' },
+      { label: 'Post a vacancy', href: '/login' },
+      { label: 'Share a training batch', href: '/login' },
+      { label: 'Rent out your machines', href: '/login' },
       { label: 'Apprenticeship (NAPS) Benefits', href: '/schemes' },
     ],
   },
@@ -26,7 +26,7 @@ const COLUMNS: { title: string; links: { label: string; href: string; external?:
     title: 'Departmental',
     links: [
       { label: 'Officer Login', href: '/gov' },
-      { label: 'Labour Market Dashboard', href: '/demand' },
+      { label: 'Hiring data by district', href: '/demand' },
       { label: 'Scheme Guidelines', href: '/schemes' },
       { label: 'Tenders & Circulars', href: '/about' },
       { label: 'Right to Information', href: '/about' },
@@ -54,7 +54,7 @@ export function SiteFooter() {
             <div className="flex items-start gap-3">
               <Emblem size={34} className="text-white shrink-0" />
               <div>
-                <p className="font-bold text-white text-[15px] leading-tight">Kaushal Setu</p>
+                <p className="font-bold text-white text-[15px] leading-tight">प्रgati</p>
                 <p className="text-[12px] text-slate-300 mt-1 leading-relaxed">
                   Department of Skill, Employment, Entrepreneurship &amp; Innovation,
                   Government of Maharashtra, Mantralaya, Mumbai — 400032
@@ -62,7 +62,7 @@ export function SiteFooter() {
                 <p className="text-[12px] text-slate-300 mt-2">
                   Helpline: <span className="mono text-white">1800-233-0202</span>
                   <br />
-                  Email: <span className="text-white">support-kaushalsetu[at]maharashtra[dot]gov[dot]in</span>
+                  Email: <span className="text-white">support-pragati[at]maharashtra[dot]gov[dot]in</span>
                 </p>
               </div>
             </div>

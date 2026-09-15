@@ -211,7 +211,7 @@ export function PublicDemand() {
           />
         </Card>
 
-        <Card title="Dying Task Watch" subtitle="Decline tracked below the trade name">
+        <Card title="Skills that are disappearing" subtitle="Decline tracked below the trade name">
           <ul className="space-y-2.5">
             {dyingTasks.filter(t => t.affectedDistrictIds.includes(districtId)).map(t => (
               <li key={t.id} className="border border-[var(--border)] rounded-sm p-3"

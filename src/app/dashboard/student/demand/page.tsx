@@ -16,14 +16,11 @@ import { computeDemandTrend } from '@/data/compute/demandTrend';
 import { computeGapForDistrict } from '@/data/compute/gapAnalysis';
 import { courses } from '@/data/courses';
 import { formatNumber, formatCurrency, formatPercent } from '@/lib/utils';
-import { PILLARS } from '@/data/pillars';
 
 export default function StudentDemandPage() {
   const { account } = useCitizen();
   const [districtId, setDistrictId] = useState(account?.districtId ?? 'pune');
   const [skillId, setSkillId] = useState('ev-battery-diagnostics');
-
-  const pillar = PILLARS[0];
   const skill = getSkill(skillId)!;
   const trend = computeDemandTrend(skillId, districtId);
   const gaps = computeGapForDistrict(districtId);
@@ -41,8 +38,8 @@ export default function StudentDemandPage() {
   return (
     <>
       <PageHeader
-        eyebrow={`Pillar ${pillar.number} — ${pillar.short}`}
-        title="Is this trade worth learning?"
+        eyebrow="Before you choose"
+        title="Does this trade have jobs?"
         description="Is this trade growing or shrinking where you live?"
         breadcrumb={[{ label: 'Dashboard', href: '/dashboard/student' }, { label: 'Demand & Dying Tasks' }]}
       />
@@ -98,7 +95,7 @@ export default function StudentDemandPage() {
       <div className="grid lg:grid-cols-[1.45fr_1fr] gap-5">
         <div className="space-y-5">
           <Card
-            title="Verified monthly vacancies"
+            title="Jobs posted each month"
             subtitle={`${skill.name} · ${districts.find(d => d.id === districtId)?.name} · after trust weighting`}
             action={
               <span className="text-[11.5px] text-[var(--ink-tertiary)]">
@@ -131,7 +128,7 @@ export default function StudentDemandPage() {
 
           {/* ---- Dying Task Watch ---- */}
           <Card
-            title="Dying Task Watch"
+            title="Skills that are disappearing"
             subtitle="Decline tracked below the trade name"
           >
             {tasksInThisTrade.length === 0 ? (
@@ -208,7 +205,7 @@ export default function StudentDemandPage() {
 
         <div className="space-y-5">
           {/* ---- Trust filter explainer ---- */}
-          <Card title="Why these numbers are lower than job-board numbers">
+          <Card title="Why our numbers look smaller">
             <p className="text-[12.5px] text-[var(--ink-secondary)] leading-relaxed mb-4">
               Job boards count postings. This portal counts postings that turned into someone actually
               being paid. Each source carries a trust weight earned from its own payroll-confirmation
@@ -233,7 +230,7 @@ export default function StudentDemandPage() {
           </Card>
 
           {/* ---- Signals behind this skill ---- */}
-          <Card title="Signals behind this number" subtitle={`${relevantSignals.length} submissions for this trade & district`}>
+          <Card title="Where this number comes from" subtitle={`${relevantSignals.length} submissions for this trade & district`}>
             {relevantSignals.length === 0 ? (
               <p className="text-[12.5px] text-[var(--ink-tertiary)]">
                 No individual signals on record for this combination in the current window. The curve

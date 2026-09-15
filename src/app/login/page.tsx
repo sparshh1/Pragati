@@ -17,7 +17,7 @@ export default function LoginPage() {
   const [error, setError] = useState('');
 
   function proceed() {
-    if (!identifier.trim()) { setError('Enter your mobile number, email or KSID.'); return; }
+    if (!identifier.trim()) { setError('Enter your mobile number, email or प्रgati ID.'); return; }
     setError('');
     setStage('otp');
   }
@@ -78,9 +78,9 @@ export default function LoginPage() {
                 <>
                   <h2 className="text-[17px] font-bold text-[var(--ink)] mb-1">Sign in</h2>
                   <p className="text-[12.5px] text-[var(--ink-secondary)] mb-5">
-                    Use the mobile number, email or KSID you registered with.
+                    Use the mobile number, email or ID you registered with.
                   </p>
-                  <label className="gov-label">Mobile number, email or KSID</label>
+                  <label className="gov-label">Mobile number, email or प्रgati ID</label>
                   <input
                     className="gov-input"
                     value={identifier}

@@ -65,7 +65,7 @@ export function GovShell({ children }: { children: ReactNode }) {
           <Link href="/gov/console" className="flex items-center gap-3 focus-ring shrink-0">
             <Emblem size={30} className="text-white" />
             <span className="leading-tight">
-              <span className="block text-[15px] font-bold">Kaushal Setu — Departmental Portal</span>
+              <span className="block text-[15px] font-bold">प्रgati — Departmental Portal</span>
               <span className="block text-[10px] text-slate-400 uppercase tracking-[0.07em]">
                 Dept. of Skill, Employment, Entrepreneurship &amp; Innovation
               </span>

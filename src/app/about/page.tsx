@@ -13,7 +13,7 @@ import { formatNumber } from '@/lib/utils';
 
 export const metadata = {
   title: 'About the Mission',
-  description: 'Kaushal Setu — how the six operating pillars work, which institutions implement them, and the policies governing the portal.',
+  description: 'प्रgati — how the six operating pillars work, which institutions implement them, and the policies governing the portal.',
 };
 
 const INSTITUTIONS = [

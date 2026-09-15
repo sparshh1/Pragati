@@ -1,4 +1,4 @@
-# Kaushal Setu — कौशल सेतु
+# प्रgati — प्रgati
 
 **Skill Bridge Portal, Department of Skill, Employment, Entrepreneurship & Innovation, Government of Maharashtra**
 

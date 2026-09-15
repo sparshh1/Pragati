@@ -16,7 +16,6 @@ import { employers } from '@/data/employers';
 import { getSkill } from '@/data/skills';
 import { districts } from '@/data/districts';
 import { formatCurrency, formatNumber } from '@/lib/utils';
-import { PILLARS } from '@/data/pillars';
 import { WorkTrial, HiringPool } from '@/types';
 
 const STATUS_TONE = {
@@ -33,7 +32,6 @@ const STATUS_COPY: Record<HiringPool['status'], string> = {
 
 export default function StudentJobsPage() {
   const { account } = useCitizen();
-  const pillar = PILLARS[1];
   const [districtId, setDistrictId] = useState(account?.districtId ?? 'pune');
   const [applied, setApplied] = useState<Record<string, boolean>>({});
   const [openTrial, setOpenTrial] = useState<WorkTrial | null>(workTrials[0]);
@@ -49,8 +47,8 @@ export default function StudentJobsPage() {
   return (
     <>
       <PageHeader
-        eyebrow={`Pillar ${pillar.number} — ${pillar.short}`}
-        title="Jobs, hiring pools and your work-trial"
+        eyebrow="Jobs"
+        title="Jobs near you"
         description="Openings where an employer has already committed to hire."
         breadcrumb={[{ label: 'Dashboard', href: '/dashboard/student' }, { label: 'Jobs & Work Trials' }]}
       />
@@ -61,11 +59,11 @@ export default function StudentJobsPage() {
         <Stat label="Open pools near you" value={pools.filter(p => p.status !== 'placed').length}
           sub={`${formatNumber(pools.reduce((a, p) => a + poolSeatsCommitted(p), 0))} seats employer-committed`}
           accent="var(--accent-student)" />
-        <Stat label="Trial stipend" value={stipendRange} sub="per day, paid by the State" tone="positive"
+        <Stat label="Daily pay during trial" value={stipendRange} sub="per day, paid by the State" tone="positive"
           accent="var(--accent-student)" />
-        <Stat label="Gate pass rate" value={`${passRate}%`} sub={`Pass mark is ${TRIAL_PASS_THRESHOLD} of 100`}
+        <Stat label="How many pass" value={`${passRate}%`} sub={`Pass mark is ${TRIAL_PASS_THRESHOLD} of 100`}
           tone={passRate >= 70 ? 'positive' : 'warn'} accent="var(--accent-student)" />
-        <Stat label="Lowest wage floor here" value={pools.length ? formatCurrency(Math.min(...pools.map(poolWageFloor))) : '—'}
+        <Stat label="Lowest pay guaranteed" value={pools.length ? formatCurrency(Math.min(...pools.map(poolWageFloor))) : '—'}
           sub="Employers cannot offer below their signed floor" accent="var(--accent-student)" />
       </div>
 
@@ -168,7 +166,7 @@ export default function StudentJobsPage() {
 
       {/* ---- Work-trial gate ---- */}
       <div className="grid lg:grid-cols-[1.3fr_1fr] gap-5">
-        <Card title="The Work-Trial Gate" subtitle="Click a row for the scorecard">
+        <Card title="How people are being scored" subtitle="Click a row for the scorecard">
           <Table
             columns={[
               { key: 'name', header: 'Candidate', render: (t: WorkTrial) => (

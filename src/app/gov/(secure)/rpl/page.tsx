@@ -54,7 +54,7 @@ export default function GovRplPage() {
           sub={`${stats.rejected} rejected on evidence`} tone="positive" accent="var(--gov-navy)" />
         <Stat label="Average wage uplift" value={`+${formatCurrency(stats.avgMonthlyUplift)}`}
           sub="per certified worker, per month" tone="positive" accent="var(--gov-navy)" />
-        <Stat label="Average bridge hours" value={`${stats.avgBridgeHours} h`}
+        <Stat label="Extra training needed" value={`${stats.avgBridgeHours} h`}
           sub="against a 2,400 h full course" tone="positive" accent="var(--gov-navy)" />
         <Stat label="Published shift tracks" value={tradeShifts.length}
           sub="ICE → EV and six others" accent="var(--gov-navy)" />

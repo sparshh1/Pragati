@@ -76,7 +76,7 @@ export default function GovLoginPage() {
             <div className="flex items-center gap-4 mb-6">
               <Emblem size={46} className="text-white" />
               <div>
-                <h1 className="text-[24px] font-bold leading-tight">Kaushal Setu</h1>
+                <h1 className="text-[24px] font-bold leading-tight">प्रgati</h1>
                 <p className="text-[13px] text-slate-300">Departmental Portal · विभागीय पोर्टल</p>
                 <p className="text-[11px] text-slate-400 uppercase tracking-[0.06em] mt-0.5">
                   Government of Maharashtra

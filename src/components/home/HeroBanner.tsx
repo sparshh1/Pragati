@@ -14,7 +14,7 @@ const SLIDES = [
     tone: '#0b2d5c',
   },
   {
-    kicker: 'For MSMEs & Enterprises',
+    kicker: 'For businesses, big and small',
     title: 'Pool your hiring. Get operators, not certificates.',
     body:
       'Four units that each need six people can co-sign one batch. Candidates reach you through a paid work-trial, so you hire what you have already seen on your own floor.',
@@ -23,7 +23,7 @@ const SLIDES = [
     tone: '#1b5e3f',
   },
   {
-    kicker: 'Recognition of Prior Learning',
+    kicker: 'Already doing the work?',
     title: 'Nine years on the job is a qualification.',
     body:
       'If you already do the work, RPL certifies you at the level your evidence supports and prescribes only the bridge hours you still need.',
@@ -113,10 +113,10 @@ export function HeroBanner() {
           </p>
           <dl className="space-y-3">
             {[
-              { k: 'Candidates registered', v: '4,82,610', s: '+12,418 this month' },
-              { k: 'Enterprises & MSMEs onboarded', v: '11,247', s: '1,860 in active hiring pools' },
-              { k: 'Seats opened against signed demand', v: '38,900', s: 'Across 6 pilot districts' },
-              { k: 'Placements confirmed on EPFO payroll', v: '26,431', s: 'Verified, not self-declared' },
+              { k: 'People registered', v: '4,82,610', s: '+12,418 this month' },
+              { k: 'Businesses signed up', v: '11,247', s: '1,860 currently hiring' },
+              { k: 'Training places with a job behind them', v: '38,900', s: 'Across 6 districts' },
+              { k: 'People confirmed actually paid', v: '26,431', s: 'Checked against salary records' },
             ].map(x => (
               <div key={x.k} className="flex items-baseline justify-between gap-3">
                 <dt className="text-[12.5px] text-[var(--ink-secondary)]">{x.k}</dt>

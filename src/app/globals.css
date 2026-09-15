@@ -169,8 +169,90 @@
 ::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 4px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--ink-tertiary); }
 
+/* =================================================================== */
+/*  Print                                                              */
+/*                                                                     */
+/*  The CV / Job-Fit Card is the one screen people actually print, and  */
+/*  it lives inside the dashboard shell — sidebar, sticky header, a     */
+/*  two-column grid. Hiding those is not enough: the layout they leave  */
+/*  behind squeezes the card into 60% of the page. So print gets its    */
+/*  own layout reset rather than a tweak of the screen one.             */
+/* =================================================================== */
+
+@page {
+  size: A4 portrait;
+  margin: 14mm 12mm;
+}
+
 @media print {
   .no-print { display: none !important; }
+
+  html, body {
+    background: #fff !important;
+    font-size: 10.5pt;
+  }
+
+  /* Keep the ink the designer chose — otherwise browsers strip every
+     background and the verified marks and section rules disappear. */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Unwind the app shell so the printable region can span the page. */
+  body > *,
+  .print-reset,
+  .print-reset * {
+    overflow: visible !important;
+  }
+
+  .print-sheet,
+  .print-sheet * {
+    visibility: visible;
+  }
+
+  /* Everything that is not inside the sheet stops occupying space. */
+  body .print-hide-layout {
+    display: block !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+    width: auto !important;
+    gap: 0 !important;
+  }
+
+  .print-sheet {
+    position: static !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* A printed document does not need interactive affordances. */
+  .print-sheet button,
+  .print-sheet [role="button"] { display: none !important; }
+
+  /* Sections should not be split across a page boundary mid-record. */
+  .print-block {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .print-break-before {
+    break-before: page;
+    page-break-before: page;
+  }
+
+  h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
+
+  /* Links print as text; the URL is noise on a CV. */
+  a { text-decoration: none !important; color: inherit !important; }
+
+  /* Charts and progress bars rarely survive the page — drop the decorative ones. */
+  .recharts-wrapper { display: none !important; }
 }
 
 /* =================================================================== */

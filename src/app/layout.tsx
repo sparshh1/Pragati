@@ -20,11 +20,11 @@ const plexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Kaushal Setu | कौशल सेतु — Skill Bridge Portal, Government of Maharashtra',
-    template: '%s | Kaushal Setu',
+    default: 'प्रgati — Skill Portal, Government of Maharashtra',
+    template: '%s | प्रgati',
   },
   description:
-    'Official skill development portal of the Government of Maharashtra. Candidates and enterprises register here for demand-verified training, employer-locked hiring and Recognition of Prior Learning.',
+    'Government of Maharashtra skill portal. Find training that leads to real jobs, get certified for work you already do, and hire trained people.',
 };
 
 export const viewport: Viewport = {

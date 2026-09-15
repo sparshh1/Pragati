@@ -14,22 +14,20 @@ import { districts } from '@/data/districts';
 import { rplApplications, rplStats, creditedHours } from '@/data/rpl';
 import { computeDemandTrend } from '@/data/compute/demandTrend';
 import { formatCurrency, formatPercent } from '@/lib/utils';
-import { PILLARS } from '@/data/pillars';
 
 const EVIDENCE_TYPES = [
-  { id: 'employer-letter', label: 'Letter from current or past employer', weight: 25 },
-  { id: 'work-samples', label: 'Photographed work samples or job cards', weight: 20 },
-  { id: 'epfo', label: 'EPFO / UAN record of past employment', weight: 30 },
-  { id: 'tool-test', label: 'Tool proficiency test at an assessment centre', weight: 35 },
-  { id: 'peer', label: 'Endorsement by a certified tradesperson', weight: 15 },
-  { id: 'ledger', label: 'Contractor ledger or piece-rate records', weight: 18 },
+  { id: 'employer-letter', label: 'A letter from an employer', weight: 25 },
+  { id: 'work-samples', label: 'Photos of work you have done', weight: 20 },
+  { id: 'epfo', label: 'Official salary record from a past job', weight: 30 },
+  { id: 'tool-test', label: 'A short skills test at a centre', weight: 35 },
+  { id: 'peer', label: 'A letter from a certified tradesperson', weight: 15 },
+  { id: 'ledger', label: 'Contractor records of your work', weight: 18 },
 ];
 
 const FULL_COURSE_HOURS = 2400;
 
 export default function StudentPathwaysPage() {
   const { account } = useCitizen();
-  const pillar = PILLARS[4];
 
   const [tab, setTab] = useState<'rpl' | 'shift'>('rpl');
 
@@ -90,8 +88,8 @@ export default function StudentPathwaysPage() {
   return (
     <>
       <PageHeader
-        eyebrow={`Pillar ${pillar.number} — ${pillar.short}`}
-        title="Career pathways and prior learning"
+        eyebrow="Your options"
+        title="Get certified, or change trade"
         description="Certify what you already do, or switch to a growing trade."
         breadcrumb={[{ label: 'Dashboard', href: '/dashboard/student' }, { label: 'Career Pathways & RPL' }]}
       />
@@ -100,8 +98,8 @@ export default function StudentPathwaysPage() {
 
       <div className="flex gap-1 mb-5 border-b border-[var(--border)]" role="tablist">
         {([
-          ['rpl', 'Recognition of Prior Learning'],
-          ['shift', 'Trade-Shift Tracks (ICE → EV)'],
+          ['rpl', 'Certificate for my experience'],
+          ['shift', 'Change to a growing trade'],
         ] as const).map(([id, label]) => (
           <button key={id} role="tab" aria-selected={tab === id} onClick={() => setTab(id)}
             className={`px-4 py-2.5 text-[13.5px] font-semibold border-b-[3px] -mb-px transition-colors focus-ring ${
@@ -118,22 +116,22 @@ export default function StudentPathwaysPage() {
       {tab === 'rpl' && (
         <>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-5">
-            <Stat label="Certified state-wide" value={stats.certified} sub={`${stats.pending} awaiting assessment`}
+            <Stat label="Certified so far" value={stats.certified} sub={`${stats.pending} awaiting assessment`}
               accent="var(--accent-student)" />
             <Stat label="Average wage uplift" value={`+${formatCurrency(stats.avgMonthlyUplift)}`}
               sub="per month, after certification" tone="positive" accent="var(--accent-student)" />
-            <Stat label="Average bridge hours" value={`${stats.avgBridgeHours} h`}
+            <Stat label="Extra training needed" value={`${stats.avgBridgeHours} h`}
               sub={`instead of ${FULL_COURSE_HOURS.toLocaleString('en-IN')} h`} tone="positive" accent="var(--accent-student)" />
-            <Stat label="Your declared experience" value={`${years} yr`}
+            <Stat label="Your experience" value={`${years} yr`}
               sub={years >= 2 ? 'Meets the 2-year minimum' : 'Below the 2-year minimum'}
               tone={years >= 2 ? 'positive' : 'warn'} accent="var(--accent-student)" />
           </div>
 
           <div className="grid lg:grid-cols-[1fr_1fr] gap-5">
-            <Card title="RPL eligibility estimator" subtitle="Adjust the inputs to see what would be credited">
+            <Card title="Check what you would get" subtitle="Adjust the inputs to see what would be credited">
               <div className="space-y-4">
                 <div>
-                  <label className="gov-label" htmlFor="rpl-skill">Trade you already work in</label>
+                  <label className="gov-label" htmlFor="rpl-skill">Work you already do</label>
                   <select id="rpl-skill" className="gov-input" value={claimSkill} onChange={e => setClaimSkill(e.target.value)}>
                     {skills.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
                   </select>
@@ -141,7 +139,7 @@ export default function StudentPathwaysPage() {
 
                 <div>
                   <label className="gov-label" htmlFor="rpl-years">
-                    Years of informal experience — <span className="mono font-bold text-[var(--ink)]">{years}</span>
+                    Years you have worked — <span className="mono font-bold text-[var(--ink)]">{years}</span>
                   </label>
                   <input id="rpl-years" type="range" min={0} max={20} value={years}
                     onChange={e => setYears(Number(e.target.value))}
@@ -152,7 +150,7 @@ export default function StudentPathwaysPage() {
                 </div>
 
                 <div>
-                  <span className="gov-label">Evidence you can produce</span>
+                  <span className="gov-label">Proof you can show</span>
                   <div className="space-y-1.5">
                     {EVIDENCE_TYPES.map(e => (
                       <label key={e.id}
@@ -170,13 +168,13 @@ export default function StudentPathwaysPage() {
                   </div>
                   <Progress value={assessment.evidenceScore} max={143}
                     color={assessment.evidenceScore >= 70 ? 'var(--signal-rising)' : assessment.evidenceScore >= 25 ? 'var(--signal-warn)' : 'var(--signal-declining)'}
-                    label="Evidence strength" showValue height={8} />
+                    label="How strong your proof is" showValue height={8} />
                 </div>
               </div>
             </Card>
 
             <div className="space-y-5">
-              <Card title="Indicative assessment outcome">
+              <Card title="What you would likely get">
                 {!assessment.eligible ? (
                   <Note tone="warn" title="Not yet eligible">
                     RPL needs two years of work and an evidence score of 25. Add more evidence, or take a
@@ -187,16 +185,16 @@ export default function StudentPathwaysPage() {
                     <div className="grid grid-cols-2 gap-4 pb-4 border-b border-[var(--border)]">
                       <div>
                         <p className="text-[10.5px] uppercase font-bold tracking-wide text-[var(--ink-tertiary)]">
-                          Likely certified at
+                          You would get
                         </p>
                         <p className="text-[28px] font-bold mono text-[var(--accent-student)] leading-tight">
-                          NSQF L{assessment.assessedLevel}
+                          Level {assessment.assessedLevel}
                         </p>
                         <p className="text-[11px] text-[var(--ink-tertiary)]">{assessment.skill.name}</p>
                       </div>
                       <div>
                         <p className="text-[10.5px] uppercase font-bold tracking-wide text-[var(--ink-tertiary)]">
-                          Bridge training needed
+                          Extra training needed
                         </p>
                         <p className="text-[28px] font-bold mono text-[var(--ink)] leading-tight">
                           {assessment.bridgeHours} h
@@ -208,7 +206,7 @@ export default function StudentPathwaysPage() {
                     <div className="py-4 border-b border-[var(--border)]">
                       <Progress value={assessment.credited} max={FULL_COURSE_HOURS}
                         color="var(--signal-rising)" height={12}
-                        label={`${assessment.credited.toLocaleString('en-IN')} of ${FULL_COURSE_HOURS.toLocaleString('en-IN')} course hours discharged by prior learning`}
+                        label={`${assessment.credited.toLocaleString('en-IN')} of ${FULL_COURSE_HOURS.toLocaleString('en-IN')} course hours you would not have to repeat`}
                         showValue />
                       <p className="text-[11.5px] text-[var(--ink-secondary)] mt-2 leading-relaxed">
                         You would not repeat those hours. The assessment credits the work you have already
@@ -218,7 +216,7 @@ export default function StudentPathwaysPage() {
 
                     <div className="pt-4">
                       <p className="text-[10.5px] uppercase font-bold tracking-wide text-[var(--ink-tertiary)]">
-                        Indicative wage effect
+                        What you would earn
                       </p>
                       <p className="text-[20px] font-bold mono text-[var(--signal-rising)]">
                         +{formatCurrency(assessment.uplift)}<span className="text-[12px] font-normal text-[var(--ink-tertiary)]">/month</span>
@@ -231,7 +229,7 @@ export default function StudentPathwaysPage() {
 
                     <button className="w-full mt-4 text-white font-bold text-[13.5px] py-2.5 rounded-sm focus-ring"
                       style={{ background: 'var(--accent-student)' }}>
-                      Submit RPL application →
+                      Apply for my certificate →
                     </button>
                     <p className="text-[10.5px] text-[var(--ink-tertiary)] text-center mt-1.5">
                       Assessment is scheduled within 14 days at your nearest centre
@@ -240,7 +238,7 @@ export default function StudentPathwaysPage() {
                 )}
               </Card>
 
-              <Card title="Recent certifications in your state" subtitle="Real outcomes from the RPL register">
+              <Card title="People certified recently" subtitle="Real outcomes from the RPL register">
                 <ul className="space-y-2.5">
                   {rplApplications.filter(r => r.status === 'certified').slice(0, 4).map(r => (
                     <li key={r.id} className="border border-[var(--border)] rounded-sm p-3">
@@ -387,7 +385,7 @@ export default function StudentPathwaysPage() {
                 </Card>
               )}
 
-              <Card title="All published shift tracks">
+              <Card title="All the trade changes available">
                 <ul className="space-y-2">
                   {tradeShifts.map(s => (
                     <li key={`${s.fromSkillId}>${s.toSkillId}`}>

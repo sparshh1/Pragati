@@ -11,12 +11,12 @@ import { auditStats } from '@/data/audit';
 import { formatNumber, formatCurrency } from '@/lib/utils';
 
 const QUICK_LINKS = [
-  { label: 'Course Catalogue & Syllabus', sub: '39 notified courses · full module breakdown', href: '/courses', icon: 'book' },
-  { label: 'Check Demand in Your District', sub: 'Verified vacancy data by trade', href: '/demand', icon: 'chart' },
-  { label: 'Recognition of Prior Learning', sub: 'Certify experience you already have', href: '/register?role=student', icon: 'badge' },
-  { label: 'MSME Hiring Pools', sub: 'Co-sign a batch with other units', href: '/register?role=business', icon: 'factory' },
+  { label: 'All courses and what they teach', sub: '39 courses · full subject list', href: '/courses', icon: 'book' },
+  { label: 'Which trades have jobs near me', sub: 'Real hiring data by district', href: '/demand', icon: 'chart' },
+  { label: 'Certificate for work I already do', sub: 'No need to repeat a full course', href: '/register?role=student', icon: 'badge' },
+  { label: 'Hire together with other firms', sub: 'Share one training batch', href: '/register?role=business', icon: 'factory' },
   { label: 'Central & State Schemes', sub: 'PMKVY 4.0 · SANKALP · NAPS · DGT-CTS', href: '/schemes', icon: 'doc' },
-  { label: 'Helpline & Grievance', sub: 'Voice access in 4 languages', href: '/help', icon: 'phone' },
+  { label: 'Help & complaints', sub: 'Speak to us in 4 languages', href: '/help', icon: 'phone' },
 ];
 
 const ICONS: Record<string, React.ReactNode> = {
@@ -64,12 +64,12 @@ export default function HomePage() {
                 titleHi="उमेदवार / विद्यार्थी"
                 who="School leavers, ITI and polytechnic students, job-seekers, and workers with informal experience seeking formal certification."
                 services={[
-                  'Demand check before you enrol — see if a trade is growing or dying',
-                  'Recognition of Prior Learning for work you already do',
-                  'Trade-shift tracks (e.g. ICE → EV) with bridge modules only',
-                  'Employer-locked seats with a paid work-trial and stipend',
-                  'Lab and machine slot booking, including private factory benches',
-                  'Voice access and grievance redressal in your own language',
+                  'See which trades actually have jobs near you',
+                  'Get a certificate for work you already do',
+                  'Move from a shrinking trade to a growing one',
+                  'Jobs where the employer has already promised to hire',
+                  'Book machine time to practise on',
+                  'Ask questions by speaking, in your own language',
                 ]}
               />
               <RoleCard
@@ -80,12 +80,12 @@ export default function HomePage() {
                 titleHi="उद्योग / सूक्ष्म, लघु व मध्यम उद्योग"
                 who="Udyam-registered micro, small and medium enterprises, and larger establishments hiring skilled operators in the pilot districts."
                 services={[
-                  'Post a verified hiring demand signal against your GSTIN',
-                  'Form or join an MSME hiring pool and co-sign a batch',
-                  'Run work-trials on your own floor before you commit to hire',
-                  'Endorse syllabus modules and flag content that has gone stale',
-                  'List idle machine hours and earn from surplus shift capacity',
-                  'Endorse informal workers for RPL and declare EPFO payroll',
+                  'Tell us who you need to hire',
+                  'Share a training batch with other small firms',
+                  'Try people on your own floor before hiring them',
+                  'Say what should and should not be taught',
+                  'Earn from machines you are not using',
+                  'Get your existing workers officially certified',
                 ]}
               />
             </div>
@@ -127,9 +127,9 @@ export default function HomePage() {
             {/* Evidence strip — what the engine has actually done */}
             <div className="grid sm:grid-cols-3 gap-3 mt-5">
               {[
-                { v: `${impact.removedPercent}%`, k: 'of raw vacancy claims removed', s: `${formatNumber(impact.raw)} claims screened down to ${formatNumber(impact.weighted)}` },
-                { v: formatNumber(totalGhost), k: 'ghost seats identified', s: 'Seats notified above the districts’ hard physical limits' },
-                { v: formatCurrency(audit.subsidyAtRisk), k: 'subsidy held against audit', s: `${audit.ghost} placement claims with no EPFO payroll record at all` },
+                { v: `${impact.removedPercent}%`, k: 'of job adverts found to be fake', s: `${formatNumber(impact.raw)} claims screened down to ${formatNumber(impact.weighted)}` },
+                { v: formatNumber(totalGhost), k: 'training places with nothing behind them', s: 'Seats notified above the districts’ hard physical limits' },
+                { v: formatCurrency(audit.subsidyAtRisk), k: 'held back from centres that faked results', s: `${audit.ghost} 'jobs' where no salary was ever paid` },
               ].map(x => (
                 <div key={x.k} className="gov-card p-4 border-t-[3px]" style={{ borderTopColor: 'var(--gov-saffron)' }}>
                   <p className="text-[24px] font-bold mono text-[var(--gov-navy)] leading-none">{x.v}</p>
@@ -162,7 +162,7 @@ export default function HomePage() {
                     <span className="w-8 h-8 shrink-0 grid place-items-center rounded-sm bg-[var(--gov-navy)] text-white text-[13px] font-bold mono">
                       {String(i + 1).padStart(2, '0')}
                     </span>
-                    <h3 className="text-[14.5px] font-bold text-[var(--gov-navy)] leading-snug pt-0.5">{p.name}</h3>
+                    <h3 className="text-[14.5px] font-bold text-[var(--gov-navy)] leading-snug pt-0.5">{p.plain}</h3>
                   </div>
 
                   <div className="flex flex-wrap gap-1.5 mb-3">
