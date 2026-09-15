@@ -73,7 +73,7 @@ export function Stat({
   );
 }
 
-/** Inline explanatory note — used to state what a mechanism actually does. */
+/** Inline explanatory note - used to state what a mechanism actually does. */
 export function Note({
   tone = 'info',
   title,

@@ -8,7 +8,7 @@ import { courses } from './courses';
 /*  a delivery type, the tools actually used on the bench, and the       */
 /*  learning outcomes an assessor signs against. Modules flagged with    */
 /*  `decayFlag` are the ones the Dying Task Watch (Pillar 1) has         */
-/*  matched to a shrinking task — this is where the two pillars meet.    */
+/*  matched to a shrinking task - this is where the two pillars meet.    */
 /* ------------------------------------------------------------------ */
 
 const ASSESSMENT_STANDARD = [
@@ -205,7 +205,7 @@ const DETAILED: Record<string, Omit<Syllabus, 'courseId'>> = {
       { code: 'WLD-02', title: 'Joint Preparation, Symbols & Metallurgy', hours: 140, type: 'theory',
         tools: ['Bevelling machine', 'Weld gauges'],
         outcomes: ['Read AWS weld symbols', 'Select filler for dissimilar joints'] },
-      { code: 'WLD-03', title: 'SMAW — Flat, Horizontal & Vertical', hours: 240, type: 'practical',
+      { code: 'WLD-03', title: 'SMAW: Flat, Horizontal & Vertical', hours: 240, type: 'practical',
         tools: ['Inverter welding set', 'Electrode oven', 'Chipping hammer'],
         outcomes: ['Deposit a 3G fillet passing visual and bend test'] },
       { code: 'WLD-04', title: 'GMAW / MIG for Automotive Sheet', hours: 220, type: 'practical',
@@ -327,9 +327,9 @@ const GENERIC_SHAPE: { title: string; share: number; type: SyllabusModule['type'
     tools: ['PPE set', 'Hand tools', 'Measuring instruments'], outcome: 'Work safely to trade-specific protocol' },
   { title: 'Trade Theory & Applied Science', share: 0.18, type: 'theory',
     tools: ['Trade manuals', 'Charts and cut-sections'], outcome: 'Explain the working principle of core trade equipment' },
-  { title: 'Core Practical — Foundation Operations', share: 0.22, type: 'practical',
+  { title: 'Core Practical: Foundation Operations', share: 0.22, type: 'practical',
     tools: ['Trade workbench', 'Primary machinery'], outcome: 'Complete foundation jobs within stated tolerance' },
-  { title: 'Core Practical — Advanced Operations', share: 0.20, type: 'practical',
+  { title: 'Core Practical: Advanced Operations', share: 0.20, type: 'practical',
     tools: ['Advanced trade machinery', 'Diagnostic instruments'], outcome: 'Diagnose and correct process faults independently' },
   { title: 'Digital Tools & Documentation', share: 0.08, type: 'practical',
     tools: ['Job-card software', 'Spreadsheets'], outcome: 'Record work digitally against a job card' },

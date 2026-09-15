@@ -41,7 +41,7 @@ export default function GovRplPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Pillar 5 — Precision Career Pathways & RPL"
+        eyebrow="Pillar 5: Precision Career Pathways & RPL"
         title="Prior-learning certification and trade-shift tracks"
         description="Prior-learning certification and published trade-shift tracks."
         breadcrumb={[{ label: 'Control Tower', href: '/gov/console' }, { label: 'RPL & Pathways' }]}
@@ -107,7 +107,7 @@ export default function GovRplPage() {
           />
         </Card>
 
-        <Card title={selected ? `Assessment — ${selected.candidateName}` : 'Assessment'}
+        <Card title={selected ? `Assessment: ${selected.candidateName}` : 'Assessment'}
           subtitle={selected ? `${selected.id} · submitted ${selected.submittedOn}` : undefined}
           action={<PermTag permission="rpl.certify" />}>
           {!selected ? (
@@ -117,7 +117,7 @@ export default function GovRplPage() {
               <dl className="grid grid-cols-2 gap-x-4 gap-y-2 pb-4 border-b border-[var(--border)] text-[12.5px]">
                 <div><dt className="text-[var(--ink-tertiary)]">Trade claimed</dt><dd className="font-semibold">{getSkill(selected.claimedSkillId)?.name}</dd></div>
                 <div><dt className="text-[var(--ink-tertiary)]">Experience</dt><dd className="font-semibold mono">{selected.yearsOfExperience} years</dd></div>
-                <div><dt className="text-[var(--ink-tertiary)]">Current employer</dt><dd className="font-semibold">{selected.currentEmployerName ?? '—'}</dd></div>
+                <div><dt className="text-[var(--ink-tertiary)]">Current employer</dt><dd className="font-semibold">{selected.currentEmployerName ?? '-'}</dd></div>
                 <div><dt className="text-[var(--ink-tertiary)]">District</dt><dd className="font-semibold">{districts.find(d => d.id === selected.districtId)?.name}</dd></div>
               </dl>
 
@@ -208,7 +208,7 @@ export default function GovRplPage() {
                       className="text-[12.5px] font-semibold px-4 py-2 border border-[var(--border-strong)] rounded-sm hover:bg-[var(--surface-alt)] focus-ring">
                       Schedule assessment
                     </button>
-                    <button onClick={() => setDecided(d => ({ ...d, [selected.id]: 'Rejected — evidence insufficient; candidate advised to apply through a regular course' }))}
+                    <button onClick={() => setDecided(d => ({ ...d, [selected.id]: 'Rejected: evidence insufficient; candidate advised to apply through a regular course' }))}
                       className="text-[12.5px] font-bold px-4 py-2 bg-[var(--signal-declining)] text-white rounded-sm focus-ring">
                       Reject
                     </button>
@@ -280,7 +280,7 @@ export default function GovRplPage() {
                 <div className="mt-3 pt-3 border-t border-[var(--border)]">
                   {published[key] ? (
                     <p className="text-[11.5px] font-semibold text-[var(--signal-rising)]">
-                      ✓ Published state-wide — now visible on every candidate dashboard
+                      ✓ Published state-wide: now visible on every candidate dashboard
                     </p>
                   ) : can('pathway.publish') ? (
                     <button onClick={() => setPublished(p => ({ ...p, [key]: true }))}

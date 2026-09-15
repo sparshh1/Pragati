@@ -39,7 +39,7 @@ export default function BusinessCompliancePage() {
   return (
     <>
       <PageHeader
-        eyebrow={`Pillar ${pillar.number} — ${pillar.short}`}
+        eyebrow={`Pillar ${pillar.number}: ${pillar.short}`}
         title="Payroll declaration and compliance"
         description="File payroll declarations. Subsidy follows EPFO records, not certificates."
         breadcrumb={[{ label: 'Dashboard', href: '/dashboard/business' }, { label: 'Payroll & Compliance' }]}
@@ -58,7 +58,7 @@ export default function BusinessCompliancePage() {
           sub={`${stats.ghost} ghost claims, ${stats.mismatch} mismatches`}
           tone="negative" accent="var(--accent-employer)" />
         <Stat label="Awaiting EPFO sync" value={stats.awaiting}
-          sub="Quarterly filers — next sync 15 Oct 2026" accent="var(--accent-employer)" />
+          sub="Quarterly filers: next sync 15 Oct 2026" accent="var(--accent-employer)" />
       </div>
 
       <div className="grid lg:grid-cols-[1fr_1.3fr] gap-5">
@@ -157,7 +157,7 @@ export default function BusinessCompliancePage() {
                 {schemes.map(s => (
                   <li key={s.code} className="text-[11.5px]">
                     <span className="font-bold text-[var(--gov-navy)] mono">{s.code}</span>
-                    <span className="text-[var(--ink-secondary)]"> — {s.funds}</span>
+                    <span className="text-[var(--ink-secondary)]">: {s.funds}</span>
                   </li>
                 ))}
               </ul>
@@ -183,9 +183,9 @@ export default function BusinessCompliancePage() {
               ) },
               { key: 'epfo', header: 'EPFO shows', hideBelow: 'lg', render: (a: PayrollAudit) => (
                 <div className="text-[11.5px]">
-                  <p className="truncate max-w-[150px]">{a.epfoEmployerName ?? '— no record —'}</p>
+                  <p className="truncate max-w-[150px]">{a.epfoEmployerName ?? ':  no record : '}</p>
                   <p className="mono text-[var(--ink-tertiary)]">
-                    {a.epfoDeclaredWage ? formatCurrency(a.epfoDeclaredWage) : '—'}
+                    {a.epfoDeclaredWage ? formatCurrency(a.epfoDeclaredWage) : '-'}
                     {a.monthsContributed > 0 && ` · ${a.monthsContributed} mo`}
                   </p>
                 </div>
@@ -195,7 +195,7 @@ export default function BusinessCompliancePage() {
               ), sortValue: a => a.verdict },
               { key: 'risk', header: 'At risk', align: 'right', render: (a: PayrollAudit) => (
                 <span className={`mono ${a.subsidyAtRisk ? 'font-bold text-[var(--signal-declining)]' : 'text-[var(--ink-tertiary)]'}`}>
-                  {a.subsidyAtRisk ? formatCurrency(a.subsidyAtRisk) : '—'}
+                  {a.subsidyAtRisk ? formatCurrency(a.subsidyAtRisk) : '-'}
                 </span>
               ), sortValue: a => a.subsidyAtRisk },
             ]}

@@ -6,7 +6,7 @@ import { useState } from 'react';
  * Plain-language support for candidates who are not comfortable with the
  * portal's administrative vocabulary.
  *
- * The portal has to use official terms — NSQF, RPL, EPFO, trust weight — because
+ * The portal has to use official terms (NSQF, RPL, EPFO, trust weight) because
  * those are what appear on certificates and in scheme rules. But a first-time
  * user should never be blocked by one. `HelpTip` puts the official term on the
  * page and the everyday explanation one tap away, in the user's own language.
@@ -42,7 +42,7 @@ export function HelpTip({
           className="absolute left-0 top-full mt-1.5 z-30 w-[280px] sm:w-[340px] bg-white border-2 border-[var(--gov-navy)] rounded-sm shadow-lg p-3.5 text-left font-normal normal-case tracking-normal"
         >
           <span className="block text-[13px] font-bold text-[var(--gov-navy)] mb-1.5">
-            {term} — in plain words
+            {term}: in plain words
           </span>
           <span className="block text-[14px] text-[var(--ink)] leading-relaxed">{plain}</span>
           {marathi && (
@@ -78,13 +78,13 @@ export const GLOSSARY = {
   },
   rpl: {
     term: 'Recognition of Prior Learning',
-    plain: 'If you already do a job well but have no certificate, the government can test you and give you one — without making you sit through the whole course again.',
+    plain: 'If you already do a job well but have no certificate, the government can test you and give you one. You do not sit through the whole course again.',
     marathi: 'तुम्ही आधीच काम करत असाल पण प्रमाणपत्र नसेल, तर सरकार तुमची परीक्षा घेऊन प्रमाणपत्र देते. पूर्ण कोर्स पुन्हा करावा लागत नाही.',
     hindi: 'अगर आप पहले से काम करते हैं पर सर्टिफिकेट नहीं है, तो सरकार आपकी परीक्षा लेकर सर्टिफिकेट देती है। पूरा कोर्स दोबारा नहीं करना पड़ता।',
   },
   workTrial: {
     term: 'Work Trial',
-    plain: 'Ten to fourteen days working at a real company before they decide to hire you. The government pays you ₹380–₹420 every day during this time.',
+    plain: 'Ten to fourteen days working at a real company before they decide to hire you. The government pays you ₹380 to ₹420 every day during this time.',
     marathi: 'नोकरी मिळण्यापूर्वी १० ते १४ दिवस खऱ्या कंपनीत काम. या काळात सरकार रोज ₹३८०–₹४२० देते.',
     hindi: 'नौकरी मिलने से पहले 10 से 14 दिन असली कंपनी में काम। इस दौरान सरकार रोज ₹380–₹420 देती है।',
   },
@@ -102,13 +102,13 @@ export const GLOSSARY = {
   },
   tradeShift: {
     term: 'Trade-Shift Track',
-    plain: 'A short course that moves you from work that is disappearing to similar work that is growing — for example, petrol engine repair to electric vehicle repair. It only teaches the new part.',
+    plain: 'A short course that moves you from work that is disappearing to similar work that is growing. For example, petrol engine repair to electric vehicle repair. It only teaches the new part.',
     marathi: 'कमी होत चाललेल्या कामातून वाढत्या कामाकडे नेणारा छोटा कोर्स. फक्त नवीन भाग शिकवला जातो.',
     hindi: 'घटते काम से बढ़ते काम की ओर ले जाने वाला छोटा कोर्स। सिर्फ़ नया हिस्सा सिखाया जाता है।',
   },
   sensorPractical: {
     term: 'Sensor-Verified Practical',
-    plain: 'The machine itself records what you did — how long you welded, how accurate your cut was. Your marks come from the machine, not from someone ticking a box.',
+    plain: 'The machine itself records what you did: how long you welded, how accurate your cut was. Your marks come from the machine, not from someone ticking a box.',
     marathi: 'मशीन स्वतः तुमचे काम नोंदवते. गुण मशीनकडून मिळतात, कोणाच्या सहीने नाही.',
     hindi: 'मशीन खुद आपका काम रिकॉर्ड करती है। नंबर मशीन से आते हैं, किसी के दस्तख़त से नहीं।',
   },

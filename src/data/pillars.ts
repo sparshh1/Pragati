@@ -3,8 +3,8 @@ import { CitizenRole } from '@/lib/rbac';
 /* ------------------------------------------------------------------ */
 /*  The six operating pillars                                          */
 /*                                                                     */
-/*  Every dashboard route in this portal — candidate, enterprise and    */
-/*  departmental — is an expression of one of these six. This file is   */
+/*  Every dashboard route in this portal - candidate, enterprise and    */
+/*  departmental - is an expression of one of these six. This file is   */
 /*  the single place where a pillar's identity, its mechanisms and its  */
 /*  three-sided outcome are declared.                                   */
 /* ------------------------------------------------------------------ */
@@ -28,15 +28,14 @@ export const PILLARS: Pillar[] = [
     number: 1,
     name: 'Demand Intelligence & Signal Verification Engine',
     plain: 'Real jobs, not fake adverts',
-    short: 'Demand Intelligence',
-    mechanisms: ['Only real vacancies counted', 'Dying-skill watch'],
+    short: 'Real jobs',
+    mechanisms: ['Only real vacancies counted', 'Tasks that are disappearing'],
     summary:
-      
-      "Job adverts get counted only if they turn into someone actually being paid. We also track which specific tasks inside a trade are dying, so courses do not keep teaching them.",
+      'A job advert counts only if someone later gets paid for it. We also watch which tasks inside a trade are fading, so courses stop teaching them.',
     outcomes: {
-      student: 'Youth are trained on skills that are actually being hired for.',
-      business: 'MSMEs get vetted talent instead of a queue of unfiltered applicants.',
-      government: 'The State spends zero budget on demand that never existed.',
+      student: 'You train for jobs that are actually open near you.',
+      business: 'You get people who have already been checked, not a pile of unread CVs.',
+      government: 'The State does not spend money on demand that never existed.',
     },
     routes: { student: '/dashboard/student/demand', business: '/dashboard/business/signals', gov: '/gov/signals' },
   },
@@ -45,15 +44,14 @@ export const PILLARS: Pillar[] = [
     number: 2,
     name: 'Employer-Locked Work & Hiring Pipeline',
     plain: 'A job promised before you train',
-    short: 'Hiring Pipeline',
+    short: 'Hiring',
     mechanisms: ['Small firms hiring together', 'Paid work trial'],
     summary:
-      
-      "Small firms club together and promise in writing to hire, before training starts. Everyone then does a paid trial on the employer's floor — that decides the job, not the exam.",
+      "Small firms club together and promise in writing to hire, before training starts. Everyone then does a paid trial at the employer's factory. That trial decides the job, not the exam.",
     outcomes: {
-      student: 'A fast route to a real job, with a stipend during the trial.',
-      business: 'Factories receive operators who have already worked their shift.',
-      government: 'Subsidy is released against verified outcomes, not certificates.',
+      student: 'A fast route to a real job, with a daily payment during the trial.',
+      business: 'You meet people who have already worked a shift on your floor.',
+      government: 'Subsidy is paid when someone is actually employed, not when a certificate is printed.',
     },
     routes: { student: '/dashboard/student/jobs', business: '/dashboard/business/hiring', gov: '/gov/pipeline' },
   },
@@ -62,15 +60,14 @@ export const PILLARS: Pillar[] = [
     number: 3,
     name: 'Adaptive Syllabus & Evidence-Based Evaluation',
     plain: 'Courses that keep up with industry',
-    short: 'Adaptive Syllabus',
+    short: 'Courses',
     mechanisms: ['Courses tested on real results', 'Machine-checked practicals'],
     summary:
-      
-      "Two groups are taught slightly different content, and whichever group gets more jobs decides what everyone is taught next. Practical marks come from the machine, not a signature.",
+      'Two groups are taught slightly different content. Whichever group gets more jobs decides what everyone is taught next. Practical marks come from the machine, not from a signature.',
     outcomes: {
-      student: 'Students learn on the tools industry is running today.',
-      business: 'Factories receive job-ready talent, not exam-ready talent.',
-      government: 'Every practical mark carries audit-proof machine evidence.',
+      student: 'You practise on the tools factories are running today.',
+      business: 'You get people ready for the job, not just ready for an exam.',
+      government: 'Every practical mark has a machine record behind it.',
     },
     routes: { student: '/dashboard/student/syllabus', business: '/dashboard/business/syllabus', gov: '/gov/syllabus' },
   },
@@ -79,15 +76,14 @@ export const PILLARS: Pillar[] = [
     number: 4,
     name: 'Constraint-Aware District Capacity Planner',
     plain: 'No seat without a machine',
-    short: 'Capacity Planner',
+    short: 'Seats and machines',
     mechanisms: ['Honest seat limits', 'Shared factory machines'],
     summary:
-      
-      "Seats are capped by whatever actually runs out first — teachers, benches, beds or money. Spare machines in private factories are rented so more people get bench time.",
+      'Seats stop at whatever runs out first: teachers, benches, hostel beds or money. Spare machines in private factories are hired so more people get practice time.',
     outcomes: {
-      student: 'Guaranteed lab time — the bench exists before the seat is sold.',
-      business: 'Surplus shift capacity earns revenue instead of depreciating.',
-      government: 'Capex saved and ghost classes eliminated at the plan stage.',
+      student: 'The bench exists before anyone sells you the seat.',
+      business: 'Idle night-shift machines can earn a fee instead of sitting unused.',
+      government: 'Paper seats with no teacher or machine behind them are stopped at the plan.',
     },
     routes: { student: '/dashboard/student/labs', business: '/dashboard/business/machines', gov: '/gov/capacity' },
   },
@@ -96,15 +92,14 @@ export const PILLARS: Pillar[] = [
     number: 5,
     name: 'Precision Career Pathways & RPL Engine',
     plain: 'Credit for what you already know',
-    short: 'Pathways & RPL',
+    short: 'Certificates and switches',
     mechanisms: ['Credit for work you already do', 'Switch to a growing trade'],
     summary:
-      
-      "If you already do the work, you get certified for it instead of repeating a whole course. If your trade is shrinking, a short course moves you into a growing one.",
+      'If you already do the work, you get certified for it instead of repeating a whole course. If your trade is shrinking, a short course moves you into a growing one.',
     outcomes: {
-      student: 'Higher wages without repeating years of training already lived.',
-      business: 'Employers modernise their existing workforce in weeks, not years.',
-      government: 'District labour is formalised and becomes visible to payroll.',
+      student: 'Better pay without repeating years of work you have already done.',
+      business: 'You can upskill the people you already employ in weeks, not years.',
+      government: 'More workers show up on the official payroll.',
     },
     routes: { student: '/dashboard/student/pathways', business: '/dashboard/business/rpl', gov: '/gov/rpl' },
   },
@@ -113,15 +108,14 @@ export const PILLARS: Pillar[] = [
     number: 6,
     name: 'Multilingual Control Tower & Audit Engine',
     plain: 'Works by voice, checked for fraud',
-    short: 'Control Tower & Audit',
+    short: 'Speak and check',
     mechanisms: ['Use it by speaking', 'Checked against salary records'],
     summary:
-      
-      "You can use the whole portal by speaking, in your own language. On the other side, every 'job placed' claim is checked against real salary records.",
+      'You can use the whole portal by speaking, in your own language. On the other side, every "job placed" claim is checked against real salary records.',
     outcomes: {
-      student: 'Access by voice, in Marathi, without literacy or a smartphone.',
-      business: 'A single compliant payroll declaration clears subsidy faster.',
-      government: 'Fraud-proof compliance with a complete audit trail.',
+      student: 'Ask in Marathi even if you do not read well, or if you only have a basic phone.',
+      business: 'One honest payroll filing clears your subsidy faster.',
+      government: 'False placement claims are caught against the pay record.',
     },
     routes: { student: '/dashboard/student/assist', business: '/dashboard/business/compliance', gov: '/gov/audit' },
   },
@@ -136,7 +130,7 @@ export function getPillar(id: string): Pillar {
 /*                                                                     */
 /*  Both citizen roles share the same portal and the same homepage.    */
 /*  From the moment a role is chosen at registration, the navigation   */
-/*  and the feature set diverge completely — this is that divergence.  */
+/*  and the feature set diverge completely - this is that divergence.  */
 /* ------------------------------------------------------------------ */
 
 export interface FeatureLink {
@@ -157,7 +151,7 @@ export const CITIZEN_NAV: Record<CitizenRole, FeatureLink[]> = {
     { href: '/dashboard/student/syllabus', label: 'What I am learning', description: 'Your subjects, hours and marks', pillarId: 'adaptive-syllabus', icon: 'book' },
     { href: '/dashboard/student/labs', label: 'Book machine time', description: 'Reserve a machine to practise on', pillarId: 'capacity-planner', icon: 'cog' },
     { href: '/dashboard/student/pathways', label: 'Certificate for my work', description: 'Get certified, or change trade', pillarId: 'pathways-rpl', icon: 'route' },
-    { href: '/dashboard/student/assist', label: 'Ask by voice', description: 'Speak your question in your language', pillarId: 'control-tower', icon: 'mic' },
+    { href: '/dashboard/student/assist', label: 'Ask by speaking', description: 'Say your question in your language', pillarId: 'control-tower', icon: 'mic' },
   ],
   business: [
     { href: '/dashboard/business', label: 'Home', description: 'Your hiring and payroll at a glance', pillarId: null, icon: 'grid' },

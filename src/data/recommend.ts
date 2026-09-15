@@ -13,7 +13,7 @@ import { Course, Sector } from '@/types';
 /*                                                                     */
 /*  Deliberately NOT a black box. Every recommendation carries the      */
 /*  list of reasons that produced it, each with the points it           */
-/*  contributed, so a candidate — or an officer auditing the portal —   */
+/*  contributed, so a candidate - or an officer auditing the portal -   */
 /*  can see exactly why a course was put in front of them. A ranking    */
 /*  nobody can explain is a ranking nobody should trust.                */
 /* ------------------------------------------------------------------ */
@@ -138,7 +138,7 @@ export function scoreCourse(course: Course, profile: CandidateProfile): CourseRe
   if (currentWage > 0 && wageUplift > 0) {
     reasons.push({
       label: 'Higher pay than you earn now',
-      detail: `${inr(entryWage)} to start — ${inr(wageUplift)} more than now, up to ${inr(ceilingWage)} later.`,
+      detail: `${inr(entryWage)} to start, ${inr(wageUplift)} more than now, up to ${inr(ceilingWage)} later.`,
       points: Math.min(15, Math.round((wageUplift / Math.max(currentWage, 1)) * 30)), positive: true,
     });
   } else if (currentWage > 0 && wageUplift <= 0) {
@@ -165,7 +165,7 @@ export function scoreCourse(course: Course, profile: CandidateProfile): CourseRe
   } else if (seatsVacant > 0) {
     reasons.push({
       label: 'Few seats left',
-      detail: `Only ${seatsVacant} left — apply early.`,
+      detail: `Only ${seatsVacant} left. Apply early.`,
       points: 5, positive: true,
     });
   } else {
@@ -193,7 +193,7 @@ export function scoreCourse(course: Course, profile: CandidateProfile): CourseRe
   } else if (step <= 0) {
     reasons.push({
       label: 'Not a step up',
-      detail: `Exits at Level ${syllabus.nsqfLevel} — not above your Level ${profile.currentNsqfLevel}.`,
+      detail: `Finishes at Level ${syllabus.nsqfLevel}, which is not above your Level ${profile.currentNsqfLevel}.`,
       points: -12, positive: false,
     });
   } else {
@@ -209,7 +209,7 @@ export function scoreCourse(course: Course, profile: CandidateProfile): CourseRe
   if (rplEligible) {
     reasons.push({
       label: 'Your experience can shorten this',
-      detail: `${profile.yearsInformalWork} years qualifies for RPL — most of the ${syllabus.totalHours.toLocaleString('en-IN')} hours credited.`,
+      detail: `${profile.yearsInformalWork} years of work can count. Most of the ${syllabus.totalHours.toLocaleString('en-IN')} hours can be credited.`,
       points: 10, positive: true,
     });
   }
@@ -287,7 +287,7 @@ export function recommendCourses(profile: CandidateProfile, limit = 6): CourseRe
 }
 
 /* ------------------------------------------------------------------ */
-/*  Job matching — open pools ranked against a candidate               */
+/*  Job matching - open pools ranked against a candidate               */
 /* ------------------------------------------------------------------ */
 
 export interface JobRecommendation {
@@ -338,7 +338,7 @@ export function recommendJobs(
         matchReasons.push('In your own district');
       } else if (profile.willingToRelocate) {
         match += 10;
-        matchReasons.push(`In ${districtName(p.districtId)} — you indicated you can relocate`);
+        matchReasons.push(`In ${districtName(p.districtId)}. You said you can travel.`);
       } else {
         gaps.push(`Runs in ${districtName(p.districtId)}, outside your district`);
       }
@@ -356,7 +356,7 @@ export function recommendJobs(
         match += 15;
         matchReasons.push(`${seatsOpen} place(s) still open in this batch`);
       } else {
-        gaps.push('This batch is full — you would join the next one');
+        gaps.push('This batch is full. You would join the next one');
       }
 
       return {
@@ -378,7 +378,7 @@ export function recommendJobs(
 }
 
 /* ------------------------------------------------------------------ */
-/*  "What should I do next?" — a single prioritised action              */
+/*  "What should I do next?" - a single prioritised action              */
 /* ------------------------------------------------------------------ */
 
 export interface NextStep {
@@ -437,7 +437,7 @@ export function nextSteps(profile: CandidateProfile, heldSkillIds: string[]): Ne
 
   steps.push({
     title: 'Make your CV',
-    plain: 'A one-page CV employers trust, because the government fills in most of it — your practicals, your trial scores and your pay record.',
+    plain: 'A one-page CV employers trust, because the government fills in most of it: your practicals, your trial scores and your pay record.',
     href: '/dashboard/student/cv',
     cta: 'Make my CV',
     urgency: 'medium',
@@ -463,7 +463,7 @@ export function heldSkillsFor(enrolledCourseId: string | null): string[] {
   return courses.find(c => c.id === enrolledCourseId)?.skillIds ?? [];
 }
 
-/** The trades in a district with the biggest verified shortfall — used as a fallback steer. */
+/** The trades in a district with the biggest verified shortfall - used as a fallback steer. */
 export function topShortages(districtId: string, limit = 3) {
   return computeGapForDistrict(districtId)
     .filter(g => g.gap > 0 && g.trend !== 'declining')

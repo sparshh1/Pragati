@@ -5,29 +5,29 @@ import { useEffect, useState } from 'react';
 
 const SLIDES = [
   {
-    kicker: 'Registration open — Winter 2026 intake',
+    kicker: 'Winter 2026 admissions are open',
     title: 'Train for work that actually exists.',
     body:
-      'Every seat on this portal is opened against verified hiring demand. Courses with no employer behind them are not notified.',
+      'A seat opens here only when an employer nearby has asked for people. If nobody is hiring for a course, we do not offer it.',
     cta: { label: 'Register as a Candidate', href: '/register?role=student' },
-    alt: { label: 'View Course Catalogue', href: '/courses' },
+    alt: { label: 'Browse courses', href: '/courses' },
     tone: '#0b2d5c',
   },
   {
     kicker: 'For businesses, big and small',
-    title: 'Pool your hiring. Get operators, not certificates.',
+    title: 'Share a batch. Meet people on your shop floor first.',
     body:
-      'Four units that each need six people can co-sign one batch. Candidates reach you through a paid work-trial, so you hire what you have already seen on your own floor.',
-    cta: { label: 'Register your Enterprise', href: '/register?role=business' },
-    alt: { label: 'How hiring pools work', href: '/about#pillars' },
+      'If you only need a few people, join other small firms and share one training batch. You try them at your factory for two weeks before you decide.',
+    cta: { label: 'Register your business', href: '/register?role=business' },
+    alt: { label: 'How sharing a batch works', href: '/about#pillars' },
     tone: '#1b5e3f',
   },
   {
     kicker: 'Already doing the work?',
-    title: 'Nine years on the job is a qualification.',
+    title: 'Years on the job count.',
     body:
-      'If you already do the work, RPL certifies you at the level your evidence supports and prescribes only the bridge hours you still need.',
-    cta: { label: 'Check RPL Eligibility', href: '/register?role=student' },
+      'Already doing the work, but no certificate? You can sit a test and get papers for what you already know. You do not have to join a two-year course again.',
+    cta: { label: 'See if I can get a certificate', href: '/register?role=student' },
     alt: { label: 'Talk to us in Marathi', href: '/help' },
     tone: '#a8420b',
   },
@@ -106,7 +106,7 @@ export function HeroBanner() {
           </div>
         </div>
 
-        {/* Live figures panel — the kind of summary box departmental sites carry */}
+        {/* Live figures panel: the kind of summary box departmental sites carry */}
         <div className="bg-white/95 backdrop-blur-sm border border-white/30 rounded-sm p-5 shadow-xl">
           <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-[var(--gov-navy)] pb-2 mb-3 border-b border-[var(--border)]">
             Portal at a glance

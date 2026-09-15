@@ -10,54 +10,54 @@ import { districts } from '@/data/districts';
 
 export const metadata = {
   title: 'Help & Grievance',
-  description: 'Multilingual helpline, voice access over IVR and WhatsApp, grievance redressal and district office contacts.',
+  description: 'Helpline, common questions, and how to file a complaint. Speak in Marathi, Hindi, English or Urdu.',
 };
 
 const FAQ = [
   {
     q: 'How do I know whether a trade is worth learning?',
-    a: 'Open the Labour Market Dashboard and select your trade and district. It shows verified monthly vacancies against training supply, the year-on-year direction of travel, and — importantly — which tasks inside that trade are contracting even where the trade itself looks healthy.',
+    a: 'Open Jobs in your district, pick your trade and your district. You will see how many real vacancies there were, how many seats are being taught, whether numbers are going up or down, and which tasks inside that trade are fading even if the trade name still sounds healthy.',
   },
   {
     q: 'I have worked for years without a certificate. Does that count?',
-    a: 'Yes. Recognition of Prior Learning assesses what you can already do and certifies you at the NSQF level your evidence supports, prescribing only the bridge hours genuinely missing. Candidates certified this year averaged a wage increase of about ₹7,000 a month. Register as a candidate and open Career Pathways & RPL.',
+    a: 'Yes. If you already do the work, you can sit a test and get a government certificate for what you know. You only study the missing bits, not the whole course again. People who got this certificate this year earned about ₹7,000 more a month on average. Register as a candidate and open Certificate for my work.',
   },
   {
     q: 'What is a work trial, and am I paid during it?',
-    a: 'A work trial is ten to fourteen days on the employer’s own shop floor, at the end of the training. The State pays a stipend of ₹380–₹420 per day directly to your bank account. A weighted scorecard covering safety, tool handling, takt time and communication decides the placement — the pass mark is 70 out of 100.',
+    a: 'A work trial is 10 to 14 days at a real company, at the end of training. The State pays ₹380 to ₹420 a day into your bank. They score you on safety, tools, speed and how you work with people. You need 70 out of 100. That score decides the job, not the exam.',
   },
   {
     q: 'The centre says I am placed, but I have not been paid. What do I do?',
-    a: 'Report it on the helpline or through voice assist on your dashboard. The system immediately checks your UAN against EPFO. Where no contribution exists, the centre’s subsidy is held pending enquiry. You do not have to prove anything yourself — the payroll record is the evidence.',
+    a: 'Call the helpline or say so on Ask by speaking in your dashboard. We check your salary record the same day. If there is no pay, the centre’s money is held while we look into it. You do not have to prove anything yourself. The pay record is the proof.',
   },
   {
     q: 'I run a small unit and cannot fill a whole training batch. Can I still hire here?',
-    a: 'Yes — that is what MSME hiring pools are for. Several units in the same district and trade co-sign one batch, each committing only the seats they will actually absorb, at a wage floor each names. Register as an enterprise and open Hiring Pools & Trials.',
+    a: 'Yes. That is what sharing a batch is for. Several small firms in the same district and trade join one batch. Each promises only the people they will actually take, at a wage each names. Register as a business and open Hire together.',
   },
   {
     q: 'Can I use this portal without a smartphone or without reading?',
-    a: 'Yes. Dial 1800-233-0202 from any phone, choose your language, and speak your question in full sentences — there is no menu tree to navigate. The answer is read back to you and also sent as an SMS in your language with a reference number.',
+    a: 'Yes. Dial 1800-233-0202 from any phone, choose your language, and say what you need in full sentences. There is no button maze. The answer is read back to you and also sent as an SMS in your language, with a reference number.',
   },
   {
     q: 'How is my Aadhaar and payroll data handled?',
-    a: 'Full Aadhaar numbers are never stored. Only the last four digits are retained, and only if you supply them. Your UAN is used solely to reconcile a declared placement against EPFO, with consent taken at registration. Individual records are never published.',
+    a: 'Full Aadhaar numbers are never stored. Only the last four digits are kept, and only if you give them. Your UAN is used only to check a claimed job against the salary record, with your consent at registration. Individual records are never published.',
   },
 ];
 
 const GRIEVANCE_STEPS = [
-  ['Raise it', 'By helpline, voice assist, or in writing at any ITI or DSDEO office. You receive a reference number immediately.'],
-  ['Acknowledged in 3 working days', 'The District Skill Development Office records the grievance against the centre or establishment concerned.'],
-  ['Resolved in 21 working days', 'Where money is involved, disbursal against the disputed claim is held while the enquiry runs.'],
-  ['Escalate', 'If unresolved, escalate to the State Mission Directorate. Placement-fraud grievances go directly to the Internal Audit Wing.'],
+  ['Raise it', 'By helpline, by speaking on the portal, or in writing at any ITI or district skill office. You get a reference number at once.'],
+  ['Acknowledged in 3 working days', 'The district office records the complaint against the centre or company concerned.'],
+  ['Resolved in 21 working days', 'If money is involved, payment on the disputed claim is held while the enquiry runs.'],
+  ['Escalate', 'If it is still open, take it to the State Mission Directorate. Fake-job complaints go straight to Internal Audit.'],
 ];
 
 const OFFICES: Record<string, { address: string; phone: string }> = {
-  pune: { address: 'DSDEO, Central Building, Pune — 411001', phone: '020-2612-XXXX' },
-  nashik: { address: 'DSDEO, Collector Office Campus, Nashik — 422001', phone: '0253-257-XXXX' },
-  csn: { address: 'DSDEO, Divisional Commissioner Campus, Chhatrapati Sambhajinagar — 431001', phone: '0240-233-XXXX' },
-  nagpur: { address: 'DSDEO, Civil Lines, Nagpur — 440001', phone: '0712-256-XXXX' },
-  thane: { address: 'DSDEO, Collector Office, Thane — 400601', phone: '022-2534-XXXX' },
-  kolhapur: { address: 'DSDEO, Collector Office Campus, Kolhapur — 416001', phone: '0231-265-XXXX' },
+  pune: { address: 'DSDEO, Central Building, Pune, 411001', phone: '020-2612-XXXX' },
+  nashik: { address: 'DSDEO, Collector Office Campus, Nashik, 422001', phone: '0253-257-XXXX' },
+  csn: { address: 'DSDEO, Divisional Commissioner Campus, Chhatrapati Sambhajinagar, 431001', phone: '0240-233-XXXX' },
+  nagpur: { address: 'DSDEO, Civil Lines, Nagpur, 440001', phone: '0712-256-XXXX' },
+  thane: { address: 'DSDEO, Collector Office, Thane, 400601', phone: '022-2534-XXXX' },
+  kolhapur: { address: 'DSDEO, Collector Office Campus, Kolhapur, 416001', phone: '0231-265-XXXX' },
 };
 
 export default function HelpPage() {
@@ -70,7 +70,7 @@ export default function HelpPage() {
         <div className="mx-auto max-w-[1400px] px-4 py-6">
           <PageHeader
             eyebrow="Support"
-            title="Help & Grievance Redressal"
+            title="Help"
             description="Voice helpline, common questions and grievance redressal."
             breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Help & Grievance' }]}
           />
@@ -87,9 +87,8 @@ export default function HelpPage() {
                   1800-233-0202
                 </p>
                 <p className="text-[13px] text-[var(--ink-secondary)] mt-3 leading-relaxed max-w-lg">
-                  Speak your question in Marathi, Hindi, English or Urdu. There is no menu tree — say what
-                  you need in full sentences and the system answers. A missed call is returned within
-                  60 seconds.
+                  Speak your question in Marathi, Hindi, English or Urdu. There is no button maze.
+                  Say what you need in full sentences. A missed call is returned within 60 seconds.
                 </p>
                 <div className="flex flex-wrap gap-2 mt-4">
                   {languages.filter(l => l.ivrAvailable).map(l => (
@@ -98,14 +97,14 @@ export default function HelpPage() {
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-3">
-                <Stat label="Resolved without a human" value={`${stats.botResolutionRate}%`}
-                  sub="Across all voice sessions" tone="positive" accent="var(--gov-navy)" />
+                <Stat label="Answered without staff" value={`${stats.botResolutionRate}%`}
+                  sub="Across all spoken questions" tone="positive" accent="var(--gov-navy)" />
                 <Stat label="Average satisfaction" value={`${stats.avgSatisfaction}/5`}
-                  sub="Caller-rated" tone="positive" accent="var(--gov-navy)" />
-                <Stat label="Languages live on IVR" value={languages.filter(l => l.ivrAvailable).length}
-                  sub={`${languages.length} in the pipeline`} accent="var(--gov-navy)" />
-                <Stat label="Escalated to an officer" value={stats.escalated}
-                  sub="Where a human decision is required" tone="warn" accent="var(--gov-navy)" />
+                  sub="Rated by the caller" tone="positive" accent="var(--gov-navy)" />
+                <Stat label="Languages on the phone line" value={languages.filter(l => l.ivrAvailable).length}
+                  sub={`${languages.length} in total`} accent="var(--gov-navy)" />
+                <Stat label="Sent to an officer" value={stats.escalated}
+                  sub="When a person needs to decide" tone="warn" accent="var(--gov-navy)" />
               </div>
             </div>
           </div>
@@ -157,7 +156,7 @@ export default function HelpPage() {
                           <span className="text-[11px] font-normal text-[var(--ink-tertiary)]">{l.name}</span>
                         </span>
                         {l.ivrAvailable
-                          ? <Badge variant="rising">IVR live</Badge>
+                          ? <Badge variant="rising">Phone</Badge>
                           : <Badge variant="stable">text only</Badge>}
                       </div>
                       <Progress value={l.contentTranslatedPercent}
@@ -175,8 +174,8 @@ export default function HelpPage() {
 
           <div className="mb-6">
             <Note tone="warn" title="Reporting a false placement">
-              Recorded as placed but never paid? Report it. Your UAN is checked the same day and the
-              centre&rsquo;s subsidy is frozen. The payroll record is the proof — you produce nothing.
+              Recorded as placed but never paid? Report it. Your salary record is checked the same day and the
+              centre&rsquo;s money is held. The pay record is the proof. You produce nothing.
             </Note>
           </div>
 

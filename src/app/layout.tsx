@@ -20,7 +20,7 @@ const plexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: 'प्रgati — Skill Portal, Government of Maharashtra',
+    default: 'प्रgati | Skill Portal, Government of Maharashtra',
     template: '%s | प्रgati',
   },
   description:

@@ -4,10 +4,10 @@ import {
 } from '@/data/signals';
 
 /**
- * Pillar 1 — the Trust-Weighted Quality Filter.
+ * Pillar 1 - the Trust-Weighted Quality Filter.
  *
- * GET  /api/signals?district=pune&verdict=verified   — read the register
- * POST /api/signals                                   — score a signal without storing it
+ * GET  /api/signals?district=pune&verdict=verified   - read the register
+ * POST /api/signals                                   - score a signal without storing it
  */
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);

@@ -3,7 +3,7 @@ import { payrollAudits, auditStats, VERDICT_LABEL } from '@/data/audit';
 import { workTrials, hiringPools, poolTrialStats, TRIAL_PASS_THRESHOLD } from '@/data/hiring';
 
 /**
- * Pillars 2 and 6 — the placement chain, end to end: work-trial gate outcome,
+ * Pillars 2 and 6 - the placement chain, end to end: work-trial gate outcome,
  * then EPFO payroll reconciliation, then whether subsidy may be released.
  *
  * GET /api/audit?district=csn&verdict=ghost-placement

@@ -43,7 +43,7 @@ export default function BusinessMachinesPage() {
   return (
     <>
       <PageHeader
-        eyebrow={`Pillar ${pillar.number} — ${pillar.short}`}
+        eyebrow={`Pillar ${pillar.number}: ${pillar.short}`}
         title="Idle machine exchange"
         description="Earn from machine time you are not using."
         breadcrumb={[{ label: 'Dashboard', href: '/dashboard/business' }, { label: 'Idle Machine Exchange' }]}
@@ -100,7 +100,7 @@ export default function BusinessMachinesPage() {
                   <option>2nd shift (18:00–02:00)</option>
                   <option>3rd shift (02:00–08:00)</option>
                   <option>Weekends only</option>
-                  <option>Weekday daytime — surplus bays</option>
+                  <option>Weekday daytime: surplus bays</option>
                 </select>
               </div>
 
@@ -128,14 +128,14 @@ export default function BusinessMachinesPage() {
             {listed.length > 0 && (
               <div className="mt-4 pt-4 border-t border-[var(--border)]">
                 <p className="text-[10.5px] font-bold uppercase tracking-wide text-[var(--ink-tertiary)] mb-2">
-                  Listed this session — {formatCurrency(annualEarnings)}/year combined
+                  Listed this session: {formatCurrency(annualEarnings)}/year combined
                 </p>
                 <ul className="space-y-1.5">
                   {listed.map((l, i) => (
                     <li key={i} className="flex items-center justify-between gap-2 border border-[var(--border)] rounded-sm px-3 py-2 text-[12px]">
                       <span className="min-w-0 truncate">
                         <span className="font-semibold text-[var(--ink)]">{l.name}</span>
-                        <span className="text-[var(--ink-tertiary)]"> — {getSkill(l.skillId)?.name}</span>
+                        <span className="text-[var(--ink-tertiary)]">: {getSkill(l.skillId)?.name}</span>
                       </span>
                       <span className="shrink-0 mono text-[var(--ink-secondary)]">
                         {l.hours} h @ {formatCurrency(l.rate)}
@@ -169,7 +169,7 @@ export default function BusinessMachinesPage() {
                         </Badge>
                       </div>
                       <p className="text-[12px] text-[var(--ink-secondary)]">
-                        <strong>{m.name}</strong> — {b.hoursPerWeek} h/week for {b.weeks} weeks
+                        <strong>{m.name}</strong>: {b.hoursPerWeek} h/week for {b.weeks} weeks
                       </p>
                       <p className="text-[12px] mono text-[var(--signal-rising)] font-semibold mt-1">
                         {formatCurrency(b.hoursPerWeek * b.weeks * m.sharedRatePerHour)} total receipt
@@ -180,8 +180,8 @@ export default function BusinessMachinesPage() {
                           decision === 'approved' ? 'text-[var(--signal-rising)]' : 'text-[var(--signal-declining)]'
                         }`}>
                           {decision === 'approved'
-                            ? '✓ Approved — slot confirmed and the district officer has been notified.'
-                            : '✗ Declined — the request returns to the district officer to re-broker.'}
+                            ? '✓ Approved: slot confirmed and the district officer has been notified.'
+                            : '✗ Declined: the request returns to the district officer to re-broker.'}
                         </p>
                       ) : (
                         <div className="flex gap-2 mt-3">
@@ -203,7 +203,7 @@ export default function BusinessMachinesPage() {
             )}
           </Card>
 
-          <Card title={`Shared machine pool — ${districts.find(d => d.id === districtId)?.name}`}
+          <Card title={`Shared machine pool: ${districts.find(d => d.id === districtId)?.name}`}
             subtitle="Government and private capacity in one register" dense>
             <Table
               columns={[

@@ -50,7 +50,7 @@ export default function BusinessHiringPage() {
   return (
     <>
       <PageHeader
-        eyebrow={`Pillar ${pillar.number} — ${pillar.short}`}
+        eyebrow={`Pillar ${pillar.number}: ${pillar.short}`}
         title="Hiring pools and work trials"
         description="Commit seats, then judge candidates on your own floor."
         breadcrumb={[{ label: 'Dashboard', href: '/dashboard/business' }, { label: 'Hiring Pools & Trials' }]}
@@ -77,7 +77,7 @@ export default function BusinessHiringPage() {
               value={formatNumber(openPools.reduce((a, p) => a + Math.max(0, p.seatsRequired - poolSeatsCommitted(p)), 0))}
               sub="Across all open pools here" tone="warn" accent="var(--accent-employer)" />
             <Stat label="State subsidy per seat"
-              value={pools.length ? formatCurrency(Math.max(...pools.map(p => p.subsidyPerSeat))) : '—'}
+              value={pools.length ? formatCurrency(Math.max(...pools.map(p => p.subsidyPerSeat))) : '-'}
               sub="Released against verified placement" tone="positive" accent="var(--accent-employer)" />
             <Stat label="Employers already signed"
               value={pools.reduce((a, p) => a + p.members.length, 0)}
@@ -157,7 +157,7 @@ export default function BusinessHiringPage() {
                       <div className="flex items-start gap-2 bg-[var(--signal-rising-light)] border border-[var(--signal-rising)]/40 rounded-sm px-3 py-2.5">
                         <span className="text-[var(--signal-rising)] font-bold">✓</span>
                         <span className="text-[12.5px] text-[var(--signal-rising)]">
-                          Commitment signed — {seats} seats at {formatCurrency(wage)} minimum. You will be
+                          Commitment signed: {seats} seats at {formatCurrency(wage)} minimum. You will be
                           notified when candidates are ready for trial.
                         </span>
                       </div>
@@ -192,7 +192,7 @@ export default function BusinessHiringPage() {
                       </>
                     ) : (
                       <p className="text-[12px] text-[var(--ink-tertiary)]">
-                        This pool is closed to new commitments — the batch is already{' '}
+                        This pool is closed to new commitments: the batch is already{' '}
                         {p.status === 'placed' ? 'placed' : 'under way'}.
                       </p>
                     )}
@@ -247,7 +247,7 @@ export default function BusinessHiringPage() {
             </ul>
           </Card>
 
-          <Card title={scoring ? `Score the gate — ${scoring.candidateName}` : 'Scorecard'}
+          <Card title={scoring ? `Score the gate: ${scoring.candidateName}` : 'Scorecard'}
             subtitle={scoring ? `${scoring.durationDays}-day trial from ${scoring.startDate} · stipend ${formatCurrency(scoring.stipendPerDay)}/day paid by the State` : undefined}>
             {!scoring ? (
               <p className="text-[13px] text-[var(--ink-tertiary)]">Select a candidate.</p>
@@ -264,7 +264,7 @@ export default function BusinessHiringPage() {
                         <span className={`text-[14px] font-bold mono ${
                           c.score === null ? 'text-[var(--ink-tertiary)]'
                           : c.score >= TRIAL_PASS_THRESHOLD ? 'text-[var(--signal-rising)]' : 'text-[var(--signal-declining)]'
-                        }`}>{c.score ?? '—'}</span>
+                        }`}>{c.score ?? '-'}</span>
                       </div>
                       <input id={`sc-${c.criterion}`} type="range" min={0} max={100}
                         value={c.score ?? 50}
@@ -281,7 +281,7 @@ export default function BusinessHiringPage() {
                     </span>
                     <span className="text-[28px] font-bold mono"
                       style={{ color: (liveTotal ?? 0) >= TRIAL_PASS_THRESHOLD ? 'var(--signal-rising)' : 'var(--signal-declining)' }}>
-                      {liveTotal ?? '—'}
+                      {liveTotal ?? '-'}
                     </span>
                   </div>
                   <Progress value={liveTotal ?? 0}
@@ -307,7 +307,7 @@ export default function BusinessHiringPage() {
                   <div className="mt-3">
                     <Note tone={liveTotal! >= TRIAL_PASS_THRESHOLD ? 'success' : 'warn'} title="Scorecard recorded">
                       {liveTotal! >= TRIAL_PASS_THRESHOLD
-                        ? `${scoring.candidateName} has cleared the gate at ${liveTotal}. On issuing an offer, place them on payroll within 30 days — EPFO confirmation is what releases the ${formatCurrency(hiringPools.find(p => p.id === scoring.poolId)?.subsidyPerSeat ?? 0)} subsidy against this seat.`
+                        ? `${scoring.candidateName} has cleared the gate at ${liveTotal}. On issuing an offer, place them on payroll within 30 days: EPFO confirmation is what releases the ${formatCurrency(hiringPools.find(p => p.id === scoring.poolId)?.subsidyPerSeat ?? 0)} subsidy against this seat.`
                         : `${scoring.candidateName} scored ${liveTotal}, below the gate. The candidate returns to the centre for remedial hours and may re-trial once. Your seat commitment remains open.`}
                     </Note>
                   </div>
@@ -316,7 +316,7 @@ export default function BusinessHiringPage() {
                 <div className="mt-4 pt-3 border-t border-[var(--border)]">
                   <label className="gov-label" htmlFor="remarks">Supervisor remarks</label>
                   <textarea id="remarks" rows={3} className="gov-input"
-                    defaultValue={scoring.supervisorRemarks === '—' ? '' : scoring.supervisorRemarks}
+                    defaultValue={scoring.supervisorRemarks === '-' ? '' : scoring.supervisorRemarks}
                     placeholder="What did you actually observe on the floor?" />
                 </div>
               </>

@@ -20,7 +20,7 @@ const NAV: { href: string; label: string; children?: { href: string; label: stri
   },
   {
     href: '/courses',
-    label: 'Courses & Syllabus',
+    label: 'Courses',
     children: [
       { href: '/courses', label: 'Course Catalogue' },
       { href: '/courses?type=ITI', label: 'ITI Trades (NCVT)' },
@@ -28,9 +28,9 @@ const NAV: { href: string; label: string; children?: { href: string; label: stri
       { href: '/courses?type=Polytechnic', label: 'Polytechnic Diplomas' },
     ],
   },
-  { href: '/demand', label: 'Labour Market Data' },
+  { href: '/demand', label: 'Jobs in your district' },
   { href: '/schemes', label: 'Schemes' },
-  { href: '/help', label: 'Help & Grievance' },
+  { href: '/help', label: 'Help' },
 ];
 
 export function SiteHeader() {
@@ -57,7 +57,7 @@ export function SiteHeader() {
                 प्रgati
               </span>
               <span className="block text-[12px] sm:text-[13px] text-[var(--ink-secondary)]">
-                प्रgati — Skill Bridge Portal
+                Skill Bridge Portal
               </span>
               <span className="hidden md:block text-[10.5px] text-[var(--ink-tertiary)] uppercase tracking-[0.07em] mt-0.5">
                 Skill Development &amp; Entrepreneurship Dept., Govt. of Maharashtra

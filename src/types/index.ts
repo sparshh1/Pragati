@@ -152,7 +152,7 @@ export const SECTOR_LABELS: Record<Sector, string> = {
 };
 
 /* =================================================================== */
-/*  PILLAR 1 — Demand Intelligence & Signal Verification Engine        */
+/*  PILLAR 1 - Demand Intelligence & Signal Verification Engine        */
 /* =================================================================== */
 
 export type SignalSourceKind =
@@ -204,7 +204,7 @@ export interface DemandSignal {
   };
 }
 
-/** Pillar 1 — Dying Task Watch operates at TASK level, below the skill. */
+/** Pillar 1 - Dying Task Watch operates at TASK level, below the skill. */
 export interface DyingTask {
   id: string;
   taskName: string;
@@ -242,7 +242,7 @@ export interface UncoveredSkill {
 }
 
 /* =================================================================== */
-/*  PILLAR 2 — Employer-Locked Work & Hiring Pipeline                  */
+/*  PILLAR 2 - Employer-Locked Work & Hiring Pipeline                  */
 /* =================================================================== */
 
 export type PoolStatus = 'forming' | 'locked' | 'in-training' | 'trialling' | 'placed';
@@ -288,7 +288,7 @@ export interface WorkTrial {
 }
 
 /* =================================================================== */
-/*  PILLAR 3 — Adaptive Syllabus & Evidence-Based Evaluation           */
+/*  PILLAR 3 - Adaptive Syllabus & Evidence-Based Evaluation           */
 /* =================================================================== */
 
 export interface SyllabusModule {
@@ -316,7 +316,7 @@ export interface Syllabus {
 
 export type ExperimentStatus = 'running' | 'concluded' | 'promoted' | 'rolled-back';
 
-/** Live Syllabus A/B Testing — two cohorts, same trade, different content. */
+/** Live Syllabus A/B Testing - two cohorts, same trade, different content. */
 export interface SyllabusExperiment {
   id: string;
   courseId: string;
@@ -347,7 +347,7 @@ export interface ExperimentArm {
 
 export type SensorKind = 'cnc-controller' | 'weld-inverter' | 'ev-battery-analyser' | 'plc-rack' | 'loom-counter' | 'rtk-drone' | 'clamp-meter';
 
-/** Sensor-Verified Practicals — machine telemetry, not an instructor's tick-box. */
+/** Sensor-Verified Practicals - machine telemetry, not an instructor's tick-box. */
 export interface SensorPractical {
   id: string;
   candidateName: string;
@@ -369,7 +369,7 @@ export interface SensorPractical {
 }
 
 /* =================================================================== */
-/*  PILLAR 4 — Constraint-Aware District Capacity Planner              */
+/*  PILLAR 4 - Constraint-Aware District Capacity Planner              */
 /* =================================================================== */
 
 /** The hard physical ceilings a seat plan may not exceed. */
@@ -394,17 +394,17 @@ export interface SeatCalculation {
   labCeiling: number;
   hostelCeiling: number;
   budgetCeiling: number;
-  /** The binding constraint — the minimum of the ceilings */
+  /** The binding constraint - the minimum of the ceilings */
   hardLimit: number;
   bindingConstraint: 'trainer' | 'lab' | 'hostel' | 'budget' | 'demand';
-  /** Seats notified above the hard limit — these are the "ghost classes" */
+  /** Seats notified above the hard limit - these are the "ghost classes" */
   ghostSeats: number;
   utilisationPercent: number;
 }
 
 export type MachineStatus = 'idle' | 'partially-used' | 'saturated' | 'under-maintenance';
 
-/** Idle Machine Sharing — private factory + ITI capacity brokered as one pool. */
+/** Idle Machine Sharing - private factory + ITI capacity brokered as one pool. */
 export interface Machine {
   id: string;
   name: string;
@@ -436,7 +436,7 @@ export interface MachineBooking {
 }
 
 /* =================================================================== */
-/*  PILLAR 5 — Precision Career Pathways & RPL Engine                  */
+/*  PILLAR 5 - Precision Career Pathways & RPL Engine                  */
 /* =================================================================== */
 
 export interface RplApplication {
@@ -460,7 +460,7 @@ export interface RplApplication {
 }
 
 /* =================================================================== */
-/*  PILLAR 6 — Multilingual Control Tower & Audit Engine               */
+/*  PILLAR 6 - Multilingual Control Tower & Audit Engine               */
 /* =================================================================== */
 
 export interface LanguageSupport {
@@ -489,7 +489,7 @@ export interface VoiceSession {
 
 export type AuditVerdict = 'clean' | 'mismatch' | 'ghost-placement' | 'wage-shortfall' | 'awaiting-data';
 
-/** EPFO Payroll Audit — placement claims reconciled against actual UAN payroll. */
+/** EPFO Payroll Audit - placement claims reconciled against actual UAN payroll. */
 export interface PayrollAudit {
   id: string;
   candidateName: string;

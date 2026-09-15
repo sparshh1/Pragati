@@ -7,7 +7,7 @@ import { HiringPool, WorkTrial, TrialOutcome } from '@/types';
 /*  MSMEs in the same district and trade co-sign one batch: each member  */
 /*  legally commits to absorb N seats at a declared wage floor BEFORE    */
 /*  the batch is notified. That commitment is what "employer-locked"     */
-/*  means — seats exist only against signed demand.                     */
+/*  means - seats exist only against signed demand.                     */
 /* ------------------------------------------------------------------ */
 
 export const hiringPools: HiringPool[] = [
@@ -131,8 +131,8 @@ export function getPool(id: string) {
 /*                                                                      */
 /*  Certification alone has never told an employer whether someone can   */
 /*  hold a shift. Every pool candidate serves a state-stipended paid     */
-/*  trial on the employer's own floor. The trial scorecard — not the     */
-/*  exam mark — decides placement, and the subsidy tranche is released   */
+/*  trial on the employer's own floor. The trial scorecard - not the     */
+/*  exam mark - decides placement, and the subsidy tranche is released   */
 /*  only against trials that were passed AND later confirmed by EPFO.    */
 /* ------------------------------------------------------------------ */
 
@@ -140,7 +140,7 @@ const GATE_CRITERIA = [
   { criterion: 'Shift discipline & punctuality', weight: 15 },
   { criterion: 'Safety protocol adherence (PPE, LOTO)', weight: 25 },
   { criterion: 'Tool & instrument handling', weight: 20 },
-  { criterion: 'Task completion within takt time', weight: 25 },
+  { criterion: 'Finish the task in the agreed time', weight: 25 },
   { criterion: 'Escalation & communication', weight: 15 },
 ];
 
@@ -181,7 +181,7 @@ export const workTrials: WorkTrial[] = [
     id: 'WT-4405', poolId: 'POOL-PN-EV-01', candidateName: 'Sanjay Pawar', candidateKsid: 'MH-CD-2026-418401',
     employerId: 'emp-ngp-01', skillId: 'ev-battery-diagnostics', startDate: '2026-09-08', durationDays: 14,
     stipendPerDay: 420, outcome: 'pending', scorecard: scorecard([null, null, null, null, null]),
-    supervisorRemarks: '—', epfoConfirmedOn: null, offerCtc: null,
+    supervisorRemarks: '-', epfoConfirmedOn: null, offerCtc: null,
   },
   {
     id: 'WT-4406', poolId: 'POOL-NGP-EVC-01', candidateName: 'Vijay Bhosale', candidateKsid: 'MH-CD-2026-419002',
@@ -194,14 +194,14 @@ export const workTrials: WorkTrial[] = [
     id: 'WT-4407', poolId: 'POOL-NGP-EVC-01', candidateName: 'Pooja Shinde', candidateKsid: 'MH-CD-2026-419044',
     employerId: 'emp-ngp-04', skillId: 'ev-charging-tech', startDate: '2026-08-25', durationDays: 10,
     stipendPerDay: 400, outcome: 'withdrawn', scorecard: scorecard([72, 80, null, null, null]),
-    supervisorRemarks: 'Candidate withdrew on day 5 — relocated to Pune for family reasons.',
+    supervisorRemarks: 'Candidate withdrew on day 5: relocated to Pune for family reasons.',
     epfoConfirmedOn: null, offerCtc: null,
   },
   {
     id: 'WT-4408', poolId: 'POOL-CSN-WLD-01', candidateName: 'Ganesh Joshi', candidateKsid: 'MH-CD-2026-420117',
     employerId: 'emp-csn-01', skillId: 'automotive-welding', startDate: '2026-09-02', durationDays: 12,
     stipendPerDay: 380, outcome: 'in-progress', scorecard: scorecard([86, 90, 88, null, null]),
-    supervisorRemarks: 'Weld bead consistency verified on inverter telemetry — within tolerance.',
+    supervisorRemarks: 'Weld bead consistency verified on inverter telemetry: within tolerance.',
     epfoConfirmedOn: null, offerCtc: null,
   },
   {
@@ -215,7 +215,7 @@ export const workTrials: WorkTrial[] = [
     id: 'WT-4410', poolId: 'POOL-KOL-CAD-01', candidateName: 'Aishwarya Chavan', candidateKsid: 'MH-CD-2026-421008',
     employerId: 'emp-ngp-03', skillId: 'cad-pattern-design', startDate: '2026-05-12', durationDays: 10,
     stipendPerDay: 400, outcome: 'passed', scorecard: scorecard([92, 85, 94, 90, 88]),
-    supervisorRemarks: 'Graded marker efficiency 84% on first live order — above house standard.',
+    supervisorRemarks: 'Graded marker efficiency 84% on first live order: above house standard.',
     epfoConfirmedOn: '2026-06-01', offerCtc: 324000,
   },
   {

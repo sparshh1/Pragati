@@ -6,7 +6,7 @@ import { SyllabusExperiment, SensorPractical } from '@/types';
 /*  A syllabus revision normally takes years and is judged by committee  */
 /*  opinion. Here two cohorts in the same trade run different content    */
 /*  concurrently, and the winner is decided by what actually happened    */
-/*  to the candidates — work-trial pass rate, placement and wage.        */
+/*  to the candidates - work-trial pass rate, placement and wage.        */
 /* ------------------------------------------------------------------ */
 
 export const syllabusExperiments: SyllabusExperiment[] = [
@@ -20,7 +20,7 @@ export const syllabusExperiments: SyllabusExperiment[] = [
     concludesOn: '2026-08-30',
     primaryMetric: 'trial-pass-rate',
     armA: {
-      label: 'Control — v4.2 (carburettor retained)',
+      label: 'Control: v4.2 (carburettor retained)',
       syllabusVersion: 'v4.2',
       cohortSize: 120,
       changeSummary: 'Existing DGT syllabus. MMV-04 carburettor overhaul, 120 h.',
@@ -30,7 +30,7 @@ export const syllabusExperiments: SyllabusExperiment[] = [
       practicalHours: 1340,
     },
     armB: {
-      label: 'Variant — v4.3-EFI',
+      label: 'Variant: v4.3-EFI',
       syllabusVersion: 'v4.3-EFI',
       cohortSize: 118,
       changeSummary: 'MMV-04 retired. 120 h reallocated to EFI, OBD-II live-PID diagnosis and sensor bench work.',
@@ -54,7 +54,7 @@ export const syllabusExperiments: SyllabusExperiment[] = [
     concludesOn: '2026-12-15',
     primaryMetric: 'median-wage',
     armA: {
-      label: 'Control — v3.8',
+      label: 'Control: v3.8',
       syllabusVersion: 'v3.8',
       cohortSize: 160,
       changeSummary: 'ELE-05 hard-wired logic at full 180 h; PLC as 200 h elective.',
@@ -64,7 +64,7 @@ export const syllabusExperiments: SyllabusExperiment[] = [
       practicalHours: 1420,
     },
     armB: {
-      label: 'Variant — v3.9-PLC',
+      label: 'Variant: v3.9-PLC',
       syllabusVersion: 'v3.9-PLC',
       cohortSize: 158,
       changeSummary: 'ELE-05 compressed to 90 h. PLC fundamentals made core; 90 h added to VFD parameterisation.',
@@ -88,7 +88,7 @@ export const syllabusExperiments: SyllabusExperiment[] = [
     concludesOn: '2027-01-20',
     primaryMetric: 'trial-pass-rate',
     armA: {
-      label: 'Control — v2.1',
+      label: 'Control: v2.1',
       syllabusVersion: 'v2.1',
       cohortSize: 54,
       changeSummary: 'HV safety 60 h delivered mid-course on centre equipment.',
@@ -98,7 +98,7 @@ export const syllabusExperiments: SyllabusExperiment[] = [
       practicalHours: 500,
     },
     armB: {
-      label: 'Variant — v2.2-Thermal',
+      label: 'Variant: v2.2-Thermal',
       syllabusVersion: 'v2.2-Thermal',
       cohortSize: 52,
       changeSummary: 'HV safety moved to week 1. 40 h thermal-management practical added on MahaEV factory analysers via machine-sharing.',
@@ -122,7 +122,7 @@ export const syllabusExperiments: SyllabusExperiment[] = [
     concludesOn: '2026-05-30',
     primaryMetric: 'placement-rate',
     armA: {
-      label: 'Control — visual assessment',
+      label: 'Control: visual assessment',
       syllabusVersion: 'v3.0',
       cohortSize: 96,
       changeSummary: 'Practical graded by instructor visual inspection and bend test.',
@@ -132,7 +132,7 @@ export const syllabusExperiments: SyllabusExperiment[] = [
       practicalHours: 780,
     },
     armB: {
-      label: 'Variant — sensor-verified',
+      label: 'Variant: sensor-verified',
       syllabusVersion: 'v3.1',
       cohortSize: 94,
       changeSummary: 'Arc-on time, current stability and heat input logged from the inverter and used as 45% of practical marks.',
@@ -156,7 +156,7 @@ export const syllabusExperiments: SyllabusExperiment[] = [
     concludesOn: '2026-02-28',
     primaryMetric: 'placement-rate',
     armA: {
-      label: 'Control — v1.2',
+      label: 'Control: v1.2',
       syllabusVersion: 'v1.2',
       cohortSize: 88,
       changeSummary: 'Standard data entry and document handling.',
@@ -166,7 +166,7 @@ export const syllabusExperiments: SyllabusExperiment[] = [
       practicalHours: 220,
     },
     armB: {
-      label: 'Variant — v1.3-Automation',
+      label: 'Variant: v1.3-Automation',
       syllabusVersion: 'v1.3-Automation',
       cohortSize: 86,
       changeSummary: '60 h spreadsheet macro automation added.',
@@ -178,7 +178,7 @@ export const syllabusExperiments: SyllabusExperiment[] = [
     liftPercent: 4.9,
     pValue: 0.38,
     decision:
-      'Rolled back — lift not significant. The constraint is the trade itself, not the content. Referred to Dying Task Watch (DT-04); trade flagged for redesign, not tuning.',
+      'Rolled back: lift not significant. The constraint is the trade itself, not the content. Referred to Dying Task Watch (DT-04); trade flagged for redesign, not tuning.',
     districtIds: ['csn', 'nagpur'],
   },
 ];
@@ -200,7 +200,7 @@ export function significanceLabel(p: number): { label: string; tone: 'rising' | 
 /*  The practical mark is derived from what the machine recorded, not    */
 /*  from a tick in a register. Where an instructor's score diverges from */
 /*  the telemetry by more than 15 points, the record is flagged for      */
-/*  audit — this is how ghost practicals surface.                        */
+/*  audit - this is how ghost practicals surface.                        */
 /* ------------------------------------------------------------------ */
 
 export const DISCREPANCY_THRESHOLD = 15;
@@ -287,7 +287,7 @@ export const sensorPracticals: SensorPractical[] = [
       { metric: 'String open-circuit voltage', value: 612, unit: 'V', tolerance: '580–640 V', pass: true },
       { metric: 'Earth continuity resistance', value: 0.38, unit: 'Ω', tolerance: '≤ 1 Ω', pass: true },
       { metric: 'Polarity verification before energisation', value: 1, unit: 'events', tolerance: '≥ 1', pass: true },
-      { metric: 'IV curve fill factor', value: 0.74, unit: '—', tolerance: '≥ 0.70', pass: true },
+      { metric: 'IV curve fill factor', value: 0.74, unit: '-', tolerance: '≥ 0.70', pass: true },
     ], 142, 86, 84),
 
   mk('SP-88210', 'Aishwarya Chavan', 'MH-CD-2026-421008', 'tha-cad-01', 'CAD-05', 'ITI-KOLHAPUR-SHIVAJI', 'MCH-CAD-003', 'loom-counter', '2026-04-18',

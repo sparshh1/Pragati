@@ -13,7 +13,7 @@ import { formatNumber } from '@/lib/utils';
 
 export const metadata = {
   title: 'About the Mission',
-  description: 'प्रgati — how the six operating pillars work, which institutions implement them, and the policies governing the portal.',
+  description: 'How प्रgati works, who runs it, and the rules the portal follows.',
 };
 
 const INSTITUTIONS = [
@@ -21,7 +21,7 @@ const INSTITUTIONS = [
   { name: 'Maharashtra State Skill Development Society (MSSDS)', role: 'Implementing agency. Runs the seat matrix, subsidy release and scheme convergence.', level: 'State' },
   { name: 'Directorate of Vocational Education & Training (DVET)', role: 'Runs the ITI network and the sensor-verified practical infrastructure.', level: 'State' },
   { name: 'District Skill Development & Entrepreneurship Offices (DSDEO)', role: 'District-level demand verification, seat allocation and machine brokerage.', level: 'District' },
-  { name: 'Ministry of Skill Development & Entrepreneurship (MSDE)', role: 'Central scheme owner — PMKVY 4.0 and SANKALP.', level: 'Central' },
+  { name: 'Ministry of Skill Development & Entrepreneurship (MSDE)', role: 'Central scheme owner: PMKVY 4.0 and SANKALP.', level: 'Central' },
   { name: 'Directorate General of Training (DGT)', role: 'Craftsmen Training Scheme, NCVT certification and NSQF alignment.', level: 'Central' },
   { name: 'Employees’ Provident Fund Organisation (EPFO)', role: 'Payroll reconciliation partner. Placement verification is drawn from UAN contribution records.', level: 'Central' },
   { name: 'National Council for Vocational Education & Training (NCVET)', role: 'Regulates awarding bodies and assessment agencies, including RPL assessment.', level: 'Central' },
@@ -53,20 +53,20 @@ export default function AboutPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
             <Stat label="Pilot districts" value={districts.length} sub="Phase-I coverage" accent="var(--gov-navy)" />
-            <Stat label="Notified courses" value={courses.length} sub="ITI, Polytechnic and PMKVY 4.0" accent="var(--gov-navy)" />
+            <Stat label="Courses on offer" value={courses.length} sub="ITI, Polytechnic and PMKVY 4.0" accent="var(--gov-navy)" />
             <Stat label="Trades tracked" value={skills.length} sub="Across five sectors" accent="var(--gov-navy)" />
-            <Stat label="Seats in the current plan"
+            <Stat label="Seats this year"
               value={formatNumber(courses.reduce((a, c) => a + c.currentSeats, 0))}
-              sub="Bounded by district hard limits" accent="var(--gov-navy)" />
+              sub="Capped at what each district can actually run" accent="var(--gov-navy)" />
           </div>
 
           {/* ---- The problem ---- */}
           <Card title="The problem this addresses" className="mb-6">
             <div className="grid md:grid-cols-3 gap-5">
               {[
-                ['Training is planned against claimed demand', 'Job-board vacancy counts are padded by duplicates, bulk reposts and postings from establishments that never hire. Seat plans built on them fund training for work that does not exist.'],
-                ['Syllabi rot behind healthy trade names', 'A trade rarely dies. Individual tasks inside it die — carburettor tuning, CRT repair, chain surveying — while the trade name survives and the syllabus keeps teaching them.'],
-                ['Placement is measured on paper', 'A placement certificate proves a form was filled. Without reconciliation against payroll, ghost placements are indistinguishable from real ones, and subsidy follows both equally.'],
+                ['Training is planned against claimed demand', 'Job-board counts get padded by duplicates, bulk reposts and firms that never hire. Seat plans built on them fund training for work that does not exist.'],
+                ['Syllabi rot behind healthy trade names', 'A trade rarely dies. Individual tasks inside it do: carburettor tuning, CRT repair, chain surveying. The trade name survives and the syllabus keeps teaching them.'],
+                ['Placement is measured on paper', 'A placement certificate proves a form was filled. Without checking the salary record, fake jobs look the same as real ones, and subsidy follows both.'],
               ].map(([t, d]) => (
                 <div key={t}>
                   <p className="text-[13.5px] font-bold text-[var(--gov-maroon)] leading-snug mb-1.5">{t}</p>
@@ -105,22 +105,22 @@ export default function AboutPage() {
 
           {/* ---- How the portals are separated ---- */}
           <Card title="How access is separated" className="mb-6"
-            subtitle="Two portals, three audiences, one design system">
+            subtitle="Two portals, three audiences, same look and feel">
             <div className="grid md:grid-cols-3 gap-4">
               {[
                 {
                   t: 'Candidates', c: 'var(--accent-student)',
-                  d: 'Register on the public portal and land on the candidate dashboard — demand checking, RPL, trade-shift tracks, work trials, lab booking and voice assist.',
+                  d: 'Register on the public portal. You get a candidate home: check jobs, get a certificate for work you already do, switch trades, try a job on the shop floor, book machine time, and ask by speaking.',
                   href: '/register?role=student', cta: 'Candidate registration',
                 },
                 {
                   t: 'Enterprises & MSMEs', c: 'var(--accent-employer)',
-                  d: 'Register on the same public portal and land on an entirely different dashboard — demand signals, hiring pools, work-trial scoring, syllabus endorsement, machine exchange and payroll compliance.',
+                  d: 'Register on the same public portal. You get a different home: post who you need, share a training batch, score a trial, say what should be taught, rent idle machines, and file payroll.',
                   href: '/register?role=business', cta: 'Enterprise registration',
                 },
                 {
                   t: 'Departmental officers', c: 'var(--gov-navy)',
-                  d: 'Sign in on a separate restricted portal where access is governed by role, by permission and by data scope. Nothing outside an officer’s scope is loaded, and every action is written to the audit register.',
+                  d: 'Sign in on a separate, restricted portal. Access depends on your role, what you are allowed to do, and which district or centre you cover. Nothing outside that slice is loaded. Every action is written down.',
                   href: '/gov', cta: 'Departmental portal',
                 },
               ].map(x => (

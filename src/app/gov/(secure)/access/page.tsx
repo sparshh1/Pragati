@@ -40,8 +40,8 @@ export default function GovAccessPage() {
     <>
       <PageHeader
         eyebrow="Administration"
-        title="Access control — roles, permissions and data scope"
-        description="Roles, permissions and data scope — the full authority map."
+        title="Access control: roles, permissions and data scope"
+        description="Roles, permissions and data scope: the full authority map."
         breadcrumb={[{ label: 'Control Tower', href: '/gov/console' }, { label: 'Access Control' }]}
         actions={<PermTag permission="access.manage" />}
       />
@@ -109,7 +109,7 @@ export default function GovAccessPage() {
                             {held ? (
                               <span className="inline-block w-5 h-5 leading-5 rounded-sm bg-[var(--signal-rising)] text-white text-[11px] font-bold">✓</span>
                             ) : (
-                              <span className="inline-block w-5 h-5 leading-5 rounded-sm bg-[var(--surface-alt)] border border-[var(--border)] text-[var(--ink-tertiary)] text-[11px]">—</span>
+                              <span className="inline-block w-5 h-5 leading-5 rounded-sm bg-[var(--surface-alt)] border border-[var(--border)] text-[var(--ink-tertiary)] text-[11px]">: </span>
                             )}
                           </td>
                         );
@@ -285,7 +285,7 @@ function NewOfficerForm({ onSubmit }: { onSubmit: (summary: string) => void }) {
           onSubmit(
             `${form.name} (${form.employeeId}) provisioned as ${def.title}` +
             (def.scope !== 'state' ? `, scoped to ${districts.find(d => d.id === form.districtId)?.name}` : ', state-wide') +
-            ` — ${def.permissions.length} permissions granted.`,
+            `: ${def.permissions.length} permissions granted.`,
           );
           setForm(f => ({ ...f, name: '', employeeId: '' }));
         }}

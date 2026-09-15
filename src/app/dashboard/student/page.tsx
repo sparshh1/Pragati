@@ -117,16 +117,16 @@ export default function StudentOverview() {
 
       {/* ---- Action items: what this candidate should do next ---- */}
       <div data-guide="stats" className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-5 ks-stagger">
-        <Stat label="Your skill level" value={`L${account.currentNsqfLevel ?? 3}`}
-          sub={course ? `Enrolled — ${course.type}` : 'Not enrolled in a course'} accent="var(--accent-student)" />
+        <Stat label="Your skill level" value={`Level ${account.currentNsqfLevel ?? 3}`}
+          sub={course ? `Enrolled in ${course.type}` : 'Not enrolled in a course yet'} accent="var(--accent-student)" />
         <Stat label="Years you have worked" value={`${years} yr`}
-          sub={years >= 2 ? 'Can be certified without a full course' : 'Two years or more unlocks certification'}
+          sub={years >= 2 ? 'You can get a certificate without a full course' : 'Two years of work unlocks a certificate'}
           tone={years >= 2 ? 'positive' : 'neutral'} accent="var(--accent-student)" />
         <Stat label="Growing trades near you" value={topGaps.length}
-          sub={`${gaps.filter(g => g.trend === 'declining').length} trades contracting`}
+          sub={`${gaps.filter(g => g.trend === 'declining').length} trades with fewer jobs`}
           tone="positive" accent="var(--accent-student)" />
         <Stat label="Employers hiring" value={localPools.length}
-          sub={`${localPools.reduce((a, p) => a + poolSeatsCommitted(p), 0)} seats employer-committed`}
+          sub={`${localPools.reduce((a, p) => a + poolSeatsCommitted(p), 0)} seats they have promised`}
           tone="positive" accent="var(--accent-student)" />
       </div>
 
@@ -149,40 +149,39 @@ export default function StudentOverview() {
               <Progress
                 value={modulesDone} max={syllabus.modules.length}
                 color="var(--accent-student)" height={10}
-                label={`Modules completed — ${modulesDone} of ${syllabus.modules.length}`} showValue
+                label={`Modules finished: ${modulesDone} of ${syllabus.modules.length}`} showValue
               />
 
               {myDyingTasks.length > 0 && (
                 <div className="mt-4">
                   <Note tone="warn" title="Part of your syllabus is teaching work that is disappearing">
                     <p className="mb-2">
-                      Your trade is not dying — {myDyingTasks.length} task
+                      Your whole trade is not dying. {myDyingTasks.length} task
                       {myDyingTasks.length > 1 ? 's' : ''} inside it {myDyingTasks.length > 1 ? 'are' : 'is'}.
                     </p>
                     <ul className="space-y-1.5 mt-2">
                       {myDyingTasks.map(t => (
                         <li key={t.id} className="flex flex-wrap items-baseline gap-x-2 text-[12px]">
                           <span className="font-semibold text-[var(--ink)]">{t.taskName}</span>
-                          <span className="mono text-[var(--signal-declining)] font-bold">{t.hoursChangeYoY}% YoY</span>
+                          <span className="mono text-[var(--signal-declining)] font-bold">{t.hoursChangeYoY}% this year</span>
                           <span className="text-[var(--ink-tertiary)]">
-                            — modules {t.syllabusModulesStillTeaching.join(', ')}; displaced by {t.displacedBy}
+                            still in modules {t.syllabusModulesStillTeaching.join(', ')}; replaced by {t.displacedBy}
                           </span>
                         </li>
                       ))}
                     </ul>
                     <Link href="/dashboard/student/pathways" className="gov-link font-semibold text-[12px] inline-block mt-2">
-                      See the trade-shift track that covers this →
+                      See the short course that covers this →
                     </Link>
                   </Note>
                 </div>
               )}
             </Card>
           ) : (
-            <Card title="You are not enrolled in a course yet" subtitle="Check demand before you choose">
+            <Card title="You are not enrolled in a course yet" subtitle="Check jobs before you choose">
               <p className="text-[13px] text-[var(--ink-secondary)] leading-relaxed mb-4">
-                Three trades in {district.name} currently have verified hiring demand running ahead of
-                training supply. Enrolling into one of these means a seat that an employer has already
-                committed to absorb.
+                Three trades in {district.name} have more real vacancies than training seats.
+                Joining one of these means an employer has already said they will hire.
               </p>
               <ul className="space-y-2">
                 {topGaps.map(g => (
@@ -190,7 +189,7 @@ export default function StudentOverview() {
                     <div className="min-w-0">
                       <p className="text-[13.5px] font-semibold text-[var(--ink)]">{g.skillName}</p>
                       <p className="text-[11.5px] text-[var(--ink-tertiary)]">
-                        {g.annualDemand.toLocaleString('en-IN')} verified annual vacancies ·{' '}
+                        {g.annualDemand.toLocaleString('en-IN')} real vacancies a year ·{' '}
                         {g.currentSupply.toLocaleString('en-IN')} training seats
                       </p>
                     </div>
@@ -202,7 +201,7 @@ export default function StudentOverview() {
                 <Link href="/dashboard/student/demand"
                   className="text-[13px] font-bold text-white px-4 py-2 rounded-sm focus-ring"
                   style={{ background: 'var(--accent-student)' }}>
-                  Check demand in my district →
+                  Check jobs in my district →
                 </Link>
                 <Link href="/courses"
                   className="text-[13px] font-semibold px-4 py-2 border border-[var(--border-strong)] rounded-sm hover:bg-[var(--surface-alt)] focus-ring">
@@ -213,7 +212,7 @@ export default function StudentOverview() {
           )}
 
           {/* ---- Feature list for this role ---- */}
-          <Card title="Your services" subtitle="One per operating pillar">
+          <Card title="Your services" subtitle="Everything you can do from this account">
             <div className="grid sm:grid-cols-2 gap-2.5">
               {CITIZEN_NAV.student.filter(n => n.pillarId).map(item => {
                 const pillar = PILLARS.find(p => p.id === item.pillarId)!;
@@ -232,7 +231,7 @@ export default function StudentOverview() {
                         </p>
                         <p className="text-[11.5px] text-[var(--ink-secondary)] mt-1 leading-snug">{item.description}</p>
                         <p className="text-[10px] font-bold uppercase tracking-wide text-[var(--ink-tertiary)] mt-1.5">
-                          Pillar {pillar.number} — {pillar.short}
+                          {pillar.plain}
                         </p>
                       </div>
                     </div>
@@ -249,8 +248,8 @@ export default function StudentOverview() {
             {years >= 2 ? (
               <>
                 <p className="text-[13px] text-[var(--ink-secondary)] leading-relaxed">
-                  You declared <strong>{years} years</strong> of informal work. RPL assesses what you can
-                  already do and prescribes only the bridge hours you still need — you do not repeat a
+                  You declared <strong>{years} years</strong> of work without a certificate. We test what
+                  you can already do and ask you to study only the missing bits. You do not repeat a
                   full course.
                 </p>
                 <div className="grid grid-cols-2 gap-3 my-4 py-3 border-y border-[var(--border)]">
@@ -262,9 +261,9 @@ export default function StudentOverview() {
                     <p className="text-[10.5px] text-[var(--ink-tertiary)]">per month, after certification</p>
                   </div>
                   <div>
-                    <p className="text-[10.5px] uppercase tracking-wide font-bold text-[var(--ink-tertiary)]">Avg bridge hours</p>
+                    <p className="text-[10.5px] uppercase tracking-wide font-bold text-[var(--ink-tertiary)]">Hours you still study</p>
                     <p className="text-[19px] font-bold mono text-[var(--ink)]">{rpl.avgBridgeHours} h</p>
-                    <p className="text-[10.5px] text-[var(--ink-tertiary)]">instead of 2,400 h</p>
+                    <p className="text-[10.5px] text-[var(--ink-tertiary)]">instead of 2,400 hours</p>
                   </div>
                 </div>
                 <Link href="/dashboard/student/pathways"
@@ -275,9 +274,9 @@ export default function StudentOverview() {
               </>
             ) : (
               <p className="text-[13px] text-[var(--ink-secondary)] leading-relaxed">
-                RPL requires at least two years of documented informal work. If you have been working
-                without a certificate, update your profile — {rpl.certified} candidates in {district.name} have
-                been certified this year.
+                RPL needs at least two years of work you can show. If you have been working
+                without a certificate, update your profile. {rpl.certified} people in {district.name} got
+                papers this year.
               </p>
             )}
           </Card>
@@ -286,10 +285,10 @@ export default function StudentOverview() {
           <Card title="How you get hired here">
             <ol className="space-y-3">
               {[
-                ['Employers commit first', 'Seats at a declared wage floor, signed before training starts.'],
-                ['You train against that commitment', 'A named employer already agreed to absorb your seat.'],
-                ['You serve a paid work-trial', '10–14 days on their floor. ₹380–₹420 a day from the State.'],
-                ['The gate decides, not the exam', 'Pass mark 70. Safety, tools, takt time, communication.'],
+                ['Employers promise first', 'They name a wage and sign before training starts.'],
+                ['You train against that promise', 'A named employer already agreed to take people from your batch.'],
+                ['You work a paid trial', '10 to 14 days on their floor. ₹380 to ₹420 a day from the State.'],
+                ['The trial decides the job', 'Pass mark 70. Safety, tools, speed, and how you work with people.'],
                 ['Your pay confirms it', 'Counted only when your salary record shows you were paid.'],
               ].map(([t, d], i) => (
                 <li key={t} className="flex gap-3">
@@ -303,19 +302,19 @@ export default function StudentOverview() {
               ))}
             </ol>
             <Link href="/dashboard/student/jobs" className="text-[12.5px] gov-link font-semibold mt-4 inline-block">
-              View open pools and my trials →
+              View openings and my trials →
             </Link>
           </Card>
 
           {/* ---- Voice access ---- */}
           <Card title="Prefer to speak?">
             <p className="text-[13px] text-[var(--ink-secondary)] leading-relaxed">
-              Ask anything on this portal by voice, in Marathi, Hindi, English or Urdu — over IVR,
-              WhatsApp or from your browser. No literacy or smartphone required.
+              Ask anything on this portal by speaking, in Marathi, Hindi, English or Urdu.
+              Call from any phone, or use the microphone here. You do not need to type.
             </p>
             <p className="mt-3 text-[15px] font-bold mono text-[var(--gov-navy)]">1800-233-0202</p>
             <Link href="/dashboard/student/assist" className="text-[12.5px] gov-link font-semibold mt-2 inline-block">
-              Open voice assist →
+              Open speak-to-us →
             </Link>
           </Card>
         </div>

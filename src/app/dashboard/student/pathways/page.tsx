@@ -139,7 +139,7 @@ export default function StudentPathwaysPage() {
 
                 <div>
                   <label className="gov-label" htmlFor="rpl-years">
-                    Years you have worked — <span className="mono font-bold text-[var(--ink)]">{years}</span>
+                    Years you have worked: <span className="mono font-bold text-[var(--ink)]">{years}</span>
                   </label>
                   <input id="rpl-years" type="range" min={0} max={20} value={years}
                     onChange={e => setYears(Number(e.target.value))}
@@ -222,7 +222,7 @@ export default function StudentPathwaysPage() {
                         +{formatCurrency(assessment.uplift)}<span className="text-[12px] font-normal text-[var(--ink-tertiary)]">/month</span>
                       </p>
                       <p className="text-[11.5px] text-[var(--ink-secondary)] mt-1 leading-relaxed">
-                        Formalisation moves you from cash wages into a payroll record — which is also what
+                        Formalisation moves you from cash wages into a payroll record: which is also what
                         makes EPF, ESI and future credit accessible.
                       </p>
                     </div>
@@ -380,7 +380,7 @@ export default function StudentPathwaysPage() {
                     seriesA="Your current profile" seriesB="Target trade requirement" />
                   <p className="text-[12px] text-[var(--ink-secondary)] mt-3 leading-relaxed">
                     The gap between the two shapes is the bridge module. Where your current profile already
-                    meets the target — safety, mechanical work, diagnostic method — nothing is retaught.
+                    meets the target: safety, mechanical work, diagnostic method: nothing is retaught.
                   </p>
                 </Card>
               )}

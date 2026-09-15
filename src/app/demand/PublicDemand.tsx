@@ -63,9 +63,9 @@ export function PublicDemand() {
     <div className="mx-auto max-w-[1400px] px-4 py-6">
       <PageHeader
         eyebrow="Open Data"
-        title="Labour Market Dashboard"
+        title="Jobs in your district"
         description="Verified hiring demand by district and trade."
-        breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Labour Market Data' }]}
+        breadcrumb={[{ label: 'Home', href: '/' }, { label: 'Jobs in your district' }]}
       />
 
       <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-5">
@@ -107,7 +107,7 @@ export function PublicDemand() {
       </div>
 
       <div className="grid xl:grid-cols-2 gap-5 mb-5">
-        <Card title={`${getSkill(skillId)?.name} — ${district.name}`}
+        <Card title={`${getSkill(skillId)?.name}: ${district.name}`}
           subtitle="Vacancies vs training supply">
           <TrendArea data={trend.timeSeries}
             supplyLine={Math.round((gaps.find(g => g.skillId === skillId)?.currentSupply ?? 0) / 12)}
@@ -140,7 +140,7 @@ export function PublicDemand() {
       </div>
 
       <div className="grid xl:grid-cols-2 gap-5 mb-5">
-        <Card title={`Demand vs supply — ${district.name}`}
+        <Card title={`Demand vs supply: ${district.name}`}
           subtitle="Positive bars are unmet demand; negative bars are training surplus">
           <GapBars data={gaps.slice(0, 14).map(g => ({ skillName: g.skillName, gap: g.gap, trend: g.trend }))}
             height={400} />
@@ -178,7 +178,7 @@ export function PublicDemand() {
       </div>
 
       <div className="grid lg:grid-cols-[1.4fr_1fr] gap-5">
-        <Card title={`Full trade register — ${district.name}`} subtitle="Demand and trajectory" dense>
+        <Card title={`Full trade register: ${district.name}`} subtitle="Demand and trajectory" dense>
           <Table
             columns={[
               { key: 'skill', header: 'Trade', render: (g: GapAnalysisResult) => (

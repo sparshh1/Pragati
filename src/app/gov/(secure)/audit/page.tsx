@@ -63,7 +63,7 @@ export default function GovAuditPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Pillar 6 — Control Tower & Audit Engine"
+        eyebrow="Pillar 6: Control Tower & Audit Engine"
         title="EPFO payroll audit and voice grievance register"
         description="Placement claims reconciled against EPFO payroll."
         breadcrumb={[{ label: 'Control Tower', href: '/gov/console' }, { label: 'EPFO Audit Engine' }]}
@@ -148,7 +148,7 @@ export default function GovAuditPage() {
                   { key: 'risk', header: 'At risk', align: 'right', sortValue: a => a.subsidyAtRisk,
                     render: (a: PayrollAudit) => (
                       <span className={`mono ${a.subsidyAtRisk ? 'font-bold text-[var(--signal-declining)]' : 'text-[var(--ink-tertiary)]'}`}>
-                        {a.subsidyAtRisk ? formatCurrency(a.subsidyAtRisk) : '—'}
+                        {a.subsidyAtRisk ? formatCurrency(a.subsidyAtRisk) : '-'}
                       </span>
                     ) },
                 ]}
@@ -175,7 +175,7 @@ export default function GovAuditPage() {
             )}
           </div>
 
-          <Card title={selected ? `Claim vs payroll — ${selected.candidateName}` : 'Claim detail'}
+          <Card title={selected ? `Claim vs payroll: ${selected.candidateName}` : 'Claim detail'}
             subtitle={selected ? `${selected.id} · ${courses.find(c => c.id === selected.courseId)?.name ?? selected.courseId}` : undefined}
             action={<PermTag permission="audit.freeze" />}>
             {!selected ? (
@@ -208,7 +208,7 @@ export default function GovAuditPage() {
                       </div>
                       <div>
                         <dt className="text-[var(--ink-tertiary)] text-[10.5px]">First contribution</dt>
-                        <dd className="font-semibold mono">{selected.epfoFirstContributionMonth ?? '—'}</dd>
+                        <dd className="font-semibold mono">{selected.epfoFirstContributionMonth ?? '-'}</dd>
                       </div>
                       <div>
                         <dt className="text-[var(--ink-tertiary)] text-[10.5px]">Declared wage</dt>
@@ -216,7 +216,7 @@ export default function GovAuditPage() {
                           selected.epfoDeclaredWage && selected.epfoDeclaredWage < selected.claimedMonthlyWage
                             ? 'text-[var(--signal-declining)]' : ''
                         }`}>
-                          {selected.epfoDeclaredWage ? formatCurrency(selected.epfoDeclaredWage) : '—'}
+                          {selected.epfoDeclaredWage ? formatCurrency(selected.epfoDeclaredWage) : '-'}
                         </dd>
                       </div>
                     </dl>
@@ -248,7 +248,7 @@ export default function GovAuditPage() {
                     <p className="text-[12.5px] font-semibold text-[var(--signal-rising)]">✓ {actions[selected.id]}</p>
                   ) : selected.verdict === 'clean' ? (
                     <p className="text-[12.5px] text-[var(--signal-rising)] font-semibold">
-                      ✓ Nothing to action — this claim reconciles.
+                      ✓ Nothing to action: this claim reconciles.
                     </p>
                   ) : can('audit.freeze') ? (
                     <div className="flex flex-wrap gap-2">
@@ -333,7 +333,7 @@ export default function GovAuditPage() {
               <p className="text-[12.5px] text-[var(--ink-secondary)] leading-relaxed">
                 The candidate is the only party with no incentive to misreport a placement. When someone
                 calls to say the centre recorded them as placed but no salary arrived, that call is
-                auto-linked to the corresponding EPFO reconciliation — which is exactly how the
+                auto-linked to the corresponding EPFO reconciliation: which is exactly how the
                 Marathwada Logistics ghost-placement pattern was found.
               </p>
               <div className="mt-3 pt-3 border-t border-[var(--border)] grid grid-cols-2 gap-3">

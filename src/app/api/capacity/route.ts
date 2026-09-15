@@ -5,11 +5,11 @@ import {
 } from '@/data/capacity';
 
 /**
- * Pillar 4 — the Hard-Limit Seat Calculator.
+ * Pillar 4 - the Hard-Limit Seat Calculator.
  *
- * GET  /api/capacity                 — every district
- * GET  /api/capacity?district=pune   — one district, with its idle machine pool
- * POST /api/capacity                 — what-if: override one or more ceilings
+ * GET  /api/capacity                 - every district
+ * GET  /api/capacity?district=pune   - one district, with its idle machine pool
+ * POST /api/capacity                 - what-if: override one or more ceilings
  */
 export async function GET(request: NextRequest) {
   const district = new URL(request.url).searchParams.get('district');

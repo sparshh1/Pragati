@@ -45,7 +45,7 @@ export default function GovSignalsPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Pillar 1 — Demand Intelligence"
+        eyebrow="Pillar 1: Demand Intelligence"
         title="Signal verification console"
         description="Every vacancy claim, before it reaches the seat plan."
         breadcrumb={[{ label: 'Control Tower', href: '/gov/console' }, { label: 'Signal Verification' }]}
@@ -106,7 +106,7 @@ export default function GovSignalsPage() {
           />
         </Card>
 
-        <Card title={selected ? `Evidence — ${selected.id}` : 'Evidence'}
+        <Card title={selected ? `Evidence: ${selected.id}` : 'Evidence'}
           subtitle={selected ? `${getSkill(selected.skillId)?.name} · ${districts.find(d => d.id === selected.districtId)?.name} · posted ${selected.postedOn}` : undefined}>
           {!selected ? (
             <p className="text-[13px] text-[var(--ink-tertiary)]">Select a signal from the register.</p>
@@ -170,7 +170,7 @@ export default function GovSignalsPage() {
                 if (blacklisted[s.id]) {
                   return <span className="text-[11px] font-bold text-[var(--signal-declining)]">blacklisted</span>;
                 }
-                if (s.trustScore >= 30) return <span className="text-[11px] text-[var(--ink-tertiary)]">—</span>;
+                if (s.trustScore >= 30) return <span className="text-[11px] text-[var(--ink-tertiary)]">: </span>;
                 return can('signal.blacklist') ? (
                   <button onClick={() => setBlacklisted(b => ({ ...b, [s.id]: true }))}
                     className="text-[11px] font-bold px-2.5 py-1 bg-[var(--signal-declining)] text-white rounded-sm focus-ring">
@@ -233,7 +233,7 @@ function SignalDetail({
           color={signal.trustWeight >= 0.55 ? 'var(--signal-rising)' : signal.trustWeight >= 0.3 ? 'var(--signal-warn)' : 'var(--signal-declining)'}
           label={`Trust weight ${signal.trustWeight.toFixed(3)}`} showValue height={10} />
         <p className="text-[11.5px] text-[var(--ink-secondary)] mt-2">
-          Source <strong>{source.name}</strong> — trust {source.trustScore}/100, {confirmRate}% of its past
+          Source <strong>{source.name}</strong>: trust {source.trustScore}/100, {confirmRate}% of its past
           postings reached payroll, {Math.round(source.ghostPostingRate * 100)}% ghost rate.
         </p>
       </div>
@@ -259,7 +259,7 @@ function SignalDetail({
           </li>
           <li className="flex justify-between gap-2">
             <span className="text-[var(--ink-secondary)]">Duplicate of</span>
-            <span className="mono font-semibold">{signal.corroboration.duplicateOf ?? '—'}</span>
+            <span className="mono font-semibold">{signal.corroboration.duplicateOf ?? '-'}</span>
           </li>
           <li className="flex justify-between gap-2">
             <span className="text-[var(--ink-secondary)]">Wage offered</span>
@@ -276,7 +276,7 @@ function SignalDetail({
         </p>
         {signal.flags.length === 0 ? (
           <p className="text-[12.5px] text-[var(--signal-rising)] font-semibold">
-            ✓ Clean — no flags raised against this signal.
+            ✓ Clean: no flags raised against this signal.
           </p>
         ) : (
           <div className="flex flex-wrap gap-1.5">

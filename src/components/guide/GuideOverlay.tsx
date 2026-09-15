@@ -13,7 +13,7 @@ const GAP = 14;
  * The guided tour overlay.
  *
  * A single fixed element sits over the highlighted control and casts a huge
- * spread box-shadow, which dims everything else while leaving a clean hole —
+ * spread box-shadow, which dims everything else while leaving a clean hole -
  * cheaper and sharper than an SVG mask, and it animates between targets.
  */
 export function GuideOverlay() {
@@ -74,7 +74,7 @@ export function GuideOverlay() {
     <div
       role="dialog"
       aria-modal="true"
-      aria-label={`${active.title} — step ${stepIndex + 1} of ${total}`}
+      aria-label={`${active.title}: step ${stepIndex + 1} of ${total}`}
       className="fixed inset-0 z-[70]"
     >
       {/* Scrim, or the spotlight that punches through it */}

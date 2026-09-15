@@ -65,7 +65,7 @@ export default function GovLoginPage() {
 
       <div className="bg-[var(--gov-maroon)] text-white text-[11px]">
         <div className="mx-auto max-w-[1400px] px-4 py-1.5 text-center font-bold uppercase tracking-[0.1em]">
-          Restricted access — authorised departmental users only
+          Restricted access: authorised departmental users only
         </div>
       </div>
 
@@ -88,7 +88,7 @@ export default function GovLoginPage() {
 
             <p className="text-[14px] text-slate-300 leading-relaxed max-w-xl">
               This is a separate portal from the public one. Access is granted by role, and each role
-              carries a fixed set of permissions and a fixed data scope — state-wide, a single district,
+              carries a fixed set of permissions and a fixed data scope: state-wide, a single district,
               or a single training centre. Nothing on this portal is visible or actionable outside the
               scope of the role you sign in with.
             </p>

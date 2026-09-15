@@ -100,7 +100,7 @@ export default function BusinessOverview() {
           </div>
 
           {/* ---- Feature list ---- */}
-          <Card title="Your services" subtitle="Six modules, one per operating pillar">
+          <Card title="Your services" subtitle="Everything you can do from this account">
             <div className="grid sm:grid-cols-2 gap-2.5">
               {CITIZEN_NAV.business.filter(n => n.pillarId).map(item => {
                 const pillar = PILLARS.find(p => p.id === item.pillarId)!;
@@ -119,7 +119,7 @@ export default function BusinessOverview() {
                         </p>
                         <p className="text-[11.5px] text-[var(--ink-secondary)] mt-1 leading-snug">{item.description}</p>
                         <p className="text-[10px] font-bold uppercase tracking-wide text-[var(--ink-tertiary)] mt-1.5">
-                          Pillar {pillar.number} — {pillar.short}
+                          {pillar.plain}
                         </p>
                       </div>
                     </div>

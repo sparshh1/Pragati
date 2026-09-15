@@ -59,7 +59,7 @@ export default function GovConsolePage() {
     <>
       <PageHeader
         eyebrow="Multilingual Control Tower"
-        title={`Control Tower — ${role.title}`}
+        title={`Control Tower: ${role.title}`}
         description={<>One queue, all six pillars · scope: <strong>{scopeLabel}</strong></>}
         actions={
           <div className="flex gap-1">

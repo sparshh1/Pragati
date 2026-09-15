@@ -105,7 +105,7 @@ export function GuideProvider({ children }: { children: ReactNode }) {
     return () => clearTimeout(t);
   }, [ready, availableTour, seen, active]);
 
-  // Route change ends any running tour — its steps point at a page that is gone.
+  // Route change ends any running tour - its steps point at a page that is gone.
   // The router is the external system being synchronised with here.
   /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {

@@ -24,7 +24,7 @@ export function DashboardShell({ role, children }: { role: CitizenRole; children
   const [navOpen, setNavOpen] = useState(false);
 
   // Route guard. Unregistered visitors are sent to login; a user who lands on
-  // the wrong role's dashboard is moved to their own — the two never mix.
+  // the wrong role's dashboard is moved to their own - the two never mix.
   useEffect(() => {
     if (!ready) return;
     if (!account) { router.replace('/login'); return; }
